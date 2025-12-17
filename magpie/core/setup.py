@@ -99,3 +99,5 @@ def setup(config):
         msg = '[magpie.log] error in format_diffif format string'
         raise ScenarioError(msg) from e
     magpie.settings.log_format_diffif = sec['format_diffif']
+    if "log_suffix_label" in config["magpie.log"]:
+        magpie.settings.log_suffix_label= config['magpie.log']['log_suffix_label']

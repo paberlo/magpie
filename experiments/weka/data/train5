@@ -1,0 +1,16 @@
+data/labor.arff
+data/segment-challenge.arff
+data/breast-cancer.arff
+data/diabetes.arff
+data/cpu.arff
+data/segment-test.arff
+data/airline.arff
+data/ionosphere.arff
+data/iris.arff
+data/hypothyroid.arff
+data/cpu.with.vendor.arff
+data/unbalanced.arff
+data/weather.nominal.arff
+data/weather.numeric.arff
+data/credit-g.arff
+data/iris.2D.arff

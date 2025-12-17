@@ -21,6 +21,8 @@ log_format_fitness = '{:.2f}'
 log_format_ratio = '{:.2%}'
 log_format_patchif = '\n --> {patch}'
 log_format_diffif = '\n{diff}'
+# added to control name details in log file name
+log_suffix_label = ""
 
 diff_method = 'unified' # unified / context
 

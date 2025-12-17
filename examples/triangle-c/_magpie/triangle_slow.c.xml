@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C" filename="triangle_slow.c"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>"triangle.h"</cpp:file></cpp:include>
+<unit xmlns="http://www.srcML.org/srcML/src" xmlns:cpp="http://www.srcML.org/srcML/cpp" revision="1.0.0" language="C" filename="triangle.c"><cpp:include>#<cpp:directive>include</cpp:directive> <cpp:file>"triangle.h"</cpp:file></cpp:include>
 
 <function><type><name>void</name></type> <name>delay</name><parameter_list>()</parameter_list> <block>{<block_content>
   <decl_stmt><decl><type><specifier>const</specifier> <name><name>struct</name> <name>timespec</name></name></type> <name>ms</name> <init>= <expr><block>{<expr><literal type="number">0</literal></expr>, <expr><literal type="number">0.001</literal><operator>*</operator><literal type="number">1e9</literal></expr>}</block></expr></init></decl>;</decl_stmt> <comment type="line">//tv_sec=0, tv_nsec (0.001 seconds)</comment>

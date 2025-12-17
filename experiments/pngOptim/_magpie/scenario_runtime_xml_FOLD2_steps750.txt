@@ -1,0 +1,44 @@
+[magpie]
+seed=1
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD2
+
+[software]
+path = experiments/pngOptim
+target_files =
+    optipng.c.xml
+    optim.c.xml
+fitness = time
+
+init_cmd = bash init.sh
+setup_cmd =
+compile_cmd = bash compile.sh
+test_cmd = sh test.sh
+    # FOLD 2 for kfold CV
+run_cmd = bash run.sh 2
+retries = 1
+test_timeout = 120
+run_timeout = 360
+
+[search.eda]
+pop_size = 50
+
+[search.gp]
+pop_size = 50
+
+[search]
+# max number of evaluations
+ max_steps = 750
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>
+
+
+
+
+

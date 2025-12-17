@@ -122,6 +122,13 @@ number: literal_number""",
         'batch_reset': True,
     },
 
+# [search.eda] section
+    'search.eda': {
+        'pop_size': 20,
+       # 'selection_ratio': 0.5,
+        'batch_reset': True,
+    },
+
     # [search.minify] section
     'search.minify': {
         'do_cleanup': True,

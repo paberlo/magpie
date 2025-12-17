@@ -1,0 +1,4 @@
+data/weather.nominal.arff
+data/weather.numeric.arff
+data/credit-g.arff
+data/iris.2D.arff

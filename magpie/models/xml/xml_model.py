@@ -23,6 +23,8 @@ class XmlModel(AbstractXmlModel):
 
     def init_contents(self):
         with pathlib.Path(self.filename).open('r') as target_file:
+            import os
+            ruta_absoluta = os.path.abspath(target_file.name)
             tree = self.string_to_tree(target_file.read())
         self.contents = self.process_tree(tree)
 
@@ -230,7 +232,11 @@ class XmlModel(AbstractXmlModel):
                     parent.insert(insert_index, tmp)
                     break
             else:
-                tmp.tail = child.tail
+                if child is not None:
+                    tmp.tail = child.tail
+                else:
+                    tmp.tail = None
+                    print("Child is None, tail cannot be copied")
                 child.tail = f'\n{ind_t}'
                 parent.insert(i+1, tmp)
         self.replace_indent(tmp, ind_t, ind_i)

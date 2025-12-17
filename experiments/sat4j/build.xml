@@ -1,0 +1,513 @@
+<project name="sat4j" default="p2">
+         <!-- using Eclipse compiler -->
+         <!-- COMMENT THAT LINE IF YOU WANT TO USE DEFAULT JDK COMPILER -->        
+        <!--
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        -->
+        <property name="testreport.dir" value="tests"/>
+	<property name="build" value="bin" />
+	<property name="doc" value="api" />
+    <property name="sourceCompatibility" value="11"/>
+	<property name="target" value="11"/>
+        <property name="dist" value="dist"/>
+        <property name="release" value="CUSTOM"/>
+        <property name="tag" value="HEAD"/>
+        <property name="lib" value="lib"/>
+        <property name="next.eclipse.release.date" value="June, 2010"/>
+	<target name="br4cp" depends="pseudo" description="Build a jar file for the BR4CP French ANR from the source tree">
+		<echo>Building BR4CP tool</echo>
+		<antcall target="build">
+		   <param name="package" value="br4cp"/>
+		   <param name="src" value="org.sat4j.br4cp/src/main/java" />
+                   <param name="jarname" value="org.sat4j.br4cp"/>
+                </antcall>
+                <antcall target="source-package">
+                   <param name="package" value="br4cp"/>
+		   <param name="src" value="org.sat4j.br4cp/src/main/java" />
+                   <param name="jarname" value="org.sat4j.br4cp"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-br4cp.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+			<zipgroupfileset dir="${dist}/${release}">
+				<include name="org.sat4j.core.jar"/>
+				<include name="org.sat4j.pb.jar"/>
+		        </zipgroupfileset>
+               </jar>
+                <antcall target="zip-bundle">
+		   <param name="package" value="br4cp"/>
+                </antcall>
+	</target>
+	<target name="pseudo" depends="core" description="Build a jar file suitable for the PB evaluations from current source tree">
+		<echo>Building Pseudo Boolean Solver</echo>
+		<antcall target="build">
+		   <param name="package" value="pb"/>
+		   <param name="src" value="org.sat4j.pb/src/main/java" />
+                   <param name="jarname" value="org.sat4j.pb"/>
+                </antcall>
+                <antcall target="source-package">
+                   <param name="package" value="pb"/>
+		   <param name="src" value="org.sat4j.pb/src/main/java" />
+                   <param name="jarname" value="org.sat4j.pb"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-pb.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+			<zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+		        </zipgroupfileset>
+               </jar>
+                <antcall target="zip-bundle">
+		   <param name="package" value="pb"/>
+                </antcall>
+	</target>
+
+        <target name="maxsat" depends="pseudo" description="Build a jar file suitable for the MaxSAT evaluations from  current source tree">
+		<echo>Building MAXSAT Solver</echo>
+                <antcall target="build">
+		   <param name="package" value="maxsat"/>
+		   <param name="src" value="org.sat4j.maxsat/src/main/java" />
+		   <param name="jarname" value="org.sat4j.maxsat"/>
+		</antcall>
+                <antcall target="source-package">
+                   <param name="package" value="maxsat"/>
+		   <param name="src" value="org.sat4j.maxsat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.maxsat"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-maxsat.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+			<zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+			   <include name="org.sat4j.pb.jar"/>
+		   </zipgroupfileset>
+                   <zipgroupfileset dir="${lib}">
+                           <include name="commons-cli.jar"/>
+		   </zipgroupfileset>
+               </jar>
+               <antcall target="zip-bundle">
+		   <param name="package" value="maxsat"/>
+                </antcall>
+	</target>
+	
+	<target name="intervalorders" depends="pseudo" description="Build the interval order agregation tool from  current source tree">
+		<echo>Building Interval Order tool</echo>
+                <antcall target="build">
+		   <param name="package" value="intervalorders"/>
+		   <param name="src" value="org.sat4j.intervalorders/src/main/java" />
+		   <param name="jarname" value="org.sat4j.intervalorders"/>
+		</antcall>
+                <antcall target="source-package">
+                   <param name="package" value="intervalorders"/>
+		   <param name="src" value="org.sat4j.intervalorders/src/main/java" />
+                   <param name="jarname" value="org.sat4j.intervalorders"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-intervalorders.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+			<zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+			   <include name="org.sat4j.pb.jar"/>
+		   </zipgroupfileset>
+               </jar>
+               <antcall target="zip-bundle">
+		   <param name="package" value="intervalorders"/>
+                </antcall>
+	</target>
+
+	<target name="csp" depends="core" description="Build a jar file suitable for the CSP competitions from  current source tree">
+		<echo>Building CSP Solver</echo>
+		<antcall target="build">
+		   <param name="package" value="csp.xmlparser"/>
+		   <param name="src" value="org.sat4j.csp.xmlparser/src/main/java" />
+                   <param name="jarname" value="org.sat4j.csp.xmlparser"/>
+		</antcall>
+                <antcall target="build">
+		   <param name="package" value="csp"/>
+		   <param name="src" value="org.sat4j.csp/src/main/java" />
+                   <param name="jarname" value="org.sat4j.csp"/>
+		   <param name="mainclass" value="org.sat4j.csp.CSPLauncher"/>
+		</antcall>
+                <antcall target="source-package">
+                   <param name="package" value="csp"/>
+		   <param name="src" value="org.sat4j.csp/src/main/java" />
+                   <param name="jarname" value="org.sat4j.csp"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-csp.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+		   <zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+			   <include name="org.sat4j.pb.jar"/>
+			   <include name="org.sat4j.csp.jar"/>
+			   <include name="org.sat4j.csp.xmlparser.jar"/>
+		   </zipgroupfileset>
+                   <zipgroupfileset dir="${lib}">
+                           <include name="org.xcsp.tests-1.0.0-SNAPSHOT.jar"/>
+                           <include name="xcsp3parser.jar"/>
+                           <include name="js.jar"/>
+		   </zipgroupfileset>
+               </jar>
+                <antcall target="zip-bundle">
+		   <param name="package" value="csp"/>
+                </antcall>
+	</target>
+
+	<target name="sat" depends="core,pseudo,maxsat" description="Build a jar file suitable for experimenting with SAT solvers from  current source tree">
+		<echo>Building the Java SAT Solvers toolkit</echo>
+                <antcall target="build">
+		   <param name="package" value="sat"/>
+		   <param name="src" value="org.sat4j.sat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.sat"/>
+		</antcall>
+                <antcall target="source-package">
+                   <param name="package" value="sat"/>
+		   <param name="src" value="org.sat4j.sat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.sat"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-sat.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+		   <zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+                           <include name="org.sat4j.pb.jar"/>
+                           <include name="org.sat4j.maxsat.jar"/>
+			   <include name="org.sat4j.sat.jar"/>
+		   </zipgroupfileset>
+                   <zipgroupfileset dir="${lib}">
+                           <include name="commons-cli.jar"/>
+                           <include name="commons-beanutils.jar"/>
+                           <include name="commons-logging.jar"/>
+                           <include name="jchart2d.jar"/>
+		   </zipgroupfileset>
+               </jar>
+               <antcall target="zip-bundle">
+		   <param name="package" value="sat4j-sat"/>
+                </antcall>
+	</target>
+
+	<target name="kth" depends="core,pseudo,maxsat" description="Build a jar file suitable for KTH">
+		<echo>Building the Java SAT Solvers toolkit for KTH experiments</echo>
+                <antcall target="build">
+		   <param name="package" value="sat"/>
+		   <param name="src" value="org.sat4j.sat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.sat"/>
+		</antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-kth.jar" basedir="${build}">		 
+                   <manifest>
+                       <attribute name="Main-Class" value="org.sat4j.sat.KTHLauncher"/>
+                   </manifest>
+		   <zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+                           <include name="org.sat4j.pb.jar"/>
+			   <include name="org.sat4j.sat.jar"/>
+		   </zipgroupfileset>
+                   <zipgroupfileset dir="${lib}">
+                           <include name="commons-cli.jar"/>
+                           <include name="commons-logging.jar"/>
+		   </zipgroupfileset>
+               </jar>
+	</target>
+
+	<target name="remote" depends="core,pseudo,maxsat" description="Build a jar file suitable for build the incredible sat4j remote control">
+		<echo>Building the Java SAT Solvers toolkit</echo>
+                <antcall target="build">
+		   <param name="package" value="sat"/>
+		   <param name="src" value="org.sat4j.sat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.sat"/>
+		</antcall>
+                <antcall target="source-package">
+                   <param name="package" value="sat"/>
+		   <param name="src" value="org.sat4j.sat/src/main/java" />
+                   <param name="jarname" value="org.sat4j.sat"/>
+                </antcall>
+                <echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sat4j-remotecontrol.jar" basedir="${build}">
+                       <manifest>
+                                <attribute name="Built-By" value="Stephanie Roussel"/>
+                                <attribute name="Main-Class" value="org.sat4j.sat.Launcher"/>
+                       </manifest>
+		   <zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+                           <include name="org.sat4j.pb.jar"/>
+			   <include name="org.sat4j.sat.jar"/>
+		   </zipgroupfileset>
+                   <zipgroupfileset dir="${lib}">
+                           <include name="commons-cli.jar"/>
+                           <include name="commons-beanutils.jar"/>
+                           <include name="commons-logging.jar"/>
+		   </zipgroupfileset>
+               </jar>
+	</target>
+    
+	<target name="core" depends="prepare" description="Build a jar file suitable for embedding SAT technology into a Java application from current source tree">
+		<echo>Building core library to be embedded into Java applications</echo>
+                <antcall target="build">
+		   <param name="package" value="core"/>
+		   <param name="src" value="org.sat4j.core/src/main/java" />
+                   <param name="jarname" value="org.sat4j.core"/>
+		</antcall>
+                <antcall target="source-package">
+		   <param name="package" value="core"/>
+		   <param name="src" value="org.sat4j.core/src/main/java" />
+                   <param name="jarname" value="org.sat4j.core"/>
+		</antcall>
+                <antcall target="zip-bundle">
+		   <param name="package" value="core"/>
+                </antcall>
+	</target>
+	
+	<target name="mus" depends="prepare" description="Build a jar file for MUS solver">
+		<echo>Building MUS solver</echo>
+                <antcall target="build">
+		   <param name="package" value="core"/>
+		   <param name="src" value="org.sat4j.core/src/main/java" />
+                   <param name="jarname" value="sat4j-mus"/>
+		</antcall>
+		<delete file="${dist}/${release}/sat4j-mus.jar"/>
+		<jar destfile="${dist}/${release}/sat4j-mus-v${BUILD_DATE}.jar" basedir="${build}">                        
+                       <manifest>
+                                <attribute name="Built-By" value="Daniel Le Berre"/>
+                                <attribute name="Main-Class" value="org.sat4j.MUSLauncher"/>
+                       </manifest>
+                 </jar>
+	</target>
+
+	<target name="sudoku" depends="core" description="Build the sudoku demo  from current source tree">
+		<echo>Building Sudoku app demo</echo>
+		<antcall target="build">
+			<param name="package" value="org.sat4j.sudoku"/>
+			<param name="src" value="org.sat4j.sudoku/src/main/java"/>
+                        <param name="lib" value="org.sat4j.sudoku/lib"/>
+                        <param name="jarname" value="org.sat4j.sudoku"/>
+			<param name="mainclass" value="org.sat4j.apps.sudoku.SDApplication"/>
+		</antcall>
+		<echo>Create All-In-One auto-executable package</echo>
+                <jar destfile="${dist}/${release}/sudoku-v${BUILD_DATE}.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF">		 
+			<zipgroupfileset dir="${dist}/${release}">
+                           <include name="org.sat4j.core.jar"/>
+			   <include name="org.sat4j.sudoku.jar"/>
+		   </zipgroupfileset>
+		  
+                   <zipgroupfileset dir="org.sat4j.sudoku/lib">
+                           <include name="jlfgr-1_0.jar"/>
+		   </zipgroupfileset>
+               </jar>
+	</target>
+
+	<target name="prepare" depends="clean">
+		<!-- Create the time stamp -->
+                <tstamp>
+                   <format property="BUILD_DATE" pattern="yyyyMMdd"/>
+                </tstamp>
+		<echo>Creating build and doc directories</echo>
+		<mkdir dir="${build}" />
+                <mkdir dir="${testreport.dir}" />
+                <mkdir dir="${dist}" />
+		<mkdir dir="${dist}/${release}" />
+		<mkdir dir="${dist}/${release}/lib" />
+		<mkdir dir="${doc}" />
+		<mkdir dir="${doc}/core" />
+		<mkdir dir="${doc}/sat" />
+		<mkdir dir="${doc}/pb" />
+		<mkdir dir="${doc}/maxsat" />
+		<mkdir dir="${doc}/csp" />
+	</target>
+
+	<path id="somePath">
+		<pathelement location="${build}"/>
+		<fileset dir="${lib}">
+			<include name="*src.jar"/>
+		</fileset>
+        <fileset dir="${lib}">
+			<include name="*.jar"/>
+            <exclude name="*src.jar"/>
+		</fileset>
+		<fileset dir="${dist}/${release}">
+			<include name="*.jar"/>
+		</fileset>
+		<pathelement location="${java.home}/lib/javaws.jar"/> 
+	</path>
+
+	<target name="javadoc">
+		<echo>Generating Javodoc</echo>
+		<javadoc destdir="${doc}/${module}" 
+				 access="public" 
+				 source="${sourceCompatibility}" 
+				 use="true" 
+				 notree="false" 
+				 nonavbar="false" 
+				 noindex="false" 
+				 splitindex="true" 
+				 author="true" 
+				 version="true" 
+				 nodeprecatedlist="false" 
+				 nodeprecated="false" 
+				 packagenames="org.sat4j.*,org.sat4j.spec.*,org.sat4j.core.*,org.sat4j.minisat.*,org.sat4j.minisat.core.*,org.sat4j.minisat.constraints.*,org.sat4j.minisat.constraints.cnf.*"
+				 sourcepath="${module}/src/main/java" 
+				 stylesheetfile="stylesheet.css"
+				 overview="${module}/src/main/java/overview.html" 
+				 doctitle="SAT4J: a SATisfiability library for Java">
+				 <classpath refid="somePath"/>
+				<group title="User level: stable public API." packages="org.sat4j:org.sat4j.*"/>
+				<group title="Developer level: internal API, subject to change." packages="org.sat4j.minisat.*:org.sat4j.reader.csp:org.sat4j.pb.*"/>
+		</javadoc>
+	</target>
+
+	<target name="build" depends="prepare">
+		<echo>Compiling source code ${src} using target ${target}</echo>
+		<javac
+		srcdir="${src}"
+		destdir="${build}"
+		source="${sourceCompatibility}"
+		target="${target}"
+		debug="true"
+	        includeantruntime="false">
+			<classpath refid="somePath"/>
+		</javac>
+		<copy todir="${build}" failonerror="false">
+			<fileset dir="${src}">
+				<include name="**/*.properties"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/> 
+				<include name="**/*.js"/>
+				<include name="**/*.html"/>
+				<include name="**/*.version"/>
+				<exclude name="**/package.html"/>
+				<exclude name="**/*.jpage"/>
+			</fileset>
+			<fileset dir="${src}/../resources">
+				<include name="**/*.properties"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/> 
+				<include name="**/*.js"/>
+				<include name="**/*.html"/>
+				<include name="**/*.version"/>
+                                <include name="**/*.xsd"/>
+				<include name="about.html"/>
+			</fileset>
+			<fileset dir="${src}/../../../">
+				<include name="plugin.properties"/>
+				<include name="**/*.MF"/>
+			</fileset>
+		</copy>
+		<replace dir="${build}" token="9.9.9.token" value="${release}.v${BUILD_DATE}"><include name="**/*.MF"/></replace>
+                <replace dir="${build}" token="$${version}" value="${release}.v${BUILD_DATE}"><include name="**/*.version"/></replace>
+		<replace dir="${build}" token="$${version}" value="${release}"><include name="**/about.html"/></replace>
+                <replace dir="${build}" token="$${next.eclipse.release.date}" value="${next.eclipse.release.date}"><include name="**/about.html"/></replace>
+		<jar destfile="${dist}/${release}/${jarname}.jar" basedir="${build}" manifest="${build}/META-INF/MANIFEST.MF"/>
+		<copy todir="${dist}/${release}/lib" failonerror="false">
+			<fileset dir="${lib}">
+				<include name="commons*.jar"/>
+				<include name="jlf*.jar"/>
+				<include name="csp*.jar"/>
+				<include name="js.jar"/>
+                                <include name="jchart2d*.jar"/>
+		    </fileset>
+	       </copy>
+	</target>
+
+	<target name="source-package">
+                <jar destfile="${dist}/${release}/${jarname}-src.jar" manifest="${build}/META-INF/MANIFEST.MF">
+			<fileset dir="${src}">
+                                <include name="**/*.java"/>
+				<include name="**/*.properties"/>
+				<include name="**/*.png"/>
+				<include name="**/*.gif"/>
+				<include name="**/*.jpg"/> 
+				<include name="**/*.js"/>
+				<include name="**/*.html"/>
+				<include name="**/*.version"/>
+				<exclude name="**/package.html"/>
+				<exclude name="**/*.jpage"/>
+			</fileset>
+			<fileset dir="${src}/../resources">
+				<include name="about.html"/>
+			</fileset>
+                        <fileset dir="${src}/../../../">
+				<include name="plugin.properties"/>
+                                <include name="build.properties"/>
+                                <include name="**/*.MF"/>
+			</fileset>
+		</jar>	
+        </target>
+
+        <target name="zip-bundle" depends="prepare">
+            <zip destfile="${dist}/${release}/sat4j-${package}-v${BUILD_DATE}.zip">
+                     <fileset dir="${dist}/${release}/">
+				<include name="*${package}*.jar"/>
+		    </fileset>
+            </zip>
+        </target>
+	  <target name="javadocs" description="Build all the Javadocs">
+	        <antcall target="javadoc">
+			<param name="module" value="core"/>
+			<param name="lib" value="core/lib"/>
+		</antcall>
+	        <antcall target="javadoc">
+			<param name="module" value="sat"/>
+			<param name="lib" value="sat/lib"/>
+		</antcall>
+	        <antcall target="javadoc">
+			<param name="module" value="pb"/>
+			<param name="lib" value="pb/lib"/>
+		</antcall>
+	        <antcall target="javadoc">
+			<param name="module" value="maxsat"/>
+			<param name="lib" value="maxsat/lib"/>
+		</antcall>
+	        <antcall target="javadoc">
+			<param name="module" value="csp"/>
+			<param name="lib" value="csp/lib"/>
+		</antcall>
+	</target>
+        <target name="tests" 
+          description="Launch JUnit tests and generate a report">
+		<echo>Compiling test files</echo>
+		<javac srcdir="${test}" destdir="${build}" source="${sourceCompatibility}" target="{target}" debug="true">
+			<classpath refid="somePath"/>
+		</javac>
+		<echo>Running JUNIT tests</echo>
+		<junit printsummary="yes" haltonfailure="no" fork="yes">
+			<classpath refid="somePath"/>
+			<formatter type="plain"/>
+			<jvmarg value="-ea"/>
+			<jvmarg value="-Xms500M"/>
+			<jvmarg value="-Xmx500M"/>
+			<jvmarg value="-Dtest.prefix=${basedir}/org.sat4j.core/src/test/testfiles/"/>
+			<jvmarg value="-Dtest.pbprefix=${basedir}/org.sat4j.pb/src/test/testfiles/"/>
+
+			<batchtest fork="yes" todir="${testreport.dir}">
+				<fileset dir="${build}">
+					<include name="**/*Test*.class" />
+					<include name="**/*Bug*.class" />
+					<exclude name="**/AllTests.class" />
+					<exclude name="**/Abstract*Test*.class" />
+					<exclude name="**/XplainTests*"/>
+					<exclude name="**/CompetPBRes*HTMixedConstraintsObjectiveLearningTest.class"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+	<target name="p2-tests" description="Runs tests for packages that ship with Eclipse">
+		<antcall target="tests">
+		   <param name="test" value="org.sat4j.core/src/test/java:org.sat4j.pb/src/test/java" />
+		</antcall>
+	</target>
+	<target name="p2" depends="cleanrelease,core,pseudo" description="Build a release of SAT4J Core and SAT4J Pseudo to be used in Eclipse p2">
+                 <echo>Built release ${release} of both SAT4J Core and SAT4J Pseudo</echo>
+	</target>
+
+	<target name="all" depends="cleanrelease,core,pseudo,maxsat,csp,sat,sudoku" description="Build a full release of SAT4J project">
+                 <echo>Built full release ${release}</echo>
+	</target>
+
+	<target name="cleanrelease">
+                 <delete dir="${dist}/${release}" />
+	</target>
+
+	<target name="clean" description="Delete build and doc directories">
+		<!-- Delete the ${build} and ${doc} directory trees -->
+		<delete dir="${build}" />
+                <delete dir="${testreport.dir}"/>
+		<delete dir="${doc}" />
+	</target>
+
+</project>

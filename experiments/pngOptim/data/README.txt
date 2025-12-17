@@ -1,0 +1,1 @@
+.PNG files obtained from the ImageMagic GitHub repository: https://github.com/ImageMagick/ImageMagick

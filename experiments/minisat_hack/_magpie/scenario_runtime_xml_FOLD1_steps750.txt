@@ -1,0 +1,42 @@
+[magpie]
+seed=1
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD1
+
+[software]
+path = experiments/minisat_hack
+target_files = sources/core/Solver.cc.xml
+fitness = time
+
+init_cmd = bash init.sh
+setup_cmd = ./build.sh
+compile_cmd = ./build.sh
+test_cmd = ./test.sh
+    # FOLD 1 for kfold CV
+run_cmd = bash run.sh 1
+retries = 1
+test_timeout = 200
+run_timeout = 240
+
+[search.eda]
+pop_size = 50
+
+[search.gp]
+pop_size = 50
+
+[search]
+# max number of evaluations
+ max_steps = 750
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>
+
+
+
+
+

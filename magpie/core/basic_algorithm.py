@@ -231,6 +231,9 @@ class BasicAlgorithm(AbstractAlgorithm):
         if self.report['best_patch']:
             variant = Variant(self.software, self.report['best_patch'])
             self.report['diff'] = variant.diff
+        else:
+            msg = 'No variant found better than original.'
+            self.software.logger.info(msg)
         msg = '~~~~ END ~~~~'
         if magpie.settings.color_output:
             msg = f'\033[1m{msg}\033[0m'

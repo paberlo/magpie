@@ -1,0 +1,876 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<unit xmlns="http://www.srcML.org/srcML/src" revision="1.0.0" language="Java" filename="weka-src/src/main/java/weka/classifiers/trees//RandomForest.java"><comment type="block">/*
+ *   This program is free software: you can redistribute it and/or modify
+ *   it under the terms of the GNU General Public License as published by
+ *   the Free Software Foundation, either version 3 of the License, or
+ *   (at your option) any later version.
+ *
+ *   This program is distributed in the hope that it will be useful,
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *   GNU General Public License for more details.
+ *
+ *   You should have received a copy of the GNU General Public License
+ *   along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.
+ */</comment>
+
+<comment type="block">/*
+ *    RandomForest.java
+ *    Copyright (C) 2001-2012 University of Waikato, Hamilton, New Zealand
+ *
+ */</comment>
+
+<package>package <name><name>weka</name><operator>.</operator><name>classifiers</name><operator>.</operator><name>trees</name></name>;</package>
+
+<import>import <name><name>weka</name><operator>.</operator><name>classifiers</name><operator>.</operator><name>AbstractClassifier</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>classifiers</name><operator>.</operator><name>Classifier</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>classifiers</name><operator>.</operator><name>meta</name><operator>.</operator><name>Bagging</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>Capabilities</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>Option</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>OptionHandler</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>RevisionUtils</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>TechnicalInformation</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>TechnicalInformation</name><operator>.</operator><name>Field</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>TechnicalInformation</name><operator>.</operator><name>Type</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>Utils</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>core</name><operator>.</operator><name>WekaException</name></name>;</import>
+<import>import <name><name>weka</name><operator>.</operator><name>gui</name><operator>.</operator><name>ProgrammaticProperty</name></name>;</import>
+
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Collections</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Enumeration</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>List</name></name>;</import>
+<import>import <name><name>java</name><operator>.</operator><name>util</name><operator>.</operator><name>Vector</name></name>;</import>
+
+<comment type="block" format="javadoc">/**
+ * &lt;!-- globalinfo-start --&gt; Class for constructing a forest of random trees.&lt;br&gt;
+ * &lt;br&gt;
+ * For more information see: &lt;br&gt;
+ * &lt;br&gt;
+ * Leo Breiman (2001). Random Forests. Machine Learning. 45(1):5-32. &lt;br&gt;
+ * &lt;br&gt;
+ * &lt;!-- globalinfo-end --&gt;
+ * 
+ * &lt;!-- technical-bibtex-start --&gt; BibTeX:
+ * 
+ * &lt;pre&gt;
+ * &amp;#64;article{Breiman2001,
+ *    author = {Leo Breiman},
+ *    journal = {Machine Learning},
+ *    number = {1},
+ *    pages = {5-32},
+ *    title = {Random Forests},
+ *    volume = {45},
+ *    year = {2001}
+ * }
+ * &lt;/pre&gt;
+ * 
+ * &lt;br&gt;
+ * &lt;br&gt;
+ * &lt;!-- technical-bibtex-end --&gt;
+ * 
+ * &lt;!-- options-start --&gt; Valid options are:
+ * &lt;p&gt;
+ * 
+ * &lt;pre&gt;
+ * -P
+ *  Size of each bag, as a percentage of the
+ *  training set size. (default 100)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -O
+ *  Calculate the out of bag error.
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -store-out-of-bag-predictions
+ *  Whether to store out of bag predictions in internal evaluation object.
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -output-out-of-bag-complexity-statistics
+ *  Whether to output complexity-based statistics when out-of-bag evaluation is performed.
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -print
+ *  Print the individual classifiers in the output
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -attribute-importance
+ *  Compute and output attribute importance (mean impurity decrease method)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -I &amp;lt;num&amp;gt;
+ *  Number of iterations (i.e., the number of trees in the random forest).
+ *  (current value 100)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -num-slots &amp;lt;num&amp;gt;
+ *  Number of execution slots.
+ *  (default 1 - i.e. no parallelism)
+ *  (use 0 to auto-detect number of cores)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -K &amp;lt;number of attributes&amp;gt;
+ *  Number of attributes to randomly investigate. (default 0)
+ *  (&amp;lt;1 = int(log_2(#predictors)+1)).
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -M &amp;lt;minimum number of instances&amp;gt;
+ *  Set minimum number of instances per leaf.
+ *  (default 1)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -V &amp;lt;minimum variance for split&amp;gt;
+ *  Set minimum numeric class variance proportion
+ *  of train variance for split (default 1e-3).
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -S &amp;lt;num&amp;gt;
+ *  Seed for random number generator.
+ *  (default 1)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -depth &amp;lt;num&amp;gt;
+ *  The maximum depth of the tree, 0 for unlimited.
+ *  (default 0)
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -N &amp;lt;num&amp;gt;
+ *  Number of folds for backfitting (default 0, no backfitting).
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -U
+ *  Allow unclassified instances.
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -B
+ *  Break ties randomly when several attributes look equally good.
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -output-debug-info
+ *  If set, classifier is run in debug mode and
+ *  may output additional info to the console
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -do-not-check-capabilities
+ *  If set, classifier capabilities are not checked before classifier is built
+ *  (use with caution).
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -num-decimal-places
+ *  The number of decimal places for the output of numbers in the model (default 2).
+ * &lt;/pre&gt;
+ * 
+ * &lt;pre&gt;
+ * -batch-size
+ *  The desired batch size for batch prediction  (default 100).
+ * &lt;/pre&gt;
+ * 
+ * &lt;!-- options-end --&gt;
+ * 
+ * @author Richard Kirkby (rkirkby@cs.waikato.ac.nz)
+ * @version $Revision: 15312 $
+ */</comment>
+<class><specifier>public</specifier> class <name>RandomForest</name> <super_list><extends>extends <super><name>Bagging</name></super></extends></super_list> <block>{
+
+  <comment type="block" format="javadoc">/** for serialization */</comment>
+  <decl_stmt><decl><type><specifier>static</specifier> <specifier>final</specifier> <name>long</name></type> <name>serialVersionUID</name> <init>= <expr><literal type="number">1116839470751428698L</literal></expr></init></decl>;</decl_stmt>
+
+  <comment type="block" format="javadoc">/** True to compute attribute importance */</comment>
+  <decl_stmt><decl><type><specifier>protected</specifier> <name>boolean</name></type> <name>m_computeAttributeImportance</name></decl>;</decl_stmt>
+
+  <comment type="block" format="javadoc">/**
+   * The default number of iterations to perform.
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name>int</name></type> <name>defaultNumberOfIterations</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="number">100</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Constructor that sets base classifier for bagging to RandomTre and default
+   * number of iterations to 100.
+   */</comment>
+  <constructor><specifier>public</specifier> <name>RandomForest</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>RandomTree</name></type> <name>rTree</name> <init>= <expr><operator>new</operator> <call><name>RandomTree</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>rTree</name><operator>.</operator><name>setDoNotCheckCapabilities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setClassifier</name></name><argument_list>(<argument><expr><name>rTree</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setRepresentCopiesUsingWeights</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setNumIterations</name><argument_list>(<argument><expr><call><name>defaultNumberOfIterations</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></constructor>
+
+  <comment type="block" format="javadoc">/**
+   * Returns default capabilities of the base classifier.
+   *
+   * @return the capabilities of the base classifier
+   */</comment>
+  <function><type><specifier>public</specifier> <name>Capabilities</name></type> <name>getCapabilities</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <comment type="line">// Cannot use the main RandomTree object because capabilities checking has</comment>
+    <comment type="line">// been turned off</comment>
+    <comment type="line">// for that object.</comment>
+    <return>return <expr><operator>(</operator><operator>new</operator> <call><name>RandomTree</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getCapabilities</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * String describing default classifier.
+   *
+   * @return the default classifier classname
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name>String</name></type> <name>defaultClassifierString</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <return>return <expr><literal type="string">"weka.classifiers.trees.RandomTree"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * String describing default classifier options.
+   *
+   * @return the default classifier options
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>protected</specifier> <name><name>String</name><index>[]</index></name></type> <name>defaultClassifierOptions</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <decl_stmt><decl><type><name><name>String</name><index>[]</index></name></type> <name>args</name> <init>= <expr><block>{ <expr><literal type="string">"-do-not-check-capabilities"</literal></expr> }</block></expr></init></decl>;</decl_stmt>
+    <return>return <expr><name>args</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns a string describing classifier
+   * 
+   * @return a description suitable for displaying in the explorer/experimenter
+   *         gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>globalInfo</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <return>return <expr><literal type="string">"Class for constructing a forest of random trees.\n\n"</literal>
+      <operator>+</operator> <literal type="string">"For more information see: \n\n"</literal> <operator>+</operator> <call><name>getTechnicalInformation</name><argument_list>()</argument_list></call><operator>.</operator><call><name>toString</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns an instance of a TechnicalInformation object, containing detailed
+   * information about the technical background of this class, e.g., paper
+   * reference or book this class is based on.
+   * 
+   * @return the technical information about this class
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>TechnicalInformation</name></type> <name>getTechnicalInformation</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name>TechnicalInformation</name></type> <name>result</name></decl>;</decl_stmt>
+
+    <expr_stmt><expr><name>result</name> <operator>=</operator> <operator>new</operator> <call><name>TechnicalInformation</name><argument_list>(<argument><expr><name><name>Type</name><operator>.</operator><name>ARTICLE</name></name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>AUTHOR</name></name></expr></argument>, <argument><expr><literal type="string">"Leo Breiman"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>YEAR</name></name></expr></argument>, <argument><expr><literal type="string">"2001"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>TITLE</name></name></expr></argument>, <argument><expr><literal type="string">"Random Forests"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>JOURNAL</name></name></expr></argument>, <argument><expr><literal type="string">"Machine Learning"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>VOLUME</name></name></expr></argument>, <argument><expr><literal type="string">"45"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>NUMBER</name></name></expr></argument>, <argument><expr><literal type="string">"1"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>setValue</name></name><argument_list>(<argument><expr><name><name>Field</name><operator>.</operator><name>PAGES</name></name></expr></argument>, <argument><expr><literal type="string">"5-32"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><name>result</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the tip text for the number of iterations. Overridden here to be more informative.
+   * @return tip text for this property suitable for displaying in the explorer/experimenter gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>numIterationsTipText</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"The number of trees in the random forest."</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * This method only accepts RandomTree arguments.
+   *
+   * @param newClassifier the RandomTree to use.
+   * @exception if argument is not a RandomTree
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <annotation>@<name>ProgrammaticProperty</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setClassifier</name><parameter_list>(<parameter><decl><type><name>Classifier</name></type> <name>newClassifier</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><operator>(</operator><name>newClassifier</name> <operator>instanceof</operator> <name>RandomTree</name><operator>)</operator></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(
+        <argument><expr><literal type="string">"RandomForest: Argument of setClassifier() must be a RandomTree."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setClassifier</name></name><argument_list>(<argument><expr><name>newClassifier</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * This method only accepts true as its argument
+   *
+   * @param representUsingWeights must be set to true.
+   * @exception if argument is not true
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <annotation>@<name>ProgrammaticProperty</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setRepresentCopiesUsingWeights</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>representUsingWeights</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><name>representUsingWeights</name></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>IllegalArgumentException</name><argument_list>(
+        <argument><expr><literal type="string">"RandomForest: Argument of setRepresentCopiesUsingWeights() must be true."</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setRepresentCopiesUsingWeights</name></name><argument_list>(<argument><expr><name>representUsingWeights</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the tip text for this property
+   *
+   * @return tip text for this property suitable for displaying in the
+   *         explorer/experimenter gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>numFeaturesTipText</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>KValueTipText</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Get the number of features used in random selection.
+   *
+   * @return Value of numFeatures.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>int</name></type> <name>getNumFeatures</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getKValue</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set the number of features to use in random selection.
+   *
+   * @param newNumFeatures Value to assign to numFeatures.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setNumFeatures</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>newNumFeatures</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setKValue</name><argument_list>(<argument><expr><name>newNumFeatures</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the tip text for this property
+   *
+   * @return tip text for this property suitable for displaying in the
+   *         explorer/experimenter gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>computeAttributeImportanceTipText</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><literal type="string">"Compute attribute importance via mean impurity decrease"</literal></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set whether to compute and output attribute importance scores
+   *
+   * @param computeAttributeImportance true to compute attribute importance
+   *          scores
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setComputeAttributeImportance</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>computeAttributeImportance</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><name>m_computeAttributeImportance</name> <operator>=</operator> <name>computeAttributeImportance</name></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator><name>m_Classifier</name><operator>)</operator><operator>.</operator><call><name>setComputeImpurityDecreases</name><argument_list>(<argument><expr><name>computeAttributeImportance</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Get whether to compute and output attribute importance scores
+   *
+   * @return true if computing attribute importance scores
+   */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>getComputeAttributeImportance</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><name>m_computeAttributeImportance</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the tip text for this property
+   *
+   * @return tip text for this property suitable for displaying in the
+   *         explorer/experimenter gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>maxDepthTipText</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>maxDepthTipText</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Get the maximum depth of trh tree, 0 for unlimited.
+   *
+   * @return the maximum depth.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>int</name></type> <name>getMaxDepth</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getMaxDepth</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set the maximum depth of the tree, 0 for unlimited.
+   *
+   * @param value the maximum depth.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setMaxDepth</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>value</name></decl></parameter>)</parameter_list> <block>{<block_content>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setMaxDepth</name><argument_list>(<argument><expr><name>value</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the tip text for this property
+   *
+   * @return tip text for this property suitable for displaying in the
+   *         explorer/experimenter gui
+   */</comment>
+  <function><type><specifier>public</specifier> <name>String</name></type> <name>breakTiesRandomlyTipText</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>breakTiesRandomlyTipText</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Get whether to break ties randomly.
+   *
+   * @return true if ties are to be broken randomly.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>boolean</name></type> <name>getBreakTiesRandomly</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <return>return <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getBreakTiesRandomly</name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set whether to break ties randomly.
+   *
+   * @param newBreakTiesRandomly true if ties are to be broken randomly
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setBreakTiesRandomly</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>newBreakTiesRandomly</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setBreakTiesRandomly</name><argument_list>(<argument><expr><name>newBreakTiesRandomly</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set debugging mode.
+   *
+   * @param debug true if debug output should be printed
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setDebug</name><parameter_list>(<parameter><decl><type><name>boolean</name></type> <name>debug</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setDebug</name></name><argument_list>(<argument><expr><name>debug</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setDebug</name><argument_list>(<argument><expr><name>debug</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set the number of decimal places.
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setNumDecimalPlaces</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>num</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setNumDecimalPlaces</name></name><argument_list>(<argument><expr><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setNumDecimalPlaces</name><argument_list>(<argument><expr><name>num</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Set the preferred batch size for batch prediction.
+   *
+   * @param size the batch size to use
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setBatchSize</name><parameter_list>(<parameter><decl><type><name>String</name></type> <name>size</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setBatchSize</name></name><argument_list>(<argument><expr><name>size</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setBatchSize</name><argument_list>(<argument><expr><name>size</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Sets the seed for the random number generator.
+   *
+   * @param s the seed to be used
+   */</comment>
+  <function><type><specifier>public</specifier> <name>void</name></type> <name>setSeed</name><parameter_list>(<parameter><decl><type><name>int</name></type> <name>s</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><call><name><name>super</name><operator>.</operator><name>setSeed</name></name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>setSeed</name><argument_list>(<argument><expr><name>s</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns description of the bagged classifier.
+   *
+   * @return description of the bagged classifier as a string
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>String</name></type> <name>toString</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <if_stmt><if>if <condition>(<expr><name>m_Classifiers</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <return>return <expr><literal type="string">"RandomForest: No model built yet."</literal></expr>;</return>
+    </block_content>}</block></if></if_stmt>
+    <decl_stmt><decl><type><name>StringBuilder</name></type> <name>buffer</name> <init>= <expr><operator>new</operator> <call><name>StringBuilder</name><argument_list>(<argument><expr><literal type="string">"RandomForest\n\n"</literal></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>buffer</name><operator>.</operator><name>append</name></name><argument_list>(<argument><expr><call><name><name>super</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getComputeAttributeImportance</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <try>try <block>{<block_content>
+        <decl_stmt><decl><type><name><name>double</name><index>[]</index></name></type> <name>nodeCounts</name> <init>= <expr><operator>new</operator> <name><name>double</name><index>[<expr><call><name><name>m_data</name><operator>.</operator><name>numAttributes</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>double</name><index>[]</index></name></type> <name>impurityScores</name> <init>=
+          <expr><call><name>computeAverageImpurityDecreasePerAttribute</name><argument_list>(<argument><expr><name>nodeCounts</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <decl_stmt><decl><type><name><name>int</name><index>[]</index></name></type> <name>sortedIndices</name> <init>= <expr><call><name><name>Utils</name><operator>.</operator><name>sort</name></name><argument_list>(<argument><expr><name>impurityScores</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+        <expr_stmt><expr><call><name><name>buffer</name>
+          <operator>.</operator><name>append</name></name><argument_list>(<argument><expr><literal type="string">"\n\nAttribute importance based on average impurity decrease "</literal>
+            <operator>+</operator> <literal type="string">"(and number of nodes using that attribute)\n\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+        <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><name><name>sortedIndices</name><operator>.</operator><name>length</name></name> <operator>-</operator> <literal type="number">1</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&gt;=</operator> <literal type="number">0</literal></expr>;</condition> <incr><expr><name>i</name><operator>--</operator></expr></incr>)</control> <block>{<block_content>
+          <decl_stmt><decl><type><name>int</name></type> <name>index</name> <init>= <expr><name><name>sortedIndices</name><index>[<expr><name>i</name></expr>]</index></name></expr></init></decl>;</decl_stmt>
+          <if_stmt><if>if <condition>(<expr><name>index</name> <operator>!=</operator> <call><name><name>m_data</name><operator>.</operator><name>classIndex</name></name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+            <expr_stmt><expr><call><name><name>buffer</name>
+              <operator>.</operator><name>append</name></name><argument_list>(
+                <argument><expr><call><name><name>Utils</name><operator>.</operator><name>doubleToString</name></name><argument_list>(<argument><expr><name><name>impurityScores</name><index>[<expr><name>index</name></expr>]</index></name></expr></argument>, <argument><expr><literal type="number">10</literal></expr></argument>,
+                  <argument><expr><call><name>getNumDecimalPlaces</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call><operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">" ("</literal></expr></argument>)</argument_list></call>
+              <operator>.</operator><call><name>append</name><argument_list>(<argument><expr><call><name><name>Utils</name><operator>.</operator><name>doubleToString</name></name><argument_list>(<argument><expr><name><name>nodeCounts</name><index>[<expr><name>index</name></expr>]</index></name></expr></argument>, <argument><expr><literal type="number">6</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call>
+              <operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">")  "</literal></expr></argument>)</argument_list></call><operator>.</operator><call><name>append</name><argument_list>(<argument><expr><call><name><name>m_data</name><operator>.</operator><name>attribute</name></name><argument_list>(<argument><expr><name>index</name></expr></argument>)</argument_list></call><operator>.</operator><call><name>name</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call>
+              <operator>.</operator><call><name>append</name><argument_list>(<argument><expr><literal type="string">"\n"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+          </block_content>}</block></if></if_stmt>
+        </block_content>}</block></for>
+      </block_content>}</block> <catch>catch <parameter_list>(<parameter><decl><type><name>WekaException</name></type> <name>ex</name></decl></parameter>)</parameter_list> <block>{<block_content>
+        <comment type="line">// ignore</comment>
+      </block_content>}</block></catch></try>
+    </block_content>}</block></if></if_stmt>
+
+    <return>return <expr><call><name><name>buffer</name><operator>.</operator><name>toString</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Computes the average impurity decrease per attribute over the trees
+   *
+   * @param nodeCounts an optional array that, if non-null, will hold the count
+   *          of the number of nodes at which each attribute was used for
+   *          splitting
+   * @return the average impurity decrease per attribute over the trees
+   */</comment>
+  <function><type><specifier>public</specifier> <name><name>double</name><index>[]</index></name></type> <name>computeAverageImpurityDecreasePerAttribute</name><parameter_list>(
+    <parameter><decl><type><name><name>double</name><index>[]</index></name></type> <name>nodeCounts</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>WekaException</name></expr></argument></throws> <block>{<block_content>
+
+    <if_stmt><if>if <condition>(<expr><name>m_Classifiers</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>WekaException</name><argument_list>(<argument><expr><literal type="string">"Classifier has not been built yet!"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><operator>!</operator><call><name>getComputeAttributeImportance</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <throw>throw <expr><operator>new</operator> <call><name>WekaException</name><argument_list>(<argument><expr><literal type="string">"Stats for attribute importance have not "</literal>
+        <operator>+</operator> <literal type="string">"been collected!"</literal></expr></argument>)</argument_list></call></expr>;</throw>
+    </block_content>}</block></if></if_stmt>
+
+    <decl_stmt><decl><type><name><name>double</name><index>[]</index></name></type> <name>impurityDecreases</name> <init>= <expr><operator>new</operator> <name><name>double</name><index>[<expr><call><name><name>m_data</name><operator>.</operator><name>numAttributes</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><name>nodeCounts</name> <operator>==</operator> <literal type="null">null</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><name>nodeCounts</name> <operator>=</operator> <operator>new</operator> <name><name>double</name><index>[<expr><call><name><name>m_data</name><operator>.</operator><name>numAttributes</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+    <for>for <control>(<init><decl><type><name>Classifier</name></type> <name>c</name> <range>: <expr><name>m_Classifiers</name></expr></range></decl></init>)</control> <block>{<block_content>
+      <decl_stmt><decl><type><name><name>double</name><index>[]</index><index>[]</index></name></type> <name>forClassifier</name> <init>= <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <name>c</name><operator>)</operator><operator>.</operator><call><name>getImpurityDecreases</name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+      <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <call><name><name>m_data</name><operator>.</operator><name>numAttributes</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+        <expr_stmt><expr><name><name>impurityDecreases</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+=</operator> <name><name>forClassifier</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">0</literal></expr>]</index></name></expr>;</expr_stmt>
+        <expr_stmt><expr><name><name>nodeCounts</name><index>[<expr><name>i</name></expr>]</index></name> <operator>+=</operator> <name><name>forClassifier</name><index>[<expr><name>i</name></expr>]</index><index>[<expr><literal type="number">1</literal></expr>]</index></name></expr>;</expr_stmt>
+      </block_content>}</block></for>
+    </block_content>}</block></for>
+    <for>for <control>(<init><decl><type><name>int</name></type> <name>i</name> <init>= <expr><literal type="number">0</literal></expr></init></decl>;</init> <condition><expr><name>i</name> <operator>&lt;</operator> <call><name><name>m_data</name><operator>.</operator><name>numAttributes</name></name><argument_list>()</argument_list></call></expr>;</condition> <incr><expr><name>i</name><operator>++</operator></expr></incr>)</control> <block>{<block_content>
+      <if_stmt><if>if <condition>(<expr><name><name>nodeCounts</name><index>[<expr><name>i</name></expr>]</index></name> <operator>&gt;</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+        <expr_stmt><expr><name><name>impurityDecreases</name><index>[<expr><name>i</name></expr>]</index></name> <operator>/=</operator> <name><name>nodeCounts</name><index>[<expr><name>i</name></expr>]</index></name></expr>;</expr_stmt>
+      </block_content>}</block></if></if_stmt>
+    </block_content>}</block></for>
+
+    <return>return <expr><name>impurityDecreases</name></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns an enumeration describing the available options.
+   * 
+   * @return an enumeration of all the available options
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>Enumeration</name><argument_list type="generic">&lt;<argument><name>Option</name></argument>&gt;</argument_list></name></type> <name>listOptions</name><parameter_list>()</parameter_list> <block>{<block_content>
+
+    <decl_stmt><decl><type><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>Option</name></argument>&gt;</argument_list></name></type> <name>newVector</name> <init>= <expr><operator>new</operator> <call><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>Option</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(
+      <argument><expr><literal type="string">"\tSize of each bag, as a percentage of the\n"</literal>
+        <operator>+</operator> <literal type="string">"\ttraining set size. (default 100)"</literal></expr></argument>, <argument><expr><literal type="string">"P"</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="string">"-P"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(<argument><expr><literal type="string">"\tCalculate the out of bag error."</literal></expr></argument>, <argument><expr><literal type="string">"O"</literal></expr></argument>,
+      <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="string">"-O"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name>
+      <operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(
+        <argument><expr><literal type="string">"\tWhether to store out of bag predictions in internal evaluation object."</literal></expr></argument>,
+        <argument><expr><literal type="string">"store-out-of-bag-predictions"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="string">"-store-out-of-bag-predictions"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name>
+      <operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(
+        <argument><expr><literal type="string">"\tWhether to output complexity-based statistics when out-of-bag evaluation is performed."</literal></expr></argument>,
+        <argument><expr><literal type="string">"output-out-of-bag-complexity-statistics"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>,
+        <argument><expr><literal type="string">"-output-out-of-bag-complexity-statistics"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name>
+      <operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(
+        <argument><expr><literal type="string">"\tPrint the individual classifiers in the output"</literal></expr></argument>, <argument><expr><literal type="string">"print"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>,
+        <argument><expr><literal type="string">"-print"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(
+      <argument><expr><literal type="string">"\tCompute and output attribute importance (mean impurity decrease "</literal>
+        <operator>+</operator> <literal type="string">"method)"</literal></expr></argument>, <argument><expr><literal type="string">"attribute-importance"</literal></expr></argument>, <argument><expr><literal type="number">0</literal></expr></argument>, <argument><expr><literal type="string">"-attribute-importance"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(<argument><expr><literal type="string">"\tNumber of iterations (i.e., the number of trees in the random forest).\n"</literal>
+      <operator>+</operator> <literal type="string">"\t(current value "</literal> <operator>+</operator> <call><name>getNumIterations</name><argument_list>()</argument_list></call> <operator>+</operator> <literal type="string">")"</literal></expr></argument>, <argument><expr><literal type="string">"I"</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>, <argument><expr><literal type="string">"-I &lt;num&gt;"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addElement</name></name><argument_list>(<argument><expr><operator>new</operator> <call><name>Option</name><argument_list>(<argument><expr><literal type="string">"\tNumber of execution slots.\n"</literal>
+      <operator>+</operator> <literal type="string">"\t(default 1 - i.e. no parallelism)\n"</literal>
+      <operator>+</operator> <literal type="string">"\t(use 0 to auto-detect number of cores)"</literal></expr></argument>, <argument><expr><literal type="string">"num-slots"</literal></expr></argument>, <argument><expr><literal type="number">1</literal></expr></argument>,
+      <argument><expr><literal type="string">"-num-slots &lt;num&gt;"</literal></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Add base classifier options</comment>
+    <decl_stmt><decl><type><name><name>List</name><argument_list type="generic">&lt;<argument><name>Option</name></argument>&gt;</argument_list></name></type> <name>list</name> <init>=
+      <expr><call><name><name>Collections</name><operator>.</operator><name>list</name></name><argument_list>(<argument><expr><operator>(</operator><operator>(</operator><name>OptionHandler</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>listOptions</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>newVector</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>list</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><call><name><name>newVector</name><operator>.</operator><name>elements</name></name><argument_list>()</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Gets the current settings of the forest.
+   * 
+   * @return an array of strings suitable for passing to setOptions()
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name><name>String</name><index>[]</index></name></type> <name>getOptions</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <decl_stmt><decl><type><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>result</name> <init>= <expr><operator>new</operator> <call><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-P"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">""</literal> <operator>+</operator> <call><name>getBagSizePercent</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getCalcOutOfBag</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-O"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getStoreOutOfBagPredictions</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-store-out-of-bag-predictions"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getOutputOutOfBagComplexityStatistics</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-output-out-of-bag-complexity-statistics"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getPrintClassifiers</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-print"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getComputeAttributeImportance</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-attribute-importance"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-I"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">""</literal> <operator>+</operator> <call><name>getNumIterations</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-num-slots"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">""</literal> <operator>+</operator> <call><name>getNumExecutionSlots</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <if_stmt><if>if <condition>(<expr><call><name>getDoNotCheckCapabilities</name><argument_list>()</argument_list></call></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>add</name></name><argument_list>(<argument><expr><literal type="string">"-do-not-check-capabilities"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if></if_stmt>
+
+    <comment type="line">// Add base classifier options</comment>
+    <decl_stmt><decl><type><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name></type> <name>classifierOptions</name> <init>= <expr><operator>new</operator> <call><name><name>Vector</name><argument_list type="generic">&lt;<argument><name>String</name></argument>&gt;</argument_list></name><argument_list>()</argument_list></call></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>Collections</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>classifierOptions</name></expr></argument>,
+      <argument><expr><operator>(</operator><operator>(</operator><name>OptionHandler</name><operator>)</operator> <call><name>getClassifier</name><argument_list>()</argument_list></call><operator>)</operator><operator>.</operator><call><name>getOptions</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>Option</name><operator>.</operator><name>deleteFlagString</name></name><argument_list>(<argument><expr><name>classifierOptions</name></expr></argument>, <argument><expr><literal type="string">"-do-not-check-capabilities"</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>result</name><operator>.</operator><name>addAll</name></name><argument_list>(<argument><expr><name>classifierOptions</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <return>return <expr><call><name><name>result</name><operator>.</operator><name>toArray</name></name><argument_list>(<argument><expr><operator>new</operator> <name><name>String</name><index>[<expr><call><name><name>result</name><operator>.</operator><name>size</name></name><argument_list>()</argument_list></call></expr>]</index></name></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Parses a given list of options.
+   * &lt;p/&gt;
+   * 
+   * &lt;!-- options-start --&gt; Valid options are:
+   * &lt;p&gt;
+   * 
+   * &lt;pre&gt;
+   * -P
+   *  Size of each bag, as a percentage of the
+   *  training set size. (default 100)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -O
+   *  Calculate the out of bag error.
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -store-out-of-bag-predictions
+   *  Whether to store out of bag predictions in internal evaluation object.
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -output-out-of-bag-complexity-statistics
+   *  Whether to output complexity-based statistics when out-of-bag evaluation is performed.
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -print
+   *  Print the individual classifiers in the output
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -attribute-importance
+   *  Compute and output attribute importance (mean impurity decrease method)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -I &amp;lt;num&amp;gt;
+   *  Number of iterations (i.e., the number of trees in the random forest).
+   *  (current value 100)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -num-slots &amp;lt;num&amp;gt;
+   *  Number of execution slots.
+   *  (default 1 - i.e. no parallelism)
+   *  (use 0 to auto-detect number of cores)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -K &amp;lt;number of attributes&amp;gt;
+   *  Number of attributes to randomly investigate. (default 0)
+   *  (&amp;lt;1 = int(log_2(#predictors)+1)).
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -M &amp;lt;minimum number of instances&amp;gt;
+   *  Set minimum number of instances per leaf.
+   *  (default 1)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -V &amp;lt;minimum variance for split&amp;gt;
+   *  Set minimum numeric class variance proportion
+   *  of train variance for split (default 1e-3).
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -S &amp;lt;num&amp;gt;
+   *  Seed for random number generator.
+   *  (default 1)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -depth &amp;lt;num&amp;gt;
+   *  The maximum depth of the tree, 0 for unlimited.
+   *  (default 0)
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -N &amp;lt;num&amp;gt;
+   *  Number of folds for backfitting (default 0, no backfitting).
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -U
+   *  Allow unclassified instances.
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -B
+   *  Break ties randomly when several attributes look equally good.
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -output-debug-info
+   *  If set, classifier is run in debug mode and
+   *  may output additional info to the console
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -do-not-check-capabilities
+   *  If set, classifier capabilities are not checked before classifier is built
+   *  (use with caution).
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -num-decimal-places
+   *  The number of decimal places for the output of numbers in the model (default 2).
+   * &lt;/pre&gt;
+   * 
+   * &lt;pre&gt;
+   * -batch-size
+   *  The desired batch size for batch prediction  (default 100).
+   * &lt;/pre&gt;
+   * 
+   * &lt;!-- options-end --&gt;
+   * 
+   * @param options the list of options as an array of strings
+   * @throws Exception if an option is not supported
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>void</name></type> <name>setOptions</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>options</name></decl></parameter>)</parameter_list> <throws>throws <argument><expr><name>Exception</name></expr></argument></throws> <block>{<block_content>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>bagSize</name> <init>= <expr><call><name><name>Utils</name><operator>.</operator><name>getOption</name></name><argument_list>(<argument><expr><literal type="char">'P'</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>bagSize</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>setBagSizePercent</name><argument_list>(<argument><expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>bagSize</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name>setBagSizePercent</name><argument_list>(<argument><expr><literal type="number">100</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+
+    <expr_stmt><expr><call><name>setCalcOutOfBag</name><argument_list>(<argument><expr><call><name><name>Utils</name><operator>.</operator><name>getFlag</name></name><argument_list>(<argument><expr><literal type="char">'O'</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>setStoreOutOfBagPredictions</name><argument_list>(<argument><expr><call><name><name>Utils</name><operator>.</operator><name>getFlag</name></name><argument_list>(<argument><expr><literal type="string">"store-out-of-bag-predictions"</literal></expr></argument>,
+      <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>setOutputOutOfBagComplexityStatistics</name><argument_list>(<argument><expr><call><name><name>Utils</name><operator>.</operator><name>getFlag</name></name><argument_list>(
+      <argument><expr><literal type="string">"output-out-of-bag-complexity-statistics"</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>setPrintClassifiers</name><argument_list>(<argument><expr><call><name><name>Utils</name><operator>.</operator><name>getFlag</name></name><argument_list>(<argument><expr><literal type="string">"print"</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name>setComputeAttributeImportance</name><argument_list>(<argument><expr><call><name><name>Utils</name>
+      <operator>.</operator><name>getFlag</name></name><argument_list>(<argument><expr><literal type="string">"attribute-importance"</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>iterations</name> <init>= <expr><call><name><name>Utils</name><operator>.</operator><name>getOption</name></name><argument_list>(<argument><expr><literal type="char">'I'</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>iterations</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>setNumIterations</name><argument_list>(<argument><expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>iterations</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name>setNumIterations</name><argument_list>(<argument><expr><call><name>defaultNumberOfIterations</name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+
+    <decl_stmt><decl><type><name>String</name></type> <name>numSlots</name> <init>= <expr><call><name><name>Utils</name><operator>.</operator><name>getOption</name></name><argument_list>(<argument><expr><literal type="string">"num-slots"</literal></expr></argument>, <argument><expr><name>options</name></expr></argument>)</argument_list></call></expr></init></decl>;</decl_stmt>
+    <if_stmt><if>if <condition>(<expr><call><name><name>numSlots</name><operator>.</operator><name>length</name></name><argument_list>()</argument_list></call> <operator>!=</operator> <literal type="number">0</literal></expr>)</condition> <block>{<block_content>
+      <expr_stmt><expr><call><name>setNumExecutionSlots</name><argument_list>(<argument><expr><call><name><name>Integer</name><operator>.</operator><name>parseInt</name></name><argument_list>(<argument><expr><name>numSlots</name></expr></argument>)</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></if> <else>else <block>{<block_content>
+      <expr_stmt><expr><call><name>setNumExecutionSlots</name><argument_list>(<argument><expr><literal type="number">1</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    </block_content>}</block></else></if_stmt>
+
+    <decl_stmt><decl><type><name>RandomTree</name></type> <name>classifier</name> <init>=
+      <expr><operator>(</operator><operator>(</operator><name>RandomTree</name><operator>)</operator> <call><name><name>AbstractClassifier</name><operator>.</operator><name>forName</name></name><argument_list>(<argument><expr><call><name>defaultClassifierString</name><argument_list>()</argument_list></call></expr></argument>,
+        <argument><expr><name>options</name></expr></argument>)</argument_list></call><operator>)</operator></expr></init></decl>;</decl_stmt>
+    <expr_stmt><expr><call><name><name>classifier</name><operator>.</operator><name>setComputeImpurityDecreases</name></name><argument_list>(<argument><expr><name>m_computeAttributeImportance</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setDoNotCheckCapabilities</name><argument_list>(<argument><expr><call><name><name>classifier</name><operator>.</operator><name>getDoNotCheckCapabilities</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setSeed</name><argument_list>(<argument><expr><call><name><name>classifier</name><operator>.</operator><name>getSeed</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setDebug</name><argument_list>(<argument><expr><call><name><name>classifier</name><operator>.</operator><name>getDebug</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setNumDecimalPlaces</name><argument_list>(<argument><expr><call><name><name>classifier</name><operator>.</operator><name>getNumDecimalPlaces</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name>setBatchSize</name><argument_list>(<argument><expr><call><name><name>classifier</name><operator>.</operator><name>getBatchSize</name></name><argument_list>()</argument_list></call></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+    <expr_stmt><expr><call><name><name>classifier</name><operator>.</operator><name>setDoNotCheckCapabilities</name></name><argument_list>(<argument><expr><literal type="boolean">true</literal></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <comment type="line">// Set base classifier and options</comment>
+    <expr_stmt><expr><call><name>setClassifier</name><argument_list>(<argument><expr><name>classifier</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+
+    <expr_stmt><expr><call><name><name>Utils</name><operator>.</operator><name>checkForRemainingOptions</name></name><argument_list>(<argument><expr><name>options</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Returns the revision string.
+   * 
+   * @return the revision
+   */</comment>
+  <function><annotation>@<name>Override</name></annotation>
+  <type><specifier>public</specifier> <name>String</name></type> <name>getRevision</name><parameter_list>()</parameter_list> <block>{<block_content>
+    <return>return <expr><call><name><name>RevisionUtils</name><operator>.</operator><name>extract</name></name><argument_list>(<argument><expr><literal type="string">"$Revision: 15312 $"</literal></expr></argument>)</argument_list></call></expr>;</return>
+  </block_content>}</block></function>
+
+  <comment type="block" format="javadoc">/**
+   * Main method for this class.
+   * 
+   * @param argv the options
+   */</comment>
+  <function><type><specifier>public</specifier> <specifier>static</specifier> <name>void</name></type> <name>main</name><parameter_list>(<parameter><decl><type><name><name>String</name><index>[]</index></name></type> <name>argv</name></decl></parameter>)</parameter_list> <block>{<block_content>
+
+    <expr_stmt><expr><call><name>runClassifier</name><argument_list>(<argument><expr><operator>new</operator> <call><name>RandomForest</name><argument_list>()</argument_list></call></expr></argument>, <argument><expr><name>argv</name></expr></argument>)</argument_list></call></expr>;</expr_stmt>
+  </block_content>}</block></function>
+}</block></class>
+</unit>

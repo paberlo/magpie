@@ -4,6 +4,7 @@ import random
 
 import magpie.core
 import magpie.utils
+import time
 
 
 class GeneticProgramming(magpie.core.BasicAlgorithm):
@@ -74,7 +75,7 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
 
             # start!
             self.hook_start()
-
+            start = time.perf_counter()
             # initial pop
             pop = {}
             local_best_fitness = None
@@ -155,6 +156,13 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
         finally:
             # the end
             self.hook_end()
+        self.hook_search_time(start)
+
+    def hook_search_time(self, start):
+        end = time.perf_counter()
+        msg = f'[search.gp] Search time: {end - start:.3f} seconds'
+        self.software.logger.info(msg)
+
 
     def mutate(self, patch):
         if patch.edits and random.random() < self.config['delete_prob']:

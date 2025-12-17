@@ -1,0 +1,37 @@
+# Makefile.in
+
+.PRECIOUS: Makefile
+
+prefix = @prefix@
+mandir = @mandir@
+man1dir = @man1dir@
+
+.PHONY: all
+all: optipng.1
+
+optipng.1: optipng.1.adoc
+	a2x --format=manpage $<
+
+.PHONY: test
+test:
+
+.PHONY: check
+check:
+
+.PHONY: dist
+dist:
+
+.PHONY: clean
+clean:
+
+.PHONY: distclean
+distclean:
+
+.PHONY: install
+install: optipng.1
+	mkdir -p $(DESTDIR)$(man1dir)
+	cp -f -p optipng.1 $(DESTDIR)$(man1dir)
+
+.PHONY: uninstall
+uninstall:
+	rm -f $(DESTDIR)$(man1dir)/optipng.1

@@ -46,7 +46,7 @@ class XmlNodeInsertionTemplatedEdit(magpie.core.TemplatedEdit):
         return cls(target, ingredient)
 
     def apply(self, ref, variant):
-        ingredient = self.data[0]
+        ingredient = self.data[0] #self.data is a list of tuples, each tuple is (filename, target)
         ref_model = ref.models[ingredient[0]]
         model = variant.models[self.target[0]]
         return model.do_insert(ref_model, self.target, ingredient)

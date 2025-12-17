@@ -2,4 +2,4 @@
 
 patch Triangle.java _magpie/TriangleSlow.diff
 #srcml Triangle.java > _magpie/TriangleSlow.java.xml
-mv _magpie/TriangleSlow.java.xml Triangle.java.xml
+cp _magpie/TriangleSlow.java.xml Triangle.java.xml

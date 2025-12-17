@@ -10,9 +10,18 @@ test_cmd = ./test_triangle
 run_cmd = ./run_triangle
 run_timeout = 1
 
+[search.gp]
+pop_size = 13
+
+[search.eda]
+pop_size = 10
+
+[magpie.log]
+log_suffix_label = FOLD1
+
+
 [search]
-max_steps = 100
-max_time = 60
+max_steps = 22
 possible_edits =
     XmlNodeDeletion<stmt>
     XmlNodeReplacement<stmt>

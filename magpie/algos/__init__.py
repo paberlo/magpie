@@ -18,4 +18,8 @@ from .local_search import (
     TabuSearch,
     WorstImprovement,
 )
+
+from .umda_algorithm import (
+UMDAAlgorithm,
+)
 from .validation import ValidMinify, ValidSearch, ValidSingle, ValidTest

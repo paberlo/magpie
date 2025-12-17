@@ -40,6 +40,7 @@ class AbstractSoftware(abc.ABC):
             pathlib.Path(magpie.settings.work_dir).mkdir(parents=True)
         while True:
             self.run_label = f'{self.basename}_{self.timestamp}'
+
             new_work_dir = pathlib.Path(magpie.settings.work_dir).resolve() / self.run_label
             lock_file = f'{new_work_dir}.lock'
             try:
@@ -61,7 +62,8 @@ class AbstractSoftware(abc.ABC):
             self.logger.handlers.clear()
 
         # create logger
-        self.logger = logging.getLogger(self.run_label)
+        self.logger = logging.getLogger(
+            self.run_label + (f"_{magpie.settings.log_suffix_label}" if magpie.settings.log_suffix_label else ""))
         self.logger.setLevel(logging.DEBUG)
 
         # add stream handler
@@ -78,7 +80,15 @@ class AbstractSoftware(abc.ABC):
         # add file logging
         with contextlib.suppress(FileExistsError):
             pathlib.Path(magpie.settings.log_dir).mkdir(parents=True)
-        file_handler = logging.FileHandler((pathlib.Path(magpie.settings.log_dir) / f'{self.run_label}.log'), delay=True)
+
+
+
+        file_handler = logging.FileHandler(
+            (pathlib.Path(magpie.settings.log_dir) /
+             (
+                 f"{self.run_label}_{magpie.settings.log_suffix_label}.log" if magpie.settings.log_suffix_label else f"{self.run_label}.log")),
+            delay=True
+        )
         file_handler.setFormatter(logging.Formatter('%(asctime)s\t[%(levelname)s]\t%(message)s'))
         file_handler.setLevel(logging.DEBUG)
         file_handler.addFilter(color_stripper)
@@ -177,6 +187,7 @@ class AbstractSoftware(abc.ABC):
         env['MAGPIE_TIMESTAMP'] = self.timestamp
         try:
             is_posix = os.name == 'posix'
+
             with subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=shell, env=env, start_new_session=is_posix) as sprocess:
                 if lengthout > 0:
                     stdout_size = 0
@@ -219,16 +230,32 @@ class AbstractSoftware(abc.ABC):
         except FileNotFoundError:
             return ExecResult(cmd, 'CLI_ERROR', -1, b'', b'', 0, 0)
 
+
+
+    @staticmethod
+    def on_rm_error(func, path, exc_info): ## improved to remove temp directories in case of using IDE with WSL
+        import stat
+        # tries to grant w/x rights
+        try:
+            os.chmod(path,
+                     stat.S_IWUSR | stat.S_IXUSR | stat.S_IRUSR | stat.S_IWGRP | stat.S_IXGRP | stat.S_IROTH | stat.S_IWOTH | stat.S_IXOTH)
+        except Exception:
+            pass
+        try:
+            func(path)
+        except Exception:
+            pass  # if still failing, ignore
+
     def clean_work_dir(self):
         with contextlib.suppress(FileNotFoundError):
-            shutil.rmtree(self.work_dir)
+            shutil.rmtree(self.work_dir, onerror=self.on_rm_error)
+
         with contextlib.suppress(FileNotFoundError):
             try:
                 pathlib.Path(magpie.settings.work_dir).rmdir()
             except OSError as e:
                 if e.errno != errno.ENOTEMPTY:
                     raise
-
 if os.name == 'posix':
     def _kill_proc_with_children(proc):
         os.killpg(os.getpgid(proc.pid), signal.SIGKILL)

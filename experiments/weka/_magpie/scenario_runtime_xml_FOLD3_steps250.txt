@@ -1,0 +1,42 @@
+[magpie]
+seed=1
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD3
+
+[software]
+path = experiments/weka
+target_files = RandomForest.java.xml
+fitness = time
+
+init_cmd = bash init.sh
+setup_cmd =
+compile_cmd = bash compile.sh
+test_cmd = sh test.sh
+    # FOLD 3 for kfold CV
+run_cmd = bash run.sh 3
+retries = 1
+test_timeout = 240
+run_timeout = 480
+
+[search.eda]
+pop_size = 50
+
+[search.gp]
+pop_size = 50
+
+[search]
+# max number of evaluations
+ max_steps = 250
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>
+
+
+
+
+

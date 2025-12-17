@@ -5,6 +5,7 @@ import random
 import magpie.core
 import magpie.utils
 
+import time
 
 class LocalSearch(magpie.core.BasicAlgorithm):
     def __init__(self):
@@ -37,6 +38,7 @@ class LocalSearch(magpie.core.BasicAlgorithm):
 
             # start!
             self.hook_start()
+            start = time.perf_counter()
 
             # main loop
             current_patch = self.report['best_patch']
@@ -44,7 +46,7 @@ class LocalSearch(magpie.core.BasicAlgorithm):
             while not self.stopping_condition():
                 self.hook_main_loop()
                 current_patch, current_fitness = self.explore(current_patch, current_fitness)
-
+            self.hook_search_time(start)
         except KeyboardInterrupt:
             self.report['stop'] = 'keyboard interrupt'
 
@@ -77,6 +79,10 @@ class LocalSearch(magpie.core.BasicAlgorithm):
             self.report['stop'] = 'trapped'
         # TODO: restart, others?
 
+    def hook_search_time(self, start):
+        end = time.perf_counter()
+        msg = f'[search.ls] Search time: {end - start:.3f} seconds'
+        self.software.logger.info(msg)
 
 class DummySearch(LocalSearch):
     def __init__(self):

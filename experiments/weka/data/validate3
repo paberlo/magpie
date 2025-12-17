@@ -1,0 +1,4 @@
+data/iris.arff
+data/hypothyroid.arff
+data/cpu.with.vendor.arff
+data/unbalanced.arff

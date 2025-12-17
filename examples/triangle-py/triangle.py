@@ -1,11 +1,19 @@
 import enum
+import time
 
 
 class TriangleType(enum.Enum):
     INVALID, EQUILATERAL, ISOSCELES, SCALENE = 0, 1, 2, 3
 
 
+def delay():
+    time.sleep(0.001)
+
+
 def classify_triangle(a, b, c):
+    # slow down execution
+    delay()
+
     # sort the sides so that a <= b <= c
     if a > b:
         tmp = a

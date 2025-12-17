@@ -15,6 +15,38 @@ def model_from_string(s):
     msg = f'Unknown model class "{s}"'
     raise RuntimeError(msg)
 
+def target_from_stringEdit(s):
+    match = re.search(r'\((.*?)(?:\)|,\()', s)
+    if match:
+        target_str = match.group(1)[1:]
+    else: # No parentheses found, assume the whole string is the target
+        return None
+    target_str = target_str.replace("'", "").replace(' ', '')
+
+    target_tuple = tuple(target_str.split(','))
+    #convert to int if possible
+    target_tuple = tuple(int(x) if x.isdigit() else x for x in target_tuple)
+
+
+    return target_tuple
+
+def ingredient_from_stringEdit(s):
+    match = re.search(r'\), \(([^)]+)\)', s)
+    if match:
+        ing_str = match.group(1)
+    else:
+        return None
+    ing_str = ing_str.replace("'", "").replace(' ', '')
+
+    ing_tuple = tuple(ing_str.split(','))
+    #convert to int if possible
+    ing_tuple = tuple(int(x) if x.isdigit() else x for x in ing_tuple)
+
+
+    return ing_tuple
+
+
+
 def edit_from_string(s):
     s2 = s.lower().replace('_', '') + 'edit'
     for klass in known_edits:

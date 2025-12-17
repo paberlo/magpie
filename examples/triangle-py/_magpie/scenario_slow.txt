@@ -9,12 +9,16 @@ target_files =
 fitness = time
 
 init_cmd = bash init_slow.sh
-test_cmd = pytest
-run_cmd = python run_triangle.py
-run_timeout = 1
+test_cmd = python3 /usr/local/bin/pytest
+run_cmd = python3 run_triangle.py
+run_timeout = 10
+
+[search.umda]
+pop_size=5
 
 [search]
-max_steps = 100
+max_steps = 10
+pop_size=5
 max_time = 60
 possible_edits =
     XmlNodeDeletion<stmt>

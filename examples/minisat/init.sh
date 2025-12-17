@@ -13,5 +13,5 @@ fi
 # extract, patch, and setup pre-computed XML AST
 tar xzf $CACHE/$ARCHIVE --strip-components=1
 patch core/Dimacs.h _magpie/dimacs.diff
-# srcml core/Solver.cc > _magpie/Solver.cc.xml
+srcml core/Solver.cc > _magpie/Solver.cc.xml
 cp _magpie/Solver.cc.xml core

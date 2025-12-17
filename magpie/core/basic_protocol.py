@@ -60,6 +60,8 @@ class BasicProtocol:
                 logger.info('Log file: %s', handler.baseFilename)
         if result['best_fitness'] and result['best_patch'] and result['best_patch'].edits:
             base_path = pathlib.Path(magpie.settings.log_dir) / self.software.run_label
+            #in desired, suffix for log is indicated in the scenario file
+            base_path = base_path.parent / (base_path.name + "_" + magpie.settings.log_suffix_label)
             patch_file = f'{base_path}.patch'
             diff_file = f'{base_path}.diff'
             logger.info('Patch file: %s', patch_file)
