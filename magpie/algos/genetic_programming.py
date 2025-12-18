@@ -21,6 +21,8 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
     def reset(self):
         super().reset()
         self.stats['gen'] = 0
+        self.stats['eval_success'] = 0
+        self.stats['eval_compile_error'] = 0
 
     def setup(self, config):
         super().setup(config)
@@ -45,7 +47,14 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
         step = self.stats['steps']%self.config['pop_size']+1
         return f'{gen}-{step}'
 
+    def _update_eval_counters(self, run):
+        if run.status == 'SUCCESS':
+            self.stats['eval_success'] += 1
+        if isinstance(run.status, str) and run.status.startswith('COMPILE_'):
+            self.stats['eval_compile_error'] += 1
+
     def run(self):
+        start = None
         try:
             # warmup
             self.hook_warmup()
@@ -82,6 +91,7 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
             for sol in offsprings:
                 variant = magpie.core.Variant(self.software, sol)
                 run = self.evaluate_variant(variant)
+                self._update_eval_counters(run)
                 accept = best = False
                 if run.status == 'SUCCESS':
                     if self.dominates(run.fitness, local_best_fitness):
@@ -137,6 +147,7 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
                         break
                     variant = magpie.core.Variant(self.software, sol)
                     run = self.evaluate_variant(variant)
+                    self._update_eval_counters(run)
                     accept = best = False
                     if run.status == 'SUCCESS':
                         if self.dominates(run.fitness, local_best_fitness):
@@ -154,9 +165,24 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
             self.report['stop'] = 'keyboard interrupt'
 
         finally:
+            total = self.stats.get('steps', 0)
+            succ = self.stats.get('eval_success', 0)
+            comp = self.stats.get('eval_compile_error', 0)
+
+            ratio_succ = (succ / total) if total else 0.0
+            ratio_comp = (comp / total) if total else 0.0
+
+            self.software.logger.info(
+                f'[search.gp] Overall SUCCESS ratio {ratio_succ:.3f} ({succ}/{total})'
+            )
+            self.software.logger.info(
+                f'[search.gp] Overall COMPILE_ERROR ratio {ratio_comp:.3f} ({comp}/{total})'
+            )
+
             # the end
             self.hook_end()
-        self.hook_search_time(start)
+            if start is not None:
+                self.hook_search_time(start)
 
     def hook_search_time(self, start):
         end = time.perf_counter()

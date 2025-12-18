@@ -1,7 +1,10 @@
+import abc
 import copy
 import random
+
 import magpie.core
 import magpie.utils
+
 import time
 
 class UMDAAlgorithm(magpie.core.BasicAlgorithm):
@@ -15,6 +18,8 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def reset(self):
         super().reset()
         self.stats['gen'] = 0
+        self.stats['eval_success'] = 0
+        self.stats['eval_compile_error'] = 0
 
     def setup(self, config):
         super().setup(config)
@@ -49,6 +54,12 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             for patch in patches_population:
                 variant = magpie.core.Variant(self.software, patch)
                 run = self.evaluate_variant(variant)
+
+                if run.status == 'SUCCESS': #counter to log success proportion
+                    self.stats['eval_success'] += 1
+                if isinstance(run.status, str) and run.status.startswith('COMPILE_'):
+                    self.stats['eval_compile_error'] += 1
+
                 accept, best, generation_best_fitness = self.updateBest(run, generation_best_fitness, patch)
                 self.hook_evaluation(variant, run, accept, best)
                 runs_pop[patch] = run
@@ -59,22 +70,29 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
 
             #run search loop
             while not self.stopping_condition(): #default based on #steps (that is, #evaluations) and time
-                self.stats['gen'] += 1
                 self.hook_main_loop()
                 patches_population = self.sample_population(distribution, elitism=True)
 
                 # eval each patch in the new population
                 generation_best_fitness = None
                 runs_pop.clear()
+
                 for sol in patches_population:
                     if self.stopping_condition():
                         break
                     variant = magpie.core.Variant(self.software, sol)
                     run = self.evaluate_variant(variant)
+
+                    if run.status == 'SUCCESS':
+                        self.stats['eval_success'] += 1
+                    if isinstance(run.status, str) and run.status.startswith('COMPILE_'):
+                        self.stats['eval_compile_error'] += 1
+
                     accept, best, generation_best_fitness = self.updateBest(run, generation_best_fitness, sol)
                     self.hook_evaluation(variant, run, accept, best)
                     runs_pop[sol] = run
                     self.stats['steps'] += 1
+
                 selected_patches = self.select(runs_pop)  # see todo note in self.select()
                 distribution = self.estimate_distribution(selected_patches)
 
@@ -82,6 +100,20 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         except KeyboardInterrupt:
             self.report['stop'] = 'keyboard interrupt'
         finally:
+            total =self.stats['steps']
+            succ = self.stats.get('eval_success', 0)
+            comp = self.stats.get('eval_compile_error', 0)
+
+            ratio_succ = (succ / total) if total else 0.0
+            ratio_comp = (comp / total) if total else 0.0
+
+            self.software.logger.info(
+                f'[search.umda] Overall SUCCESS ratio {ratio_succ:.3f} ({succ}/{total})'
+            )
+            self.software.logger.info(
+                f'[search.umda] Overall COMPILE_ERROR ratio {ratio_comp:.3f} ({comp}/{total})'
+            )
+
             self.hook_final_distribution(distribution)
             self.hook_end()
 
@@ -96,7 +128,6 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                     self.report['best_patch'] = sol
                     best = True
         return accept, best, local_best_fitness
-
 
     def aux_log_counter(self):
         gen = self.stats['gen']
@@ -246,4 +277,4 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.software.logger.info(msg)
 
 
-magpie.utils.known_algos.append(UMDAAlgorithm)
+magpie.utils.known_algos.append(TabuSearch)

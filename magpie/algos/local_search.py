@@ -18,6 +18,8 @@ class LocalSearch(magpie.core.BasicAlgorithm):
     def reset(self):
         super().reset()
         self.stats['neighbours'] = 0
+        self.stats['eval_success'] = 0
+        self.stats['eval_compile_error'] = 0
 
     def setup(self, config):
         super().setup(config)
@@ -51,8 +53,29 @@ class LocalSearch(magpie.core.BasicAlgorithm):
             self.report['stop'] = 'keyboard interrupt'
 
         finally:
+            total = self.stats.get('steps', 0)
+            succ = self.stats.get('eval_success', 0)
+            comp = self.stats.get('eval_compile_error', 0)
+
+            ratio_succ = (succ / total) if total else 0.0
+            ratio_comp = (comp / total) if total else 0.0
+
+            self.software.logger.info(
+                f'[search.ls] Overall SUCCESS ratio {ratio_succ:.3f} ({succ}/{total})'
+            )
+            self.software.logger.info(
+                f'[search.ls] Overall COMPILE_ERROR ratio {ratio_comp:.3f} ({comp}/{total})'
+            )
+
             # the end
             self.hook_end()
+
+    def _update_eval_counters(self, run):
+        if run.status == 'SUCCESS':
+            self.stats['eval_success'] += 1
+        if isinstance(run.status, str) and run.status.startswith('COMPILE_'):
+            self.stats['eval_compile_error'] += 1
+
 
     @abc.abstractmethod
     def explore(self, current_patch, current_fitness):
@@ -110,6 +133,7 @@ class DebugSearch(LocalSearch):
             # compare
             variant = magpie.core.Variant(self.software, patch)
             run = self.evaluate_variant(variant)
+            self._update_eval_counters(run)
             accept = best = False
             if run.status == 'SUCCESS':
                 accept = True
@@ -143,6 +167,7 @@ class RandomSearch(LocalSearch):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         best = False
         if run.status == 'SUCCESS':
             if self.dominates(run.fitness, self.report['best_fitness']):
@@ -179,6 +204,7 @@ class RandomWalk(LocalSearch):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         accept = self.config['accept_fail']
         best = False
         if run.status == 'SUCCESS':
@@ -224,6 +250,7 @@ class FirstImprovement(LocalSearch):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         accept = best = False
         if run.status == 'SUCCESS':
             if not self.dominates(current_fitness, run.fitness):
@@ -275,6 +302,7 @@ class BestImprovement(LocalSearch):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         accept = best = False
         if run.status == 'SUCCESS':
             if not self.dominates(current_fitness, run.fitness):
@@ -334,6 +362,7 @@ class WorstImprovement(LocalSearch):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         accept = best = False
         if run.status == 'SUCCESS':
             if not self.dominates(current_fitness, run.fitness):
@@ -397,6 +426,7 @@ class TabuSearch(BestImprovement):
         # compare
         variant = magpie.core.Variant(self.software, patch)
         run = self.evaluate_variant(variant)
+        self._update_eval_counters(run)
         accept = best = False
         if run.status == 'SUCCESS':
             if not self.dominates(self.local_best_fitness, run.fitness):

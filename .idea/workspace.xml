@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3538RyM26kjdQ0Mdwz6fTbJnyEo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.extract results.executor": "Run",
+    "Python.local search.executor": "Run",
+    "Python.random Search.executor": "Run",
+    "Python.umda triangle.executor": "Run",
+    "Python.umda.executor": "Run",
+    "Python.valida.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "E:/Dropbox/INVESTIGACION/GeneticImprovement/magpie",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\experiments\minisat_hack\data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.umda triangle">
+    <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\extract_results.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="local search" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
+      <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="random Search" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
+      <option name="PARAMETERS" value="--algo RandomSearch --scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="umda triangle" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_bug.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="umda" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
+      <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps100.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="valida" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\validar.py" />
+      <option name="PARAMETERS" value="minisat_hack" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Python.valida" />
+      <item itemvalue="Python.extract results" />
+      <item itemvalue="Python.local search" />
+      <item itemvalue="Python.random Search" />
+      <item itemvalue="Python.umda" />
+      <item itemvalue="Python.umda triangle" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-PY-252.25557.178" />
+        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="" />
+      <created>1762327398250</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762327398250</updated>
+      <workItem from="1762327399780" duration="844000" />
+      <workItem from="1762414421830" duration="13613000" />
+      <workItem from="1762501572375" duration="10166000" />
+      <workItem from="1762764740677" duration="8729000" />
+      <workItem from="1762935061786" duration="600000" />
+      <workItem from="1765271966184" duration="4188000" />
+      <workItem from="1765469894006" duration="1849000" />
+      <workItem from="1765525946967" duration="2926000" />
+      <workItem from="1765530526118" duration="2036000" />
+      <workItem from="1765788240482" duration="17904000" />
+      <workItem from="1765961596150" duration="3063000" />
+      <workItem from="1765964683077" duration="6809000" />
+      <workItem from="1766044086572" duration="2146000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="ee7c1c46-1532-4626-9470-176dfb6f9ab7" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="ee7c1c46-1532-4626-9470-176dfb6f9ab7">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1762505977005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1762503648016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1766045921687" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1766045745021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
