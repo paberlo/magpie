@@ -5,8 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/analyse.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/analyse.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-ReductionTime.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-overfitting.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-ReductionTime.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-overfitting.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-ReductionTime.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-overfitting.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/tiempo_2x2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/tiempo_2x2.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-ReductionTime.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-overfitting.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,30 +36,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.extract results.executor": "Run",
-    "Python.local search.executor": "Run",
-    "Python.random Search.executor": "Run",
-    "Python.umda triangle.executor": "Run",
-    "Python.umda.executor": "Run",
-    "Python.valida.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHELLCHECK.PATH": "C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "E:/Dropbox/INVESTIGACION/GeneticImprovement/magpie/galgo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.extract results.executor&quot;: &quot;Run&quot;,
+    &quot;Python.local search.executor&quot;: &quot;Run&quot;,
+    &quot;Python.random Search.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda triangle.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda.executor&quot;: &quot;Run&quot;,
+    &quot;Python.valida.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Dropbox/INVESTIGACION/GeneticImprovement/magpie/galgo&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
