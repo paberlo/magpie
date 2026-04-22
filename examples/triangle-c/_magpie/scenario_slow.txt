@@ -21,7 +21,7 @@ log_suffix_label = FOLD1
 
 
 [search]
-max_steps = 22
+max_steps = 20
 possible_edits =
     XmlNodeDeletion<stmt>
     XmlNodeReplacement<stmt>

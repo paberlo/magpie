@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module type="PYTHON_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv314" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv314/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv314/include" />
+      <excludeFolder url="file://$MODULE_DIR$/.venv314/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/_magpie_logs" />
+      <excludeFolder url="file://$MODULE_DIR$/_magpie_work" />
+      <excludeFolder url="file://$MODULE_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/vstudio/pngstest" />
+      <excludeFolder url="file://$MODULE_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/vstudio/pngtest" />
+      <excludeFolder url="file://$MODULE_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/vstudio/pngunknown" />
+      <excludeFolder url="file://$MODULE_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/vstudio/pngvalid" />
+      <excludeFolder url="file://$MODULE_DIR$/galgo" />
+    </content>
+    <orderEntry type="jdk" jdkName="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" jdkType="Python SDK" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
   <component name="PyDocumentationSettings">
     <option name="format" value="PLAIN" />
     <option name="myDocStringFormat" value="Plain" />

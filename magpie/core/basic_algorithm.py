@@ -239,6 +239,27 @@ class BasicAlgorithm(AbstractAlgorithm):
             msg = f'\033[1m{msg}\033[0m'
         self.software.logger.info(msg)
 
+    def update_vt_vc(self, run):
+        if run.status == 'SUCCESS':  # counter to log success proportion
+            self.stats['eval_success'] += 1
+        if not (isinstance(run.status, str) and run.status.startswith('COMPILE_')):
+            self.stats['eval_compile'] += 1
+
+    def hook_vt_vc(self):
+        total = self.stats.get('steps', 0)
+        succ = self.stats.get('eval_success', 0)
+        comp = self.stats.get('eval_compile', 0)
+
+        ratio_succ = (succ / total) if total else 0.0
+        ratio_comp = (comp / total) if total else 0.0
+
+        self.software.logger.info(
+            f'[search.genetic_programming] Overall Vt (compile and test) ratio {ratio_succ:.3f} ({succ}/{total})'
+        )
+        self.software.logger.info(
+            f'[search.genetic_programming] Overall Vc (compile)  ratio {ratio_comp:.3f} ({comp}/{total})'
+        )
+
     def warmup(self):
         patch = Patch([])
         variant = Variant(self.software, patch)

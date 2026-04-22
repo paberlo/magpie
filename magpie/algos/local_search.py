@@ -48,6 +48,7 @@ class LocalSearch(magpie.core.BasicAlgorithm):
             while not self.stopping_condition():
                 self.hook_main_loop()
                 current_patch, current_fitness = self.explore(current_patch, current_fitness)
+            self.hook_vt_vc()
             self.hook_search_time(start)
         except KeyboardInterrupt:
             self.report['stop'] = 'keyboard interrupt'
@@ -133,7 +134,7 @@ class DebugSearch(LocalSearch):
             # compare
             variant = magpie.core.Variant(self.software, patch)
             run = self.evaluate_variant(variant)
-            self._update_eval_counters(run)
+            self.update_vt_vc(run)
             accept = best = False
             if run.status == 'SUCCESS':
                 accept = True

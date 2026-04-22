@@ -5,27 +5,310 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/magpie.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/magpie.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/CHANGELOG.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/explanations/codebase.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/explanations/codebase.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/explanations/output.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/explanations/output.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/explanations/pipeline.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/explanations/pipeline.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/old/custom_fitness_function.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/old/custom_fitness_function.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/old/fitness_functions.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/old/fitness_functions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/old/project_structure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/old/project_structure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/old/search.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/old/search.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/reference/entry_points.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference/entry_points.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/reference/models/ParamsFileConfigModel.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference/models/ParamsFileConfigModel.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/reference/scenario.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/reference/scenario.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorials/basic_usage.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorials/basic_usage.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorials/case_study.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorials/case_study.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/tutorials/quick_start.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/tutorials/quick_start.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/magpie/_magpie/my_algo.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/magpie/_magpie/my_algo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/magpie/_magpie/my_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/magpie/_magpie/my_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/magpie/_magpie/scenario_coverage.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/magpie/_magpie/scenario_coverage.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/magpie/clean.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/magpie/clean.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/magpie/init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/magpie/init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/dimacs.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/dimacs.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_bloat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_bloat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_config3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch3.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_line_batch3.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_xml1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_xml1.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_xml2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/_magpie/scenario_runtime_xml2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/inst_sat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/inst_sat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/inst_unsat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/inst_unsat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf100-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf100-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf100-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf100-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf150-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf150-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf150-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf150-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf200-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf200-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf200-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf200-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf250-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf250-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf250-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf250-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf50-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf50-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uf50-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uf50-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf100-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf100-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf100-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf100-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf150-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf150-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf150-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf150-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf200-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf200-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf200-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf200-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf250-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf250-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf250-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf250-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf50-01.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf50-01.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/data/uuf50-02.cnf" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/data/uuf50-02.cnf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/minisat_advanced.params" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/minisat_advanced.params" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/minisat_simplified.params" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/minisat_simplified.params" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/run2.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/run2.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/run_single.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/run_single.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/minisat/run_single_with_code.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/minisat/run_single_with_code.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_bug.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_size.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_size.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_templates.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_templates.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_bug.c.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_bug.c.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_bug.c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_bug.c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_size.c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/triangle_size.c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/init_slow.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/init_slow.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/run_triangle.c" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/run_triangle.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/standalone.c" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/standalone.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/test_triangle.c" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/test_triangle.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/scenario_bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/scenario_bug.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/scenario_slow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle.cpp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle.cpp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_bug.cpp.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_bug.cpp.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_bug.cpp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_bug.cpp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.cpp.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.cpp.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.cpp.xml" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.cpp.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.hpp.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/_magpie/triangle_slow.hpp.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/compile.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/init_bug.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/init_bug.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/init_slow.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/init_slow.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/run_triangle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/run_triangle.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/setup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/standalone.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/standalone.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/test_triangle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/test_triangle.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/triangle.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/triangle.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-cpp/triangle.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-cpp/triangle.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-java/TriangleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-java/TriangleTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-java/_magpie/scenario_bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-java/_magpie/scenario_bug.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-java/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-java/_magpie/scenario_slow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-java/init_bug.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-java/init_bug.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_bloat.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_bloat.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_bug.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/_magpie/scenario_slow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/_magpie/triangle_bloat.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/_magpie/triangle_bloat.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/_magpie/triangle_bug.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/_magpie/triangle_bug.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/init_bloat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/init_bloat.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/init_bug.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/init_bug.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/run_triangle.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/run_triangle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/test_triangle.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/test_triangle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-py/triangle.py.orig" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-py/triangle.py.orig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/_magpie/scenario_bug.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/_magpie/scenario_bug.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/_magpie/triangle_bug.diff" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/_magpie/triangle_bug.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/init_bug.sh" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/init_bug.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/run_triangle.rb" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/run_triangle.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/test_triangle.rb" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/test_triangle.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-rb/triangle.rb" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-rb/triangle.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/dimacs.diff" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/dimacs.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_runtime_xml.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_runtime_xml.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.dsp" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.dsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.dsw" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.dsw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.rc" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/contrib/visupng/VisualPng.rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/libpng.tgt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/libpng.tgt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/libpng.wpj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/libpng.wpj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngconfig.mak" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngconfig.mak" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngstest.tgt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngstest.tgt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngtest.tgt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngtest.tgt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngvalid.tgt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/libpng/projects/owatcom/pngvalid.tgt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib.build" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib.build" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib.sln" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/AssemblyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/ChecksumImpl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/ChecksumImpl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/CircularBuffer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/CircularBuffer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/CodecBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/CodecBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/Deflater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/Deflater.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/DotZLib.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/DotZLib.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/DotZLib.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/DotZLib.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/GZipStream.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/GZipStream.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/Inflater.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/Inflater.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/UnitTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/DotZLib/UnitTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/LICENSE_1_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/LICENSE_1_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/readme.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/dotzlib/readme.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/gcc_gvmat64/gvmat64.S" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/gcc_gvmat64/gvmat64.S" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/testzlib/testzlib.c" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/testzlib/testzlib.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/testzlib/testzlib.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/testzlib/testzlib.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/miniunz.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/miniunz.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/miniunz.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/miniunz.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/minizip.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/minizip.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/minizip.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/minizip.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlib.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlib.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlib.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlib.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlibdll.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlibdll.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlibdll.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/testzlibdll.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlib.rc" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlib.rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibstat.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibstat.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibstat.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibstat.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.sln" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.vcxproj.filters" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc10/zlibvc.vcxproj.filters" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/miniunz.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/miniunz.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/minizip.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/minizip.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/testzlib.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/testzlib.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/testzlibdll.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/testzlibdll.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlib.rc" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlib.rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibstat.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibstat.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.sln" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc11/zlibvc.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc12/zlibvc.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc12/zlibvc.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc14/zlibvc.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc14/zlibvc.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/miniunz.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/miniunz.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/minizip.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/minizip.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/testzlib.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/testzlib.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/testzlibdll.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/testzlibdll.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlib.rc" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlib.rc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibstat.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibstat.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.def" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.sln" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.vcproj" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/contrib/vstudio/vc9/zlibvc.vcproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/win32/zlib.def" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/optipng-7.9.1/third_party/zlib/win32/zlib.def" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/analyse.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/analyse.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-ReductionTime.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/minisat_hack-overfitting.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/patch_length_mean_barh.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-ReductionTime.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/pngOptim-overfitting.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-ReductionTime.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/sat4j-overfitting.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/tiempo_2x2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/tiempo_2x2.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-ReductionTime.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-ReductionTime.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-overfitting.svg" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/plots/weka-overfitting.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_INTED2026/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_INTED2026/results.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/org.sat4j.core/src/main/resources/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/org.sat4j.core/src/main/resources/about.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/org.sat4j.core/src/test/java/org/sat4j/BugSAT117ModelIterator.java" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/org.sat4j.core/src/test/java/org/sat4j/BugSAT117ModelIterator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/init.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/ablation.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/ablation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/genetic_programming.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/genetic_programming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/local_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/local_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/validation.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/validation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/ablation_analysis.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/ablation_analysis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/eda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/genetic_programming.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/genetic_programming.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/local_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/local_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/minify_patch.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/minify_patch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/revalidate_patch.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/revalidate_patch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/show_locations.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/show_locations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/bin/show_patch.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/bin/show_patch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/abstract_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/abstract_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/abstract_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/abstract_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/abstract_fitness.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/abstract_fitness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/abstract_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/abstract_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/abstract_software.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/abstract_software.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/basic_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/basic_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/basic_fitness.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/basic_fitness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/basic_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/basic_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/basic_protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/basic_protocol.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/basic_software.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/basic_software.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/errors.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/errors.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/execresult.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/execresult.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/patch.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/patch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/runresult.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/runresult.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/scenario.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/scenario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/templated_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/templated_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/templated_fitness.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/templated_fitness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/core/variant.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/core/variant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/bloat.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/bloat.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/gnu_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/gnu_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/output.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/output.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/perf.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/perf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/repair.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/fitness/time.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/fitness/time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/astor/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/astor/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/astor/astor_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/astor/astor_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/astor/astor_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/astor/astor_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/line/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/line/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/line/abstract_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/line/abstract_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/line/line_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/line/line_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/line/line_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/line/line_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/paramconfig/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/paramconfig/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/paramconfig/abstract_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/paramconfig/abstract_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/paramconfig/paramfile_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/paramconfig/paramfile_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/paramconfig/params_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/paramconfig/params_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/paramconfig/realms.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/paramconfig/realms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/abstract_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/abstract_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/srcml_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/srcml_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/srcml_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/srcml_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/xml_edits.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/xml_edits.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/models/xml/xml_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/models/xml/xml_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/scripts/clear_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/scripts/clear_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/scripts/line_to_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/scripts/line_to_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/scripts/python_to_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/scripts/python_to_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/utils/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/utils/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/utils/convert.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/utils/convert.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/utils/known.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/utils/known.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/examples/Triangle.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/examples/Triangle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/examples/Triangle.java.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/examples/Triangle.java.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/examples/triangle.c" beforeDir="false" afterPath="$PROJECT_DIR$/tests/examples/triangle.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/examples/triangle.c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/tests/examples/triangle.c.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/examples/triangle.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/examples/triangle.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integration/test_docs.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/test_docs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/integration/test_scenario.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/integration/test_scenario.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/run_experiments.slurm" beforeDir="false" afterPath="$PROJECT_DIR$/tests/run_experiments.slurm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/scripts/test_python_to_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/scripts/test_python_to_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/core/test_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/test_edit.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/core/test_fitness.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/test_fitness.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/core/test_patch.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/test_patch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/core/test_protocol.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/core/test_protocol.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_custom.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_custom.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_gnu_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_gnu_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_output.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_output.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_perf.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_perf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_repair.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_repair.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/fitness/test_time.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/fitness/test_time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/test_astor.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/test_astor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/test_line.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/test_line.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/test_realm.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/test_realm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/test_srcml.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/test_srcml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/test_xml.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/test_xml.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/unit/models/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/models/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="2510" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -36,30 +319,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.extract results.executor&quot;: &quot;Run&quot;,
-    &quot;Python.local search.executor&quot;: &quot;Run&quot;,
-    &quot;Python.random Search.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda triangle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda.executor&quot;: &quot;Run&quot;,
-    &quot;Python.valida.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Dropbox/INVESTIGACION/GeneticImprovement/magpie/galgo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.extract results.executor": "Run",
+    "Python.genetic triangle.executor": "Run",
+    "Python.local search.executor": "Run",
+    "Python.random Search.executor": "Run",
+    "Python.umda triangle (1).executor": "Run",
+    "Python.umda triangle.executor": "Run",
+    "Python.umda.executor": "Run",
+    "Python.valida.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/pablo/magpie",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
@@ -69,7 +361,7 @@
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.umda triangle">
+  <component name="RunManager" selected="Python.localsearch triangle ">
     <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -79,14 +371,39 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
       <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\extract_results.py" />
       <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="genetic triangle" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/genetic_programming.py" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_slow.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -103,14 +420,40 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
       <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
       <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="localsearch triangle " type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_slow.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -127,14 +470,39 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
       <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
       <option name="PARAMETERS" value="--algo RandomSearch --scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="umda triangle (1)" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_bug.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -151,14 +519,15 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
-      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
-      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_bug.txt" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_slow.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -175,12 +544,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
-      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
       <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps100.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -199,12 +569,12 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="SDK_NAME" value="Python 3.12.3 WSL (Ubuntu): (/usr/bin/python3)" />
       <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\validar.py" />
       <option name="PARAMETERS" value="minisat_hack" />
       <option name="SHOW_COMMAND_LINE" value="false" />
@@ -215,19 +585,22 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.valida" />
       <item itemvalue="Python.extract results" />
       <item itemvalue="Python.local search" />
       <item itemvalue="Python.random Search" />
-      <item itemvalue="Python.umda" />
       <item itemvalue="Python.umda triangle" />
+      <item itemvalue="Python.genetic triangle" />
+      <item itemvalue="Python.localsearch triangle " />
+      <item itemvalue="Python.umda triangle (1)" />
+      <item itemvalue="Python.umda" />
+      <item itemvalue="Python.valida" />
     </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-PY-252.25557.178" />
-        <option value="bundled-python-sdk-ce6832f46686-7b97d883f26b-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.25557.178" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.30387.173" />
+        <option value="bundled-python-sdk-4762d8aabb82-6d6dccd035ac-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.30387.173" />
       </set>
     </attachedChunks>
   </component>
@@ -252,6 +625,14 @@
       <workItem from="1765964683077" duration="6809000" />
       <workItem from="1766044086572" duration="5251000" />
       <workItem from="1766490931744" duration="2631000" />
+      <workItem from="1768322211860" duration="46000" />
+      <workItem from="1776762729093" duration="1750000" />
+      <workItem from="1776781454218" duration="2552000" />
+      <workItem from="1776787216914" duration="290000" />
+      <workItem from="1776787559591" duration="760000" />
+      <workItem from="1776788474602" duration="3182000" />
+      <workItem from="1776791743489" duration="2273000" />
+      <workItem from="1776839263891" duration="659000" />
     </task>
     <servers />
   </component>
@@ -268,7 +649,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
         <entry key="ee7c1c46-1532-4626-9470-176dfb6f9ab7">
@@ -280,12 +673,14 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1762505977005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1762503648016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1766046445567" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1766045745021" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1776791922218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1762505977005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1776839729120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle__1_.coverage" NAME="umda triangle (1) Coverage Results" MODIFIED="1776789880592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/magpie$genetic_triangle.coverage" NAME="genetic triangle Coverage Results" MODIFIED="1776839688966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
