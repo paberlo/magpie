@@ -252,12 +252,13 @@ class BasicAlgorithm(AbstractAlgorithm):
 
         ratio_succ = (succ / total) if total else 0.0
         ratio_comp = (comp / total) if total else 0.0
-
+        #mean compile and test ratio
         self.software.logger.info(
-            f'[search.genetic_programming] Overall Vt (compile and test) ratio {ratio_succ:.3f} ({succ}/{total})'
+            f'Mean Vt: {ratio_succ:.3f} ({succ}/{total})'
         )
+        # mean compile ratio
         self.software.logger.info(
-            f'[search.genetic_programming] Overall Vc (compile)  ratio {ratio_comp:.3f} ({comp}/{total})'
+            f'Mean Vc:  {ratio_comp:.3f} ({comp}/{total})'
         )
 
     def warmup(self):

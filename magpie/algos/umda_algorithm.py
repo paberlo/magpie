@@ -1,11 +1,20 @@
 import abc
 import copy
+import json
 import random
+import re
+import subprocess
 
 import magpie.core
 import magpie.utils
-
+import requests
 import time
+
+from magpie.core import variant
+
+
+
+
 
 class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def __init__(self):
@@ -24,6 +33,8 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def setup(self, config):
         super().setup(config)
         sec = config['search.eda']
+        self.llm_model = sec['llm_model']
+        self.llm_ip = sec['llm_ip']
         self.config['pop_size'] = int(sec['pop_size'])
        # self.config['selection_ratio'] = float(sec['selection_ratio'])
         tmp = sec['batch_reset'].lower()
@@ -92,7 +103,15 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         finally:
             self.hook_vt_vc()
             self.hook_final_distribution(distribution)
+            self._hook_explanation_best_patch()
             self.hook_end()
+
+    def _hook_explanation_best_patch(self):
+        if self.report['best_patch'] is not None:
+            patch_str = self.report['best_patch']
+            explain_str = self.llm_explain_patch(patch_str)
+            self.software.logger.info("LLM Explanation of best patch: "+explain_str)
+
 
     def updateBest(self, run, local_best_fitness, sol):
         accept = best = False
@@ -191,20 +210,162 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             population.append(best_patch)
             i=1
 
-        for _ in range(i, int(self.config['pop_size'])):
+        if self.llm_model == 'None': #sample from distribution
+            for _ in range(i, int(self.config['pop_size'])):
+                # create solution (patch) with 1 randomly sampled edit
+                edit_str = random.choices(list(edits_prob.keys()), weights=list(edits_prob.values()))[0]
+                edit = self._edit_from_str(edit_str)
+                sol = magpie.core.Patch()
+                sol.edits.append(edit)
+                # if solution exists in new pop, add random edit (now solution has 2 edits)
+                if self.isIn(sol, population):
+                    self.mutate(sol)
+                population.append(sol)
 
-            # create solution (patch) with 1 randomly sampled edit
-            edit = self._sample_edit(edits_prob)
-            sol = magpie.core.Patch()
-            sol.edits.append(edit)
-
-            # if solution exists in new pop, add random edit (now solution has 2 edits)
-            if self.isIn(sol, population):
-                self.mutate(sol)
-
-            population.append(sol)
+        else: #use llm to sample patches
+            patches_list, explanations_list = self.llm_sample_population(edits_prob, int(self.config['pop_size']) - i)
+            for patch_str, explain_str in zip(patches_list, explanations_list):
+                # patch may contain one or several edits separated by |
+                edit_str_list = [e.strip() for e in patch_str.split('|') if e.strip()]
+                sol = magpie.core.Patch()
+                for edit_str in edit_str_list:
+                    try:
+                        edit = self._edit_from_str(edit_str)
+                        sol.edits.append(edit)
+                    except RuntimeError:
+                        self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
+                        sol = magpie.core.Patch()
+                        sol = self.mutate(sol)
+                        break
+                if self.isIn(sol, population):
+                    self.mutate(sol)
+                population.append(sol)
 
         return population
+
+    def llm_sample_population(self, edits_prob, pop_size):
+        prompt = self._craft_population_prompt(edits_prob, pop_size)
+        response_str = self._llm_call(prompt)
+        patch_str, explain_str = self._filter_llm_patches_and_explainations(response_str)
+        return patch_str, explain_str
+
+    def llm_explain_patch(self, patch_str):
+        sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
+        sw_str = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+
+        prompt = (f"Give a very brief explanation of the potential benefit in execution time of the following patch: {patch_str} \n"
+                  f"in the following code:\n{sw_str}. Do not explain what I am trying to do nor the format of the patch. Just"
+                  f"a 3-5 lines explanation of the potential benefit in execution time of the patch. ")
+
+        response_str = self._llm_call(prompt)
+        return response_str
+
+    def _llm_call(self,prompt):
+        url = f"http://{self.llm_ip}:11434/api/generate"
+        payload = {
+            "model": f"{self.llm_model}",
+            "prompt": f"{prompt}",
+            "stream": False
+        }
+        response = requests.post(url, json=payload)
+        response.raise_for_status()
+        return response.json()["response"]
+
+
+
+    def _llm_call2(self, prompt):
+        url = "http://172.24.100.51:8080/v1/chat/completions"
+        payload = {
+            "model": "Qwen/Qwen2.5-Coder-7B-Instruct-AWQ",
+            "messages": [
+                {
+                    "role": "user",
+                    "content": "say hi",
+                }
+            ],
+            "max_tokens": 32,
+        }
+
+        result = subprocess.run(
+            [
+                "curl",
+                "-v",
+                url,
+                "-H",
+                "Content-Type: application/json",
+                "-d",
+                json.dumps(payload),
+            ],
+            capture_output=True,
+            text=True,
+            timeout=180,
+        )
+
+        print("RETURN CODE:", result.returncode)
+        print("STDOUT:")
+        print(result.stdout)
+        print("STDERR:")
+        print(result.stderr)
+
+    def _filter_llm_patches_and_explainations(self, response_str):
+        matches = re.findall(
+            r'^\s*(?:\d+\.\s*)?Patch\s*\d*:\s*(.+?)\s*[\r\n]+'
+            r'\s*Explanation\s*\d*:\s*(.+?)(?=\s*[\r\n]+\s*(?:\d+\.\s*)?Patch\s*\d*:|\Z)',
+            response_str,
+            re.MULTILINE | re.DOTALL
+        )
+
+        patches = []
+        explanations = []
+
+        for patch, explanation in matches:
+            patches.append(patch.strip())
+            explanations.append(explanation.strip())
+        return patches, explanations
+
+
+    def _craft_population_prompt(self, edits_probs, pop_size):
+        #v = magpie.core.Variant(self.software)
+        sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
+        sw_text = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+        edits_text = str(edits_probs)
+
+        prompt = (
+                  f"In the context of the problem of Genetic Improvement of software, I want to create several Patches,"
+                  f"each one with 1 or"
+                  f" more edits for a given original software, which is in XML format created with the srcml tool. "
+                  f"You will receive a set of successful edits in the format of a python dictionary. Each edit describes"
+                  f" a type of operation (XmlNodeDeletion, XmlNodeReplacement or XmlNodeInsertion), following the MAGPIE"
+                  f" framework format. After the edit operation, a number is given between 0 and 1, which is the"
+                  f" probability of finding that edit in past populations of my search algorithm. For example, this "
+                  f"dictionary has 2 edits, one with probability 0.5 and other also with probability 0.5:"
+                  f"""{{"XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 3))": 0.5, "XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 17), ('triangle.c.xml', 'stmt', 8))": 0.5}}\n"""
+                  f"This is the original software:\n" 
+                  f"{sw_text}\n "
+                  f""
+                  f"and this is the input set of edits, from which you may choose 1 or more to craft each new patch, "
+                  f"knowing that the fitness goal is to reduce the execution time of the original software: {edits_text}"
+                  f"\n"
+                  f"""If your Patch has several edits, append them with "|". For instance:"""
+                  f"Patch 1: XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 12), ('triangle.c.xml', 'stmt', 13)) |"
+                  f"XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 8))\n"
+                  f"""Then, in new line, add a short explanation starting by "Explanation":"""
+                  f"Respect the required format, only reply with a numbered set of {pop_size} patch+explanation, no further extra text."
+                  f"For instance:\n"
+                  f"Patch 1: XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 12), ('triangle.c.xml', 'stmt', 13))\n"
+                  f"Explanation 1: This patch aims to improve the performance of the original software by removing unnecessary statements and inserting a more efficient block of code.\n"
+                  f"Patch 2: XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 8))\n"
+                  f"Explanation 2: This patch aims to reduce the execution time of the original software by removing unnecessary statements.\n"
+
+                  )
+
+        return prompt
+
+
+
+
+
+
 
     def isIn(self, sol, population):
         for p in population:
@@ -212,8 +373,8 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                 return True
         return False
 
-    def _sample_edit(self,edits_prob):
-        edit_str = random.choices(list(edits_prob.keys()), weights=list(edits_prob.values()))[0]
+    def _edit_from_str(self,edit_str):
+        #edit_str = random.choices(list(edits_prob.keys()), weights=list(edits_prob.values()))[0]
         # get target and ingredient from sampled edit
         target = magpie.utils.convert.target_from_stringEdit(edit_str)
         ingredient = magpie.utils.convert.ingredient_from_stringEdit(edit_str)
