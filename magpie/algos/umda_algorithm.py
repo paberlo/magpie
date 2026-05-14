@@ -86,7 +86,9 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                 for sol in patches_population:
                     if self.stopping_condition():
                         break
-                    variant = magpie.core.Variant(self.software, sol)
+                    try:
+                        variant = magpie.core.Variant(self.software, sol)
+                    except Exception as e: print(sol)
                     run = self.evaluate_variant(variant)
                     self.update_vt_vc(run)
                     accept, best, generation_best_fitness = self.updateBest(run, generation_best_fitness, sol)
@@ -228,19 +230,20 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                 # patch may contain one or several edits separated by |
                 edit_str_list = [e.strip() for e in patch_str.split('|') if e.strip()]
                 sol = magpie.core.Patch()
-                for edit_str in edit_str_list:
-                    try:
+                try:
+                    for edit_str in edit_str_list:
                         edit = self._edit_from_str(edit_str)
                         sol.edits.append(edit)
-                    except RuntimeError:
-                        self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
-                        sol = magpie.core.Patch()
-                        sol = self.mutate(sol)
-                        break
+                    #if variant cannot be created, some patch in sol in wrong and thus ValueError is thrown
+                    magpie.core.Variant(self.software, sol)
+                except (RuntimeError, ValueError, AssertionError):
+                    self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
+                    sol = magpie.core.Patch()
+                    self.mutate(sol)
+                    explain_str = "invalid creation by LLM, random 1-edit individual created"
                 if self.isIn(sol, population):
                     self.mutate(sol)
                 population.append(sol)
-
         return population
 
     def llm_sample_population(self, edits_prob, pop_size):

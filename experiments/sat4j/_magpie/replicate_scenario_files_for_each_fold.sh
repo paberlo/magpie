@@ -20,18 +20,16 @@ fi
 # Extract file name and ensure it contains "FOLD1"
 BASENAME=$(basename "$INPUT_FILE" .txt)
 
-if [[ "$BASENAME" != *"FOLD1" ]]; then
-    echo "Error: The input file name must end with 'FOLD1'."
+if [[ "$BASENAME" != *"FOLD1"* ]]; then
+    echo "Error: The input file name must contain 'FOLD1'."
     exit 1
 fi
 
-# Remove "1" from the name (e.g., FOLD1 -> FOLD)
-PREFIX=${BASENAME%1}
-
 # Loop to create K scenario files
 for i in $(seq 1 "$K"); do
-    # Generate the FOLD file name replacing the number and adding _steps<STEPS>
-    FOLD_FILE="${PREFIX}${i}_steps${STEPS}.txt"
+    # Generate the FOLD file name by replacing FOLD1 with FOLD<i>
+    FOLD_BASENAME="${BASENAME/FOLD1/FOLD${i}}"
+    FOLD_FILE="${FOLD_BASENAME}_steps${STEPS}.txt"
     cp "$INPUT_FILE" "$FOLD_FILE"
 
     # Replace content for FOLD<i> and steps

@@ -4,19 +4,65 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="wsl setting, Vt and Vc metrics" />
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="Vt-Vc metrics in logs, added explanation of best patch if llm in umda.">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/replicate_scenario_files_for_each_fold.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/replicate_scenario_files_for_each_fold.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD1_llama.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps250.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps750.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD2_steps100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD2_steps1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD2_steps250.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD2_steps500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD2_steps750.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD3_steps100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD3_steps1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD3_steps250.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD3_steps500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD3_steps750.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps250.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps750.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD5_steps100.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD5_steps1000.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD5_steps250.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD5_steps500.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD5_steps750.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/_magpie/replicate_scenario_files_for_each_fold.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/replicate_scenario_files_for_each_fold.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/replicate_scenario_files_for_each_fold.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/replicate_scenario_files_for_each_fold.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/replicate_scenario_files_for_each_fold.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/replicate_scenario_files_for_each_fold.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="2510" />
+    <option name="cachedIndexableFilesCount" value="2539" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;paberlo&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:paberlo/magpie.git&quot;,
+    &quot;accountId&quot;: &quot;f4b49bb6-86d2-4441-a9e6-d5e098a93f44&quot;
+  }
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -30,42 +76,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.extract results.executor": "Run",
-    "Python.genetic triangle.executor": "Run",
-    "Python.local search.executor": "Run",
-    "Python.localsearch triangle .executor": "Run",
-    "Python.random Search.executor": "Run",
-    "Python.umda triangle (1).executor": "Run",
-    "Python.umda triangle.executor": "Run",
-    "Python.umda.executor": "Run",
-    "Python.valida.executor": "Run",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHELLCHECK.PATH": "C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.2\\plugins\\Shell Script\\shellcheck.exe",
-    "ai.playground.ignore.import.keys.banner.in.settings": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/pablo/magpie",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "yarn",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.extract results.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.genetic triangle.executor&quot;: &quot;Run&quot;,
+    &quot;Python.local search.executor&quot;: &quot;Run&quot;,
+    &quot;Python.localsearch triangle .executor&quot;: &quot;Debug&quot;,
+    &quot;Python.random Search.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda cycles minisat_hack.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda minisat_hack.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda perftime minisat_hack.executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda triangle (1).executor&quot;: &quot;Run&quot;,
+    &quot;Python.umda triangle.executor&quot;: &quot;Debug&quot;,
+    &quot;Python.umda.executor&quot;: &quot;Run&quot;,
+    &quot;Python.valida.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.3\\plugins\\Shell Script\\linux\\amd64\\shellcheck&quot;,
+    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/minisat_hack/_magpie&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\minisat_hack\_magpie" />
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\experiments\minisat_hack\data" />
     </key>
@@ -73,7 +123,7 @@
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.localsearch triangle ">
+  <component name="RunManager" selected="Python.umda perftime minisat_hack">
     <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -83,13 +133,14 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\extract_results.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/galgo/extract_results.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,6 +248,31 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="umda perftime minisat_hack" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
+      <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD1_llama.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="umda triangle (1)" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -281,13 +357,14 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo\validar.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/galgo/validar.py" />
       <option name="PARAMETERS" value="minisat_hack" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -298,12 +375,13 @@
     </configuration>
     <list>
       <item itemvalue="Python.extract results" />
-      <item itemvalue="Python.local search" />
-      <item itemvalue="Python.random Search" />
-      <item itemvalue="Python.umda triangle" />
       <item itemvalue="Python.genetic triangle" />
+      <item itemvalue="Python.local search" />
       <item itemvalue="Python.localsearch triangle " />
+      <item itemvalue="Python.random Search" />
+      <item itemvalue="Python.umda perftime minisat_hack" />
       <item itemvalue="Python.umda triangle (1)" />
+      <item itemvalue="Python.umda triangle" />
       <item itemvalue="Python.umda" />
       <item itemvalue="Python.valida" />
     </list>
@@ -344,7 +422,30 @@
       <workItem from="1776787559591" duration="760000" />
       <workItem from="1776788474602" duration="3182000" />
       <workItem from="1776791743489" duration="2273000" />
-      <workItem from="1776839263891" duration="976000" />
+      <workItem from="1776839263891" duration="4490000" />
+      <workItem from="1776844663872" duration="2058000" />
+      <workItem from="1776849901857" duration="7499000" />
+      <workItem from="1776867360391" duration="158000" />
+      <workItem from="1776867901670" duration="1892000" />
+      <workItem from="1776936542275" duration="6287000" />
+      <workItem from="1776962793504" duration="1687000" />
+      <workItem from="1777364667391" duration="1195000" />
+      <workItem from="1777460573816" duration="4558000" />
+      <workItem from="1777473073391" duration="1343000" />
+      <workItem from="1777474791558" duration="154000" />
+      <workItem from="1777474958879" duration="2881000" />
+      <workItem from="1777478725011" duration="4936000" />
+      <workItem from="1777544808550" duration="3679000" />
+      <workItem from="1777894494083" duration="706000" />
+      <workItem from="1777895225435" duration="7621000" />
+      <workItem from="1777979883407" duration="49000" />
+      <workItem from="1778079144310" duration="751000" />
+      <workItem from="1778665272581" duration="76000" />
+      <workItem from="1778669168395" duration="2850000" />
+      <workItem from="1778672897591" duration="3218000" />
+      <workItem from="1778688189605" duration="879000" />
+      <workItem from="1778750985056" duration="18000" />
+      <workItem from="1778752049905" duration="668000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -354,7 +455,31 @@
       <option name="project" value="LOCAL" />
       <updated>1776840077010</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="wsl setting, Vt and Vc metrics">
+      <option name="closed" value="true" />
+      <created>1776840253344</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1776840253344</updated>
+    </task>
+    <task id="LOCAL-00003" summary="wsl setting, Vt and Vc metrics">
+      <option name="closed" value="true" />
+      <created>1776840263393</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1776840263393</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Vt-Vc metrics in logs, added explanation of best patch if llm in umda.">
+      <option name="closed" value="true" />
+      <created>1777529670760</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1777529670760</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,18 +520,60 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="wsl setting, Vt and Vc metrics" />
-    <option name="LAST_COMMIT_MESSAGE" value="wsl setting, Vt and Vc metrics" />
+    <MESSAGE value="Vt-Vc metrics in logs, added explanation of best patch if llm in umda." />
+    <option name="LAST_COMMIT_MESSAGE" value="Vt-Vc metrics in logs, added explanation of best patch if llm in umda." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magpie/algos/umda_algorithm.py</url>
+          <line>361</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/galgo/validar.py</url>
+          <line>257</line>
+          <option name="timeStamp" value="53" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/galgo/extract_results.py</url>
+          <line>308</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/galgo/extract_results.py</url>
+          <line>69</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magpie/algos/umda_algorithm.py</url>
+          <line>90</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1762503648016" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1776791922218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1762505977005" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$localsearch_triangle_.coverage" NAME="localsearch triangle  Coverage Results" MODIFIED="1776839927986" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1776839729120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
-    <SUITE FILE_PATH="coverage/magpie$umda_triangle__1_.coverage" NAME="umda triangle (1) Coverage Results" MODIFIED="1776789880592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1777476924801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/magpie$genetic_triangle.coverage" NAME="genetic triangle Coverage Results" MODIFIED="1776839688966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle__1_.coverage" NAME="umda triangle (1) Coverage Results" MODIFIED="1776789880592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
+    <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1777476735748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$localsearch_triangle_.coverage" NAME="localsearch triangle  Coverage Results" MODIFIED="1776843706371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_cycles_minisat_hack.coverage" NAME="umda cycles minisat_hack Coverage Results" MODIFIED="1777549420649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1777911863298" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_minisat_hack.coverage" NAME="umda perftime minisat_hack Coverage Results" MODIFIED="1778687902991" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_minisat_hack.coverage" NAME="umda minisat_hack Coverage Results" MODIFIED="1777475932775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="github-copilot-workspace">
     <instructionFileLocations>
