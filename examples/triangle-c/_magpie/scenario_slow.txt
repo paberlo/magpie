@@ -3,27 +3,27 @@ path = examples/triangle-c
 target_files =
     triangle.c.xml
 # time, PerfTime, Perf<Cycles>
-fitness = PerfTime
+fitness = Perf<Cycles>
 
 init_cmd = bash init_slow.sh
 compile_cmd = make test_triangle run_triangle
 test_cmd = ./test_triangle
-run_cmd = perf stat ./run_triangle
+#run_cmd = perf stat ./run_triangle
+run_cmd = perf stat -e cycles ./run_triangle
 run_timeout = 1
 
 [search.gp]
-pop_size = 13
+pop_size = 10
 
 [search.eda]
 pop_size = 10
 # None, llama3.2:3b, qwen2.5-coder:7b
-llm_model = qwen2.5-coder:7b
+llm_model = llama3.2:3b
 llm_ip = 172.24.100.5
 
 
 [magpie.log]
 log_suffix_label = FOLDall
-
 
 [search]
 max_steps = 20

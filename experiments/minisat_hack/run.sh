@@ -4,8 +4,8 @@
 trap clean_up EXIT SIGINT  # test_timeout error does not unlock executable file
 
 clean_up() {
-    # Finaliza cualquier proceso relacionado con el ejecutable en caso de error o interrupción
-    pkill -f "./minisat_HACK_999ED_CSSC_static"
+    pkill -P $$ -f "minisat_HACK_999ED_CSSC_static" 2>/dev/null
+    true
 }
 
 

@@ -109,7 +109,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             self.hook_end()
 
     def _hook_explanation_best_patch(self):
-        if self.report['best_patch'] is not None:
+        if self.report['best_patch'] is not None and self.llm_model not in (None, 'None'):
             patch_str = self.report['best_patch']
             explain_str = self.llm_explain_patch(patch_str)
             self.software.logger.info("LLM Explanation of best patch: "+explain_str)
@@ -236,7 +236,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                         sol.edits.append(edit)
                     #if variant cannot be created, some patch in sol in wrong and thus ValueError is thrown
                     magpie.core.Variant(self.software, sol)
-                except (RuntimeError, ValueError, AssertionError):
+                except (RuntimeError, ValueError, AssertionError, Exception):
                     self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
                     sol = magpie.core.Patch()
                     self.mutate(sol)
@@ -268,7 +268,8 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         payload = {
             "model": f"{self.llm_model}",
             "prompt": f"{prompt}",
-            "stream": False
+            "stream": False,
+            "options": {"num_ctx": 20000}
         }
         response = requests.post(url, json=payload)
         response.raise_for_status()

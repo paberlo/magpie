@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Get the FOLD value. If not provided, it will be empty
 FOLD=${1:-}
