@@ -12,6 +12,7 @@ test_cmd = ./test_triangle
 run_cmd = perf stat -e cycles ./run_triangle
 run_timeout = 1
 
+
 [search.gp]
 pop_size = 10
 

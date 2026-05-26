@@ -20,8 +20,8 @@ test_cmd = ./test.sh
     # FOLD 1 for kfold CV
 run_cmd = env LC_ALL=C perf stat -e cycles bash run.sh 1
 retries = 1
-test_timeout = 200
-run_timeout = 240
+test_timeout = 400
+run_timeout = 480
 
 [search.eda]
 pop_size = 50

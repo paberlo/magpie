@@ -111,8 +111,11 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def _hook_explanation_best_patch(self):
         if self.report['best_patch'] is not None and self.llm_model not in (None, 'None'):
             patch_str = self.report['best_patch']
-            explain_str = self.llm_explain_patch(patch_str)
-            self.software.logger.info("LLM Explanation of best patch: "+explain_str)
+            try:
+                explain_str = self.llm_explain_patch(patch_str)
+            except Exception:
+                explain_str = "Ollama service failed, no explanation available"
+            self.software.logger.info("LLM Explanation of best patch: " + explain_str)
 
 
     def updateBest(self, run, local_best_fitness, sol):

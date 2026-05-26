@@ -10,6 +10,7 @@ import select
 import shutil
 import signal
 import subprocess
+import tempfile
 import time
 
 import magpie.settings
@@ -154,8 +155,22 @@ class AbstractSoftware(abc.ABC):
                 original_entry = original / entry
                 if original_entry.stat().st_mtime < target_entry.stat().st_mtime:
                     # modified file
-                    shutil.copyfile(original_entry, target_entry)
-                    shutil.copystat(original_entry, target_entry)
+                    # After a RUN_TIMEOUT or TEST_TIMEOUT the previous
+                    # evaluation's process may still hold the binary open.
+                    # Overwriting the file in-place with copyfile() would
+                    # fail with OSError ETXTBSY (errno 26) in that case.
+                    # Writing to a temp file and renaming atomically with
+                    # os.replace() swaps the inode without disturbing the
+                    # running process, avoiding the error.
+                    fd, tmp_path = tempfile.mkstemp(dir=target_entry.parent)
+                    try:
+                        os.close(fd)
+                        shutil.copyfile(original_entry, tmp_path)
+                        shutil.copystat(original_entry, tmp_path)
+                        os.replace(tmp_path, target_entry)
+                    except Exception:
+                        pathlib.Path(tmp_path).unlink(missing_ok=True)
+                        raise
             # else: unmodified file
         for entry in contents_original:
             target_entry = target / entry
