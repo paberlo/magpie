@@ -129,6 +129,13 @@ number: literal_number""",
         'batch_reset': True,
     },
 
+    # [search.llm] section
+    'search.llm': {
+        'pop_size': 20,
+        'max_examples': 10,
+        'batch_reset': True,
+    },
+
     # [search.minify] section
     'search.minify': {
         'do_cleanup': True,
