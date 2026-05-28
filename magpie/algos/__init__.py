@@ -22,4 +22,7 @@ from .local_search import (
 from .umda_algorithm import (
 UMDAAlgorithm,
 )
+from .llm_algorithm import (
+LLMAlgorithm,
+)
 from .validation import ValidMinify, ValidSearch, ValidSingle, ValidTest

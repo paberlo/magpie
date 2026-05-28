@@ -4,73 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="improved umda code for llm server, and scenarios created for perftime cycles, all folds, all steps, all llm_models">
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="scenarios created; unreleased binary file access problem in production solved.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD1_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD3_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD4_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/__init__.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,10 +52,11 @@
     "Python.genetic triangle.executor": "Run",
     "Python.local search.executor": "Run",
     "Python.localsearch triangle .executor": "Debug",
+    "Python.only llm - triangle.executor": "Run",
     "Python.random Search.executor": "Run",
     "Python.umda cycles minisat_hack.executor": "Run",
     "Python.umda minisat_hack.executor": "Run",
-    "Python.umda perftime minisat_hack.executor": "Debug",
+    "Python.umda perftime minisat_hack.executor": "Run",
     "Python.umda perftime pngOptim.executor": "Run",
     "Python.umda perftime sat4j.executor": "Run",
     "Python.umda perftime weka.executor": "Run",
@@ -161,7 +98,7 @@
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.umda perftime minisat_hack">
+  <component name="RunManager" selected="Python.only llm - triangle">
     <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -255,6 +192,31 @@
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
       <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_slow.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="only llm - triangle" type="PythonConfigurationType" factoryName="Python">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/llm.py" />
+      <option name="PARAMETERS" value="--scenario examples/triangle-c/_magpie/scenario_slow_llmpure.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -469,6 +431,7 @@
       <item itemvalue="Python.umda triangle" />
       <item itemvalue="Python.umda" />
       <item itemvalue="Python.extract results" />
+      <item itemvalue="Python.only llm - triangle" />
       <item itemvalue="Python.genetic triangle" />
       <item itemvalue="Python.local search" />
       <item itemvalue="Python.localsearch triangle " />
@@ -539,7 +502,9 @@
       <workItem from="1779115497476" duration="11258000" />
       <workItem from="1779184617703" duration="34974000" />
       <workItem from="1779361752549" duration="8201000" />
-      <workItem from="1779688531706" duration="16640000" />
+      <workItem from="1779688531706" duration="18477000" />
+      <workItem from="1779787066495" duration="4886000" />
+      <workItem from="1779955848297" duration="3797000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -597,7 +562,23 @@
       <option name="project" value="LOCAL" />
       <updated>1779295557077</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="scenarios created; unreleased binary file access problem in production solved.">
+      <option name="closed" value="true" />
+      <created>1779781185412</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1779781185412</updated>
+    </task>
+    <task id="LOCAL-00009" summary="scenarios created; unreleased binary file access problem in production solved.">
+      <option name="closed" value="true" />
+      <created>1779797415192</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1779797415194</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -641,7 +622,8 @@
     <MESSAGE value="Vt-Vc metrics in logs, added explanation of best patch if llm in umda." />
     <MESSAGE value="LLM model, specified in context file,is used to sample population from learned distribution." />
     <MESSAGE value="improved umda code for llm server, and scenarios created for perftime cycles, all folds, all steps, all llm_models" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved umda code for llm server, and scenarios created for perftime cycles, all folds, all steps, all llm_models" />
+    <MESSAGE value="scenarios created; unreleased binary file access problem in production solved." />
+    <option name="LAST_COMMIT_MESSAGE" value="scenarios created; unreleased binary file access problem in production solved." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -650,6 +632,11 @@
           <url>file://$PROJECT_DIR$/magpie/algos/umda_algorithm.py</url>
           <line>365</line>
           <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magpie/algos/llm_algorithm.py</url>
+          <line>46</line>
+          <option name="timeStamp" value="37" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -663,6 +650,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1776791922218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$only_llm___triangle.coverage" NAME="only llm - triangle Coverage Results" MODIFIED="1779963264558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda_perftime_pngOptim.coverage" NAME="umda perftime pngOptim Coverage Results" MODIFIED="1778772544591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1779116470962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/magpie$umda_perftime_weka.coverage" NAME="umda perftime weka Coverage Results" MODIFIED="1778844537838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -674,8 +662,8 @@
     <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1779183681689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$localsearch_triangle_.coverage" NAME="localsearch triangle  Coverage Results" MODIFIED="1776843706371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda_cycles_minisat_hack.coverage" NAME="umda cycles minisat_hack Coverage Results" MODIFIED="1777549420649" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1779720445346" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_perftime_minisat_hack.coverage" NAME="umda perftime minisat_hack Coverage Results" MODIFIED="1779729993899" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_triangle.coverage" NAME="umda triangle Coverage Results" MODIFIED="1779781058915" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_minisat_hack.coverage" NAME="umda perftime minisat_hack Coverage Results" MODIFIED="1779781072029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda_minisat_hack.coverage" NAME="umda minisat_hack Coverage Results" MODIFIED="1777475932775" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="github-copilot-workspace">

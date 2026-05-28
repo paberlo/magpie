@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(///wsl.localhost/Ubuntu-20.04/home/pablo/**)",
+      "Bash(wsl ls *)",
+      "Bash(wsl find *)"
+    ]
+  }
+}
