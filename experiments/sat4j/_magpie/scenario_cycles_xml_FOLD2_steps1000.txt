@@ -1,5 +1,5 @@
-[magpie]
-seed=1
+﻿[magpie]
+seed=2
 default_timeout = 360
 default_lengthout = 1e6
 local_original_copy = True

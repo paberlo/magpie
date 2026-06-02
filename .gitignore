@@ -16,3 +16,6 @@
 /experiments/results/results.csv
 /experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD1_steps20.txt
 /sync_galgo.sh
+/errout/
+/experiments/results_UCL/
+

@@ -76,6 +76,8 @@ class LocalSearch(magpie.core.BasicAlgorithm):
             self.stats['eval_success'] += 1
         if isinstance(run.status, str) and run.status.startswith('COMPILE_'):
             self.stats['eval_compile_error'] += 1
+        else:
+            self.stats['eval_compile'] += 1
 
 
     @abc.abstractmethod
