@@ -23,12 +23,15 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.config['pop_size'] = 20
         #self.config['selection_ratio'] = 0.5
         self.config['batch_reset'] = True
+        self.config['max_examples'] = 10
+        self.examples = []  # list of (fitness, patch_str), sorted ascending — mirrors LLMAlgorithm
 
     def reset(self):
         super().reset()
         self.stats['gen'] = 0
         self.stats['eval_success'] = 0
         self.stats['eval_compile'] = 0
+        self.examples = []
 
     def setup(self, config):
         super().setup(config)
@@ -36,6 +39,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.llm_model = sec['llm_model']
         self.llm_ip = sec['llm_ip']
         self.config['pop_size'] = int(sec['pop_size'])
+        self.config['max_examples'] = int(sec.get('max_examples', fallback='10'))
        # self.config['selection_ratio'] = float(sec['selection_ratio'])
         tmp = sec['batch_reset'].lower()
         if tmp in ['true', 't', '1']:
@@ -71,6 +75,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                 runs_pop[patch] = run
                 self.stats['steps'] += 1 #steps son validaciones, max_steps en secenario indica numero maximo de evaluciones.
 
+            self._update_examples(runs_pop)
             selected_patches = self.select(runs_pop)  # see todo note in self.select()
             distribution = self.estimate_distribution(selected_patches)
 
@@ -96,6 +101,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                     runs_pop[sol] = run
                     self.stats['steps'] += 1
 
+                self._update_examples(runs_pop)
                 selected_patches = self.select(runs_pop)  # see todo note in self.select()
                 distribution = self.estimate_distribution(selected_patches)
 
@@ -331,41 +337,78 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         return patches, explanations
 
 
+    def _update_examples(self, runs_pop):
+        for patch, run in runs_pop.items():
+            if run.status == 'SUCCESS':
+                self.examples.append((run.fitness, str(patch)))
+        seen = set()
+        unique = []
+        for fitness, patch_str in self.examples:
+            if patch_str not in seen:
+                seen.add(patch_str)
+                unique.append((fitness, patch_str))
+        def sort_key(item):
+            f = item[0]
+            return f[0] if isinstance(f, list) else f
+        unique.sort(key=sort_key)
+        self.examples = unique[:self.config['max_examples']]
+
     def _craft_population_prompt(self, edits_probs, pop_size):
-        #v = magpie.core.Variant(self.software)
         sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
         sw_text = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
-        edits_text = str(edits_probs)
+
+        # Examples block — same as LLMAlgorithm
+        if self.examples:
+            examples_text = '\n'.join(
+                f'{i+1}. {patch_str}  (fitness: {fitness})'
+                for i, (fitness, patch_str) in enumerate(self.examples)
+            )
+            examples_block = (
+                f'Here are the best patches found so far (lower fitness = faster execution):\n'
+                f'{examples_text}\n\n'
+                f'You may draw inspiration from these examples, but do not simply copy them. '
+                f'Be creative in combining, extending, or modifying the edits shown.\n'
+            )
+        else:
+            examples_block = (
+                'No successful patches have been found yet. '
+                'Generate novel patches based solely on the software below.\n'
+            )
+
+        # Distribution block — UMDA-specific addition
+        if edits_probs:
+            dist_lines = '\n'.join(
+                f'  {edit}: {prob:.3f}'
+                for edit, prob in sorted(edits_probs.items(), key=lambda x: -x[1])
+            )
+            distribution_block = (
+                f'Additionally, here is the probability distribution of individual edits '
+                f'learned from past successful patches (higher probability = more frequently useful):\n'
+                f'{dist_lines}\n\n'
+                f'Use this distribution as a guide, but feel free to combine edits creatively '
+                f'or propose edits not listed in the distribution.\n\n'
+            )
+        else:
+            distribution_block = ''
 
         prompt = (
-                  f"In the context of the problem of Genetic Improvement of software, I want to create several Patches,"
-                  f"each one with 1 or"
-                  f" more edits for a given original software, which is in XML format created with the srcml tool. "
-                  f"You will receive a set of successful edits in the format of a python dictionary. Each edit describes"
-                  f" a type of operation (XmlNodeDeletion, XmlNodeReplacement or XmlNodeInsertion), following the MAGPIE"
-                  f" framework format. After the edit operation, a number is given between 0 and 1, which is the"
-                  f" probability of finding that edit in past populations of my search algorithm. For example, this "
-                  f"dictionary has 2 edits, one with probability 0.5 and other also with probability 0.5:"
-                  f"""{{"XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 3))": 0.5, "XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 17), ('triangle.c.xml', 'stmt', 8))": 0.5}}\n"""
-                  f"This is the original software:\n" 
-                  f"{sw_text}\n "
-                  f""
-                  f"and this is the input set of edits, from which you may choose 1 or more to craft each new patch, "
-                  f"knowing that the fitness goal is to reduce the execution time of the original software: {edits_text}"
-                  f"\n"
-                  f"""If your Patch has several edits, append them with "|". For instance:"""
-                  f"Patch 1: XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 12), ('triangle.c.xml', 'stmt', 13)) |"
-                  f"XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 8))\n"
-                  f"""Then, in new line, add a short explanation starting by "Explanation":"""
-                  f"Respect the required format, only reply with a numbered set of {pop_size} patch+explanation, no further extra text."
-                  f"For instance:\n"
-                  f"Patch 1: XmlNodeInsertion<stmt,block>(('triangle.c.xml', '_inter_block', 12), ('triangle.c.xml', 'stmt', 13))\n"
-                  f"Explanation 1: This patch aims to improve the performance of the original software by removing unnecessary statements and inserting a more efficient block of code.\n"
-                  f"Patch 2: XmlNodeDeletion<stmt>(('triangle.c.xml', 'stmt', 8))\n"
-                  f"Explanation 2: This patch aims to reduce the execution time of the original software by removing unnecessary statements.\n"
-
-                  )
-
+            f'In the context of Genetic Improvement of software, I want to create {pop_size} new Patches '
+            f'for the following original software, which is in XML format created with the srcml tool.\n\n'
+            f'Each patch contains 1 or more edits in the MAGPIE framework format '
+            f'(XmlNodeDeletion, XmlNodeReplacement, or XmlNodeInsertion). '
+            f'Multiple edits in a patch are separated by "|".\n\n'
+            f'The fitness goal is to reduce the execution time of the original software.\n\n'
+            f'This is the original software:\n{sw_text}\n\n'
+            f'{examples_block}\n'
+            f'{distribution_block}'
+            f'Respect the required format, only reply with a numbered set of {pop_size} patch+explanation, '
+            f'no further extra text. For instance:\n'
+            f'Patch 1: XmlNodeDeletion<stmt>((\'file.xml\', \'stmt\', 3))\n'
+            f'Explanation 1: Removes an unnecessary statement to reduce execution time.\n'
+            f'Patch 2: XmlNodeDeletion<stmt>((\'file.xml\', \'stmt\', 5)) | '
+            f'XmlNodeInsertion<stmt,block>((\'file.xml\', \'_inter_block\', 2), (\'file.xml\', \'stmt\', 1))\n'
+            f'Explanation 2: Combines a deletion with an insertion to restructure a hot path.\n'
+        )
         return prompt
 
 

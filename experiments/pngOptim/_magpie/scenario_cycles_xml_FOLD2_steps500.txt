@@ -1,4 +1,4 @@
-﻿[magpie]
+[magpie]
 seed=2
 default_timeout = 360
 default_lengthout = 1e6

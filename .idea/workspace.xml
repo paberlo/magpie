@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="llm_only algorithm created. It does not perform any search, it only samples a new population from llm without extra information derived from search, only the source code and examples.">
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search.">
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/triangle-c/_magpie/scenario_slow.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/minisat_hack/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" afterDir="false" />
@@ -48,7 +48,6 @@
       <change beforePath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/test.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" afterDir="false" />
@@ -69,6 +68,29 @@
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" afterDir="false" />
@@ -89,7 +111,68 @@
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD2_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD3_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD4_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps1000.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/magpie/algos/local_search.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/local_search.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" beforeDir="false" afterPath="$PROJECT_DIR$/magpie/algos/umda_algorithm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +180,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="3521" />
+    <option name="cachedIndexableFilesCount" value="3538" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -158,7 +241,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/minisat_hack/_magpie&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/results_UCL&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -171,17 +254,17 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results_UCL" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\minisat_hack\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\weka\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\sat4j\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\pngOptim\_magpie" />
-      <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.only llm - triangle">
+  <component name="RunManager" selected="Python.local search">
     <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -249,7 +332,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/local_search.py" />
-      <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" />
+      <option name="PARAMETERS" value="--scenario experiments/minisat_hack/_magpie/scenario_perftime_xml_FOLD1.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -591,7 +674,11 @@
       <workItem from="1780045444097" duration="4210000" />
       <workItem from="1780307794450" duration="15080000" />
       <workItem from="1780409860575" duration="1768000" />
-      <workItem from="1780411716804" duration="4584000" />
+      <workItem from="1780411716804" duration="8807000" />
+      <workItem from="1780471424934" duration="976000" />
+      <workItem from="1780474148255" duration="416000" />
+      <workItem from="1780474588585" duration="3245000" />
+      <workItem from="1780990693876" duration="13032000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -681,7 +768,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779988798224</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search.">
+      <option name="closed" value="true" />
+      <created>1780416436625</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1780416436625</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -727,20 +822,26 @@
     <MESSAGE value="improved umda code for llm server, and scenarios created for perftime cycles, all folds, all steps, all llm_models" />
     <MESSAGE value="scenarios created; unreleased binary file access problem in production solved." />
     <MESSAGE value="llm_only algorithm created. It does not perform any search, it only samples a new population from llm without extra information derived from search, only the source code and examples." />
-    <option name="LAST_COMMIT_MESSAGE" value="llm_only algorithm created. It does not perform any search, it only samples a new population from llm without extra information derived from search, only the source code and examples." />
+    <MESSAGE value="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search." />
+    <option name="LAST_COMMIT_MESSAGE" value="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/magpie/algos/umda_algorithm.py</url>
-          <line>365</line>
+          <line>376</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/magpie/algos/llm_algorithm.py</url>
           <line>46</line>
           <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/magpie/algos/local_search.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

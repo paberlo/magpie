@@ -19,7 +19,7 @@ pop_size = 10
 [search.eda]
 pop_size = 10
 # None, llama3.2:3b, qwen2.5-coder:7b
-llm_model = llama3.2:3b
+llm_model = None
 llm_ip = 172.24.100.5
 
 

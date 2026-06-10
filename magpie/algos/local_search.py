@@ -20,6 +20,7 @@ class LocalSearch(magpie.core.BasicAlgorithm):
         self.stats['neighbours'] = 0
         self.stats['eval_success'] = 0
         self.stats['eval_compile_error'] = 0
+        self.stats['eval_compile'] = 0
 
     def setup(self, config):
         super().setup(config)
