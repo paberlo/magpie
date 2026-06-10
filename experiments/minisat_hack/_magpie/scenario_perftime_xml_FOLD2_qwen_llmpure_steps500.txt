@@ -1,0 +1,39 @@
+[magpie]
+seed = 2
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD2
+
+[software]
+path = experiments/minisat_hack
+target_files = sources/core/Solver.cc.xml
+# time, PerfTime, Perf<Cycles>
+fitness = PerfTime
+
+init_cmd = bash init.sh
+setup_cmd = ./build.sh
+compile_cmd = ./build.sh
+test_cmd = ./test.sh
+    # FOLD 2 for kfold CV
+run_cmd = env LC_ALL=C perf stat bash run.sh 2
+retries = 1
+test_timeout = 200
+run_timeout = 240
+
+[search.llm]
+pop_size = 50
+# llama3.2:3b, qwen2.5-coder:7b
+llm_model = qwen2.5-coder:7b
+llm_ip = 127.0.0.1
+max_examples = 10
+
+[search]
+# max number of evaluations
+ max_steps = 500
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>

@@ -1,0 +1,39 @@
+[magpie]
+seed=1
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD1
+
+[software]
+path = experiments/sat4j
+target_files = Solver.java.xml
+# time, PerfTime, Perf<Cycles>
+fitness = PerfTime
+
+init_cmd = bash init.sh
+setup_cmd = 
+compile_cmd = 
+test_cmd = bash test.sh
+    # FOLD 1 for kfold CV
+run_cmd = env LC_ALL=C perf stat bash run.sh 1
+retries = 1
+test_timeout = 120
+run_timeout = 240
+
+[search.llm]
+pop_size = 50
+# llama3.2:3b, qwen2.5-coder:7b
+llm_model = qwen2.5-coder:7b
+llm_ip = 127.0.0.1
+max_examples = 10
+
+[search]
+# max number of evaluations
+ max_steps = 750
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>
