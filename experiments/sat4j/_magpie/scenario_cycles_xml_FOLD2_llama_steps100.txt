@@ -15,7 +15,7 @@ fitness = Perf<Cycles>
 
 init_cmd = bash init.sh
 setup_cmd = 
-compile_cmd = 
+compile_cmd = bash compile.sh
 test_cmd = bash test.sh
     # FOLD 2 for kfold CV
 run_cmd = env LC_ALL=C perf stat -e cycles bash run.sh 2

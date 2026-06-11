@@ -16,7 +16,7 @@ fitness = time
 init_cmd = bash init.sh
     # ant core
 setup_cmd =
-compile_cmd = 
+compile_cmd = bash compile.sh
 test_cmd = bash test.sh
     # FOLD 4 for kfold CV
 run_cmd = bash run.sh 4

@@ -81,7 +81,30 @@
       "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && source .venv314/bin/activate && python3 -c 'import pptx; print\\(pptx.__version__\\)'\")",
       "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && source .venv314/bin/activate && python3 make_ucl_slides.py && rm make_ucl_slides.py\")",
       "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"which libreoffice; which pdftoppm; which convert\")",
-      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"which soffice; dpkg -l | grep -E 'libreoffice|poppler|imagemagick' | head -10\")"
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"which soffice; dpkg -l | grep -E 'libreoffice|poppler|imagemagick' | head -10\")",
+      "Bash(jupyter nbconvert *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(unzip -p org.sat4j.core.jar META-INF/MANIFEST.MF)",
+      "Bash(unzip -l org.sat4j.core.jar)",
+      "Bash(grep -rn \"local_original\" /home/pablo/magpie/magpie/_magpie_config*.ini /home/pablo/magpie/_magpie_config*.ini /home/pablo/magpie/*.ini)",
+      "Bash(find /home/pablo/magpie -maxdepth 2 -iname \"*.ini\")",
+      "Bash(java -version)",
+      "Bash(javac -version)",
+      "Bash(find /home/pablo/magpie -maxdepth 2 -iname \"*.slurm\")",
+      "Bash(cd /home/pablo/magpie)",
+      "Bash(find . -maxdepth 2 -iname \"*.slurm\")",
+      "Bash(chmod +x experiments/sat4j/compile.sh)",
+      "Bash(sed -i 's/^compile_cmd = $/compile_cmd = bash compile.sh/' scenario_*.txt)",
+      "Bash(chmod +x ../compile.sh)",
+      "Bash(grep -rl \"^compile_cmd = $\" scenario_cycles_xml_FOLD1_steps250.txt)",
+      "PowerShell(wsl -l -v; echo \"---\"; wsl -d Ubuntu-20.04 -- bash -c \"which javac java jar; java -version 2>&1; javac -version 2>&1\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && ls -la Solver.java Solver.java.xml 2>&1\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && cp org.sat4j.core/src/main/java/org/sat4j/minisat/core/Solver.java Solver.java && ls -la Solver.java dist/CUSTOM/org.sat4j.core.jar\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && bash compile.sh; echo EXIT_CODE=\\\\$?; ls -la dist/CUSTOM/org.sat4j.core.jar\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash /home/pablo/magpie/experiments/sat4j/_test_compile.sh)",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash /home/pablo/magpie/experiments/sat4j/_test_compile.sh 2>&1 | Out-String -Width 4096)",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && rm -v experiments/sat4j/Solver.java experiments/sat4j/_test_compile.sh && git checkout -- experiments/sat4j/dist/CUSTOM/org.sat4j.core.jar && git status --porcelain -- experiments/sat4j | grep -v '_magpie/scenario_'\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && jar tvf dist/CUSTOM/org.sat4j.core.jar | grep Solver.class\")"
     ]
   }
 }
