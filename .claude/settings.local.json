@@ -104,7 +104,24 @@
       "PowerShell(wsl -d Ubuntu-20.04 -- bash /home/pablo/magpie/experiments/sat4j/_test_compile.sh)",
       "PowerShell(wsl -d Ubuntu-20.04 -- bash /home/pablo/magpie/experiments/sat4j/_test_compile.sh 2>&1 | Out-String -Width 4096)",
       "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && rm -v experiments/sat4j/Solver.java experiments/sat4j/_test_compile.sh && git checkout -- experiments/sat4j/dist/CUSTOM/org.sat4j.core.jar && git status --porcelain -- experiments/sat4j | grep -v '_magpie/scenario_'\")",
-      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && jar tvf dist/CUSTOM/org.sat4j.core.jar | grep Solver.class\")"
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/sat4j && jar tvf dist/CUSTOM/org.sat4j.core.jar | grep Solver.class\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"find /home/pablo/magpie/experiments/weka -maxdepth 2 -type f \\\\\\( -name 'compile.sh' -o -name 'test.sh' -o -name 'run.sh' -o -name 'init.sh' -o -name 'setup.sh' \\\\\\)\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && grep -n '^package' weka-src/src/main/java/weka/classifiers/trees/RandomForest.java\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && git status --porcelain -- experiments/weka | grep -v '_magpie/scenario_' ; echo '---tracked?---'; git ls-files -- experiments/weka/weka-src/build/classes/weka/classifiers/trees/RandomForest.class experiments/weka/RandomForest.java experiments/weka/compile.sh\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && cp weka-src/src/main/java/weka/classifiers/trees/RandomForest.java RandomForest.java && bash compile.sh; echo COMPILE_EXIT=\\\\$?; ls -la weka-src/build/classes/weka/classifiers/trees/RandomForest.class\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && grep -n 'public void buildClassifier' -A5 RandomForest.java\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && grep -n 'buildClassifier' RandomForest.java\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && ls -la RandomForest.java && wc -l RandomForest.java && grep -n 'class RandomForest' RandomForest.java\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && grep -ni 'build\\\\|@Override\\\\|public ' RandomForest.java | head -30\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && grep -ni 'buildClassifier\\\\|public static void main' RandomForest.java\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && bash compile.sh && echo COMPILE_OK || echo COMPILE_FAIL\")",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && bash test.sh; echo TEST_EXIT=\\\\$?\" 2>&1 | Out-String -Width 4096)",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie/experiments/weka && java -cp weka-src/build/classes weka.classifiers.trees.RandomForest -t data/glass.arff 2>&1 | grep -E 'MAGPIE_PATCH_TEST_MARKER|Confusion Matrix|=== '\" 2>&1 | Out-String -Width 4096)",
+      "PowerShell(wsl -d Ubuntu-20.04 -- bash -c \"cd /home/pablo/magpie && rm -v experiments/weka/RandomForest.java && git checkout -- experiments/weka/weka-src/build/classes/weka/classifiers/trees/RandomForest.class && git status --porcelain -- experiments/weka | grep -v '_magpie/scenario_'\")",
+      "Bash(bash compile.sh)",
+      "Bash(echo \"EXIT_CODE=$?\")",
+      "Bash(wsl.exe *)",
+      "Bash(MSYS_NO_PATHCONV=1 wsl.exe *)"
     ]
   }
 }

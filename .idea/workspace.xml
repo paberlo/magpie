@@ -4,286 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search.">
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="error y satf4 compile but not built in jar solved">
+      <change afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD1_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD2_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD3_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD4_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_cycles_xml_FOLD5_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD2_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD3_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD4_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_llama_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_llmpure_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_qwen_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD5_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD1_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD2_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD3_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD4_steps750.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps100.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps100.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps1000.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps1000.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps250.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps250.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps500.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps500.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps750.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_runtime_xml_FOLD5_steps750.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1_llama.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1_llama.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/weka/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/compile.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -291,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="3543" />
+    <option name="cachedIndexableFilesCount" value="3545" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -322,53 +49,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.extract results.executor&quot;: &quot;Run&quot;,
-    &quot;Python.genetic triangle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.local search.executor&quot;: &quot;Run&quot;,
-    &quot;Python.localsearch triangle .executor&quot;: &quot;Debug&quot;,
-    &quot;Python.only llm - triangle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.random Search.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda cycles minisat_hack.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda minisat_hack.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda perftime minisat_hack.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda perftime pngOptim.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda perftime sat4j.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda perftime weka.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda triangle (1).executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda triangle.executor&quot;: &quot;Run&quot;,
-    &quot;Python.umda.executor&quot;: &quot;Run&quot;,
-    &quot;Python.valida.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.3\\plugins\\Shell Script\\linux\\amd64\\shellcheck&quot;,
-    &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/results_UCL&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.extract results.executor": "Run",
+    "Python.genetic triangle.executor": "Run",
+    "Python.local search.executor": "Run",
+    "Python.localsearch triangle .executor": "Debug",
+    "Python.only llm - triangle.executor": "Run",
+    "Python.random Search.executor": "Run",
+    "Python.umda cycles minisat_hack.executor": "Run",
+    "Python.umda minisat_hack.executor": "Run",
+    "Python.umda perftime minisat_hack.executor": "Run",
+    "Python.umda perftime pngOptim.executor": "Run",
+    "Python.umda perftime sat4j.executor": "Run",
+    "Python.umda perftime weka.executor": "Run",
+    "Python.umda perftime wekare.executor": "Run",
+    "Python.umda triangle (1).executor": "Run",
+    "Python.umda triangle.executor": "Run",
+    "Python.umda.executor": "Run",
+    "Python.valida.executor": "Debug",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "SHELLCHECK.PATH": "C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.3\\plugins\\Shell Script\\linux\\amd64\\shellcheck",
+    "ai.playground.ignore.import.keys.banner.in.settings": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/sat4j/_magpie",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\sat4j\_magpie" />
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\weka\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results_UCL" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\minisat_hack\_magpie" />
-      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\weka\_magpie" />
-      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\sat4j\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\pngOptim\_magpie" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -592,7 +320,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
-      <option name="PARAMETERS" value="--scenario experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1_llama.txt" />
+      <option name="PARAMETERS" value="--scenario experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -618,6 +346,31 @@
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
       <option name="PARAMETERS" value="--scenario experiments/weka/_magpie/scenario_perftime_xml_FOLD1_llama.txt" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="umda perftime weka" type="PythonConfigurationType" factoryName="Python" folderName="umda">
+      <module name="magpie" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="3.14 WSL (Ubuntu-20.04): (/home/pablo/magpie/.venv314/bin/python)" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
+      <option name="PARAMETERS" value="--scenario experiments/weka/_magpie/scenario_perftime_xml_FOLD1.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -792,7 +545,8 @@
       <workItem from="1780990693876" duration="13032000" />
       <workItem from="1781088404708" duration="131000" />
       <workItem from="1781088820172" duration="327000" />
-      <workItem from="1781101469931" duration="14894000" />
+      <workItem from="1781101469931" duration="15769000" />
+      <workItem from="1781199133297" duration="1347000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -906,7 +660,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781088511626</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="error y satf4 compile but not built in jar solved">
+      <option name="closed" value="true" />
+      <created>1781198232155</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1781198232155</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -953,7 +715,8 @@
     <MESSAGE value="scenarios created; unreleased binary file access problem in production solved." />
     <MESSAGE value="llm_only algorithm created. It does not perform any search, it only samples a new population from llm without extra information derived from search, only the source code and examples." />
     <MESSAGE value="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search." />
-    <option name="LAST_COMMIT_MESSAGE" value="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search." />
+    <MESSAGE value="error y satf4 compile but not built in jar solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="error y satf4 compile but not built in jar solved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -989,6 +752,7 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_wekare.coverage" NAME="umda perftime weka Coverage Results" MODIFIED="1781200062322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1776791922218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$only_llm___triangle.coverage" NAME="only llm - triangle Coverage Results" MODIFIED="1779963264558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda_perftime_pngOptim.coverage" NAME="umda perftime pngOptim Coverage Results" MODIFIED="1778772544591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -997,7 +761,7 @@
     <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$umda_triangle__1_.coverage" NAME="umda triangle (1) Coverage Results" MODIFIED="1776789880592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/magpie$genetic_triangle.coverage" NAME="genetic triangle Coverage Results" MODIFIED="1776839688966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_perftime_sat4j.coverage" NAME="umda perftime sat4j Coverage Results" MODIFIED="1781197756086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_sat4j.coverage" NAME="umda perftime sat4j Coverage Results" MODIFIED="1781199673140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1779183681689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$localsearch_triangle_.coverage" NAME="localsearch triangle  Coverage Results" MODIFIED="1776843706371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
