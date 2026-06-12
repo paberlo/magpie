@@ -31,6 +31,9 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['gen'] = 0
         self.stats['eval_success'] = 0
         self.stats['eval_compile'] = 0
+        self.stats['llm_patches_requested'] = 0
+        self.stats['llm_missing_patches'] = 0
+        self.stats['llm_malformed_patches'] = 0
         self.examples = []
 
     def setup(self, config):
@@ -111,6 +114,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         finally:
             self.hook_vt_vc()
             self.hook_final_distribution(distribution)
+            self.hook_llm_format_stats()
             self._hook_explanation_best_patch()
             self.hook_end()
 
@@ -247,6 +251,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                     magpie.core.Variant(self.software, sol)
                 except (RuntimeError, ValueError, AssertionError, Exception):
                     self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
+                    self.stats['llm_malformed_patches'] += 1
                     sol = magpie.core.Patch()
                     self.mutate(sol)
                     explain_str = "invalid creation by LLM, random 1-edit individual created"
@@ -258,12 +263,20 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def llm_sample_population(self, edits_prob, pop_size):
         prompt = self._craft_population_prompt(edits_prob, pop_size)
         response_str = self._llm_call(prompt)
-        patch_str, explain_str = self._filter_llm_patches_and_explainations(response_str)
-        return patch_str, explain_str
+        patches, explanations = self._filter_llm_patches_and_explainations(response_str)
+        self.stats['llm_patches_requested'] += pop_size
+        # fill with random patches if LLM returned fewer than requested
+        while len(patches) < pop_size:
+            sol = magpie.core.Patch()
+            self.mutate(sol)
+            patches.append(str(sol))
+            explanations.append('LLM returned too few patches, random fallback')
+            self.stats['llm_missing_patches'] += 1
+        return patches, explanations
 
     def llm_explain_patch(self, patch_str):
         sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
-        sw_str = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+        sw_str = sw_srcmodel.dump()
 
         prompt = (f"Give a very brief explanation of the potential benefit in execution time of the following patch: {patch_str} \n"
                   f"in the following code:\n{sw_str}. Do not explain what I am trying to do nor the format of the patch. Just"
@@ -278,7 +291,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             "model": f"{self.llm_model}",
             "prompt": f"{prompt}",
             "stream": False,
-            "options": {"num_ctx": 20000}
+            "options": {"num_ctx": 32768}
         }
         response = requests.post(url, json=payload)
         response.raise_for_status()
@@ -355,7 +368,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
 
     def _craft_population_prompt(self, edits_probs, pop_size):
         sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
-        sw_text = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+        sw_text = sw_srcmodel.dump()
 
         # Examples block — same as LLMAlgorithm
         if self.examples:
@@ -393,7 +406,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
 
         prompt = (
             f'In the context of Genetic Improvement of software, I want to create {pop_size} new Patches '
-            f'for the following original software, which is in XML format created with the srcml tool.\n\n'
+            f'for the following original software.\n\n'
             f'Each patch contains 1 or more edits in the MAGPIE framework format '
             f'(XmlNodeDeletion, XmlNodeReplacement, or XmlNodeInsertion). '
             f'Multiple edits in a patch are separated by "|".\n\n'
@@ -463,6 +476,19 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             msg += f'  {edit}: {prob:.4f}\n'
         msg += f'[search.umda] Total edits from successful patches: {len(distribution)}'
         self.software.logger.info(msg)
+
+    def hook_llm_format_stats(self):
+        if self.llm_model in (None, 'None'):
+            return
+        requested = self.stats.get('llm_patches_requested', 0)
+        missing = self.stats.get('llm_missing_patches', 0)
+        malformed = self.stats.get('llm_malformed_patches', 0)
+        ratio_missing = (missing / requested) if requested else 0.0
+        ratio_malformed = (malformed / requested) if requested else 0.0
+        self.software.logger.info(
+            f'[search.eda] LLM malformed patches: {malformed}/{requested} ({ratio_malformed:.3f}), '
+            f'missing patches: {missing}/{requested} ({ratio_missing:.3f})'
+        )
 
 
 magpie.utils.known_algos.append(UMDAAlgorithm)

@@ -121,7 +121,21 @@
       "Bash(bash compile.sh)",
       "Bash(echo \"EXIT_CODE=$?\")",
       "Bash(wsl.exe *)",
-      "Bash(MSYS_NO_PATHCONV=1 wsl.exe *)"
+      "Bash(MSYS_NO_PATHCONV=1 wsl.exe *)",
+      "Bash(grep -E \"optipng$|optim\\\\.o|optipng\\\\.o|\\\\.o$\")",
+      "Bash(xargs grep -A3 \"target_files\\\\|compile_cmd\\\\|init_cmd\")",
+      "Bash(chmod +x galgo/run_cycles_nollm_3sw.slurm galgo/run_cycles_umdallm_3sw.slurm galgo/run_cycles_llmpure_3sw.slurm galgo/run_experiments_3sw.slurm galgo/run_experiments_umdallm_3sw.slurm galgo/run_experiments_llmpure_3sw.slurm galgo/launch_cycles_with_llm_3sw.sh galgo/launch_with_llm_3sw.sh)",
+      "Bash(ollama --version)",
+      "Bash(ollama list *)",
+      "PowerShell(Get-Command *)",
+      "Bash(ollama show *)",
+      "Bash(xargs grep -l \"llm_model\\\\|llm_ip\\\\|num_ctx\")",
+      "Bash(xargs grep -l \"num_ctx\\\\|context.*window\\\\|token\")",
+      "Bash(xargs ls -lh)",
+      "Bash(cat)",
+      "Bash(python /tmp/estimate_tokens.py)",
+      "Bash(curl -s http://127.0.0.1:11434/api/tags)",
+      "Bash(curl -s http://127.0.0.1:11434/api/ps)"
     ]
   }
 }

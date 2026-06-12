@@ -22,6 +22,9 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['gen'] = 0
         self.stats['eval_success'] = 0
         self.stats['eval_compile'] = 0
+        self.stats['llm_patches_requested'] = 0
+        self.stats['llm_missing_patches'] = 0
+        self.stats['llm_malformed_patches'] = 0
         self.examples = []
 
     def setup(self, config):
@@ -91,6 +94,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         finally:
             self.hook_vt_vc()
             self.hook_final_examples()
+            self.hook_llm_format_stats()
             self._hook_explanation_best_patch()
             self.hook_end()
 
@@ -163,6 +167,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
                 magpie.core.Variant(self.software, sol)
             except (RuntimeError, ValueError, AssertionError, Exception):
                 self.software.logger.error('Error parsing edit from LLM. Random 1-edit individual created.')
+                self.stats['llm_malformed_patches'] += 1
                 sol = magpie.core.Patch()
                 self.mutate(sol)
             if self.isIn(sol, population):
@@ -174,17 +179,19 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         prompt = self._craft_population_prompt(pop_size)
         response_str = self._llm_call(prompt)
         patches, explanations = self._filter_llm_patches_and_explainations(response_str)
+        self.stats['llm_patches_requested'] += pop_size
         # fill with random patches if LLM returned fewer than requested
         while len(patches) < pop_size:
             sol = magpie.core.Patch()
             self.mutate(sol)
             patches.append(str(sol))
             explanations.append('LLM returned too few patches, random fallback')
+            self.stats['llm_missing_patches'] += 1
         return patches, explanations
 
     def _craft_population_prompt(self, pop_size):
         sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
-        sw_text = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+        sw_text = sw_srcmodel.dump()
 
         if self.examples:
             examples_text = '\n'.join(
@@ -205,7 +212,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
 
         prompt = (
             f'In the context of Genetic Improvement of software, I want to create {pop_size} new Patches '
-            f'for the following original software, which is in XML format created with the srcml tool.\n\n'
+            f'for the following original software.\n\n'
             f'Each patch contains 1 or more edits in the MAGPIE framework format '
             f'(XmlNodeDeletion, XmlNodeReplacement, or XmlNodeInsertion). '
             f'Multiple edits in a patch are separated by "|".\n\n'
@@ -228,7 +235,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
             'model': self.llm_model,
             'prompt': prompt,
             'stream': False,
-            'options': {'num_ctx': 20000},
+            'options': {'num_ctx': 32768},
         }
         response = requests.post(url, json=payload)
         response.raise_for_status()
@@ -288,7 +295,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
 
     def _llm_explain_patch(self, patch_str):
         sw_srcmodel = next(iter(self.software.noop_variant.models.items()))[1]
-        sw_str = sw_srcmodel.tree_to_string(sw_srcmodel.contents)
+        sw_str = sw_srcmodel.dump()
         prompt = (
             f'Give a very brief explanation of the potential benefit in execution time of the following patch: {patch_str}\n'
             f'in the following code:\n{sw_str}.\n'
@@ -301,6 +308,17 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         for i, (fitness, patch_str) in enumerate(self.examples):
             msg += f'  {i+1}. {patch_str}  (fitness: {fitness})\n'
         self.software.logger.info(msg)
+
+    def hook_llm_format_stats(self):
+        requested = self.stats.get('llm_patches_requested', 0)
+        missing = self.stats.get('llm_missing_patches', 0)
+        malformed = self.stats.get('llm_malformed_patches', 0)
+        ratio_missing = (missing / requested) if requested else 0.0
+        ratio_malformed = (malformed / requested) if requested else 0.0
+        self.software.logger.info(
+            f'[search.llm] LLM malformed patches: {malformed}/{requested} ({ratio_malformed:.3f}), '
+            f'missing patches: {missing}/{requested} ({ratio_missing:.3f})'
+        )
 
 
 magpie.utils.known_algos.append(LLMAlgorithm)

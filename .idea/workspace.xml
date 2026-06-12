@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="error y satf4 compile but not built in jar solved">
-      <change afterPath="$PROJECT_DIR$/experiments/sat4j/_magpie/scenario_perftime_xml_FOLD1.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1.txt" afterDir="false" />
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="error in sat4j and weka compiling command but not built in jar solved">
+      <change afterPath="$PROJECT_DIR$/experiments/pngOptim/_magpie/scenario_perftime_xml_FOLD1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1_llama.txt" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/_magpie/scenario_perftime_xml_FOLD1_llama.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/weka/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/weka/compile.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="3545" />
+    <option name="cachedIndexableFilesCount" value="3547" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
@@ -80,7 +77,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/sat4j/_magpie",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/pngOptim/_magpie",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -93,17 +90,17 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\pngOptim\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\sat4j\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\weka\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results_UCL" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\minisat_hack\_magpie" />
-      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\pngOptim\_magpie" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.umda perftime sat4j">
+  <component name="RunManager" selected="Python.umda perftime pngOptim">
     <configuration name="extract results" type="PythonConfigurationType" factoryName="Python">
       <module name="magpie" />
       <option name="ENV_FILES" value="" />
@@ -295,7 +292,7 @@
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="RUN_TOOL" value="" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/magpie/bin/eda.py" />
-      <option name="PARAMETERS" value="--scenario experiments/pngOptim/_magpie/scenario_perftime_xml_FOLD1_llama.txt" />
+      <option name="PARAMETERS" value="--scenario experiments/pngOptim/_magpie/scenario_perftime_xml_FOLD1.txt" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -546,7 +543,7 @@
       <workItem from="1781088404708" duration="131000" />
       <workItem from="1781088820172" duration="327000" />
       <workItem from="1781101469931" duration="15769000" />
-      <workItem from="1781199133297" duration="1347000" />
+      <workItem from="1781199133297" duration="14444000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -668,7 +665,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781198232155</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="error in sat4j and weka compiling command but not built in jar solved">
+      <option name="closed" value="true" />
+      <created>1781200613309</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1781200613310</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -716,7 +721,8 @@
     <MESSAGE value="llm_only algorithm created. It does not perform any search, it only samples a new population from llm without extra information derived from search, only the source code and examples." />
     <MESSAGE value="fold uses different seed. tests in pngOptim better check fails. and Vc is now correctly computed in local search." />
     <MESSAGE value="error y satf4 compile but not built in jar solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="error y satf4 compile but not built in jar solved" />
+    <MESSAGE value="error in sat4j and weka compiling command but not built in jar solved" />
+    <option name="LAST_COMMIT_MESSAGE" value="error in sat4j and weka compiling command but not built in jar solved" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -755,13 +761,13 @@
     <SUITE FILE_PATH="coverage/magpie$umda_perftime_wekare.coverage" NAME="umda perftime weka Coverage Results" MODIFIED="1781200062322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$umda.coverage" NAME="umda Coverage Results" MODIFIED="1776791922218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$only_llm___triangle.coverage" NAME="only llm - triangle Coverage Results" MODIFIED="1779963264558" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_perftime_pngOptim.coverage" NAME="umda perftime pngOptim Coverage Results" MODIFIED="1778772544591" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_pngOptim.coverage" NAME="umda perftime pngOptim Coverage Results" MODIFIED="1781201714546" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$extract_results.coverage" NAME="extract results Coverage Results" MODIFIED="1779116470962" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/magpie$umda_perftime_weka.coverage" NAME="umda perftime weka Coverage Results" MODIFIED="1778844537838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$random_Search.coverage" NAME="random Search Coverage Results" MODIFIED="1765971619359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$umda_triangle__1_.coverage" NAME="umda triangle (1) Coverage Results" MODIFIED="1776789880592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/magpie$genetic_triangle.coverage" NAME="genetic triangle Coverage Results" MODIFIED="1776839688966" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/magpie$umda_perftime_sat4j.coverage" NAME="umda perftime sat4j Coverage Results" MODIFIED="1781199673140" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/magpie$umda_perftime_sat4j.coverage" NAME="umda perftime sat4j Coverage Results" MODIFIED="1781200504945" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$local_search.coverage" NAME="local search Coverage Results" MODIFIED="1765971569667" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie" />
     <SUITE FILE_PATH="coverage/magpie$valida.coverage" NAME="valida Coverage Results" MODIFIED="1779183681689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/magpie$localsearch_triangle_.coverage" NAME="localsearch triangle  Coverage Results" MODIFIED="1776843706371" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
