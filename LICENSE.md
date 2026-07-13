@@ -1,5 +1,6 @@
 MIT License
 
+Copyright (c) 2026 Pablo Bermejo López (Universidad de Castilla-La Mancha) and Justyna Petke (University College London)
 Copyright (c) 2023 Université de Rennes
 Copyright (c) 2022 Université du Littoral Côte d'Opale
 Copyright (c) 2019 UCL
