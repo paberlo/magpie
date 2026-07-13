@@ -142,7 +142,10 @@
       "Bash(powershell.exe *)",
       "Bash(command -v pdflatex)",
       "Bash(awk '/subsection\\\\{RQ1/,/section\\\\{Discussion\\\\}/' \"/c/Users/Pablo.Bermejo/Dropbox/INVESTIGACION/MisArticulos/revistas/2027 Automated Software Engeneering - Genetic Imp - Q2/2026_ASE___copia_personal_drafting/ASE26 - umda4gi.tex\")",
-      "Bash(awk '/subsection\\\\{RQ2/,/subsection\\\\{RQ3|section\\\\{Discussion/' \"/c/Users/Pablo.Bermejo/Dropbox/INVESTIGACION/MisArticulos/revistas/2027 Automated Software Engeneering - Genetic Imp - Q2/2026_ASE___copia_personal_drafting/ASE26 - umda4gi.tex\")"
+      "Bash(awk '/subsection\\\\{RQ2/,/subsection\\\\{RQ3|section\\\\{Discussion/' \"/c/Users/Pablo.Bermejo/Dropbox/INVESTIGACION/MisArticulos/revistas/2027 Automated Software Engeneering - Genetic Imp - Q2/2026_ASE___copia_personal_drafting/ASE26 - umda4gi.tex\")",
+      "Bash(git check-ignore *)",
+      "Bash(git rm *)",
+      "Bash(git add *)"
     ]
   }
 }
