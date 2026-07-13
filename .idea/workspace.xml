@@ -7,10 +7,8 @@
     <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="llms: model added, prompts are not truncated now, and counter of wrong individuales by llm added.">
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/test.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_logs_from_galgo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sync_logs_from_galgo.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_results_from_galgo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sync_results_from_galgo.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sync_towards_galgo.sh" beforeDir="false" afterPath="$PROJECT_DIR$/sync_towards_galgo.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/paper_rq_summary.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_UCL/paper_rq_summary.pptx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/~$paper_rq_summary.pptx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,10 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="11371" />
+    <option name="cachedIndexableFilesCount" value="10975" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -77,7 +80,7 @@
     &quot;SHELLCHECK.PATH&quot;: &quot;C:\\Users\\Pablo.Bermejo\\AppData\\Roaming\\JetBrains\\PyCharm2025.3\\plugins\\Shell Script\\linux\\amd64\\shellcheck&quot;,
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;paper-ucl&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/pngOptim/_magpie&quot;,
@@ -552,6 +555,9 @@
       <workItem from="1781795226754" duration="36193000" />
       <workItem from="1782733002688" duration="195000" />
       <workItem from="1782901482317" duration="7321000" />
+      <workItem from="1782972601853" duration="18468000" />
+      <workItem from="1783341312109" duration="395000" />
+      <workItem from="1783923877197" duration="15801000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
