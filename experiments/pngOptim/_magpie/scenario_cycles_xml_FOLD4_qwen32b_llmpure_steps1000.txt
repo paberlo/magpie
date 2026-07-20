@@ -1,0 +1,40 @@
+[magpie]
+seed=1
+default_timeout = 360
+default_lengthout = 1e6
+local_original_copy = True
+
+[magpie.log]
+log_suffix_label = FOLD4
+
+[software]
+path = experiments/pngOptim
+target_files = optipng.c.xml
+    optim.c.xml
+# time, PerfTime, Perf<Cycles>
+fitness = Perf<Cycles>
+
+init_cmd = bash init.sh
+setup_cmd = 
+compile_cmd = bash compile.sh
+test_cmd = sh test.sh
+    # FOLD 4 for kfold CV
+run_cmd = env LC_ALL=C perf stat -e cycles bash run.sh 4
+retries = 1
+test_timeout = 120
+run_timeout = 360
+
+[search.llm]
+pop_size = 50
+# llama3.2:3b, qwen2.5-coder:7b, qwen2.5-coder:32b
+llm_model = qwen2.5-coder:32b
+llm_ip = 127.0.0.1
+max_examples = 10
+
+[search]
+# max number of evaluations
+ max_steps = 1000
+ possible_edits =
+     XmlNodeDeletion<stmt>
+     XmlNodeReplacement<stmt>
+     XmlNodeInsertion<stmt,block>
