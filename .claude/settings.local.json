@@ -140,9 +140,27 @@
       "Bash(cd \"\\\\\\\\wsl.localhost\\\\Ubuntu-20.04\\\\home\\\\pablo\\\\magpie\")",
       "Bash(xargs -I{} basename {})",
       "Bash(powershell.exe *)",
-      "Bash(command -v pdflatex)",
-      "Bash(awk '/subsection\\\\{RQ1/,/section\\\\{Discussion\\\\}/' \"/c/Users/Pablo.Bermejo/Dropbox/INVESTIGACION/MisArticulos/revistas/2027 Automated Software Engeneering - Genetic Imp - Q2/2026_ASE___copia_personal_drafting/ASE26 - umda4gi.tex\")",
-      "Bash(awk '/subsection\\\\{RQ2/,/subsection\\\\{RQ3|section\\\\{Discussion/' \"/c/Users/Pablo.Bermejo/Dropbox/INVESTIGACION/MisArticulos/revistas/2027 Automated Software Engeneering - Genetic Imp - Q2/2026_ASE___copia_personal_drafting/ASE26 - umda4gi.tex\")"
+      "Bash(iconv -f utf-8 -t utf-8 -c)",
+      "Bash(bash -c ' *)",
+      "Bash(jq --version)",
+      "Bash(bash -n ../../../experiments/pngOptim/compile.sh)",
+      "Bash(bash -n ../../../galgo/relaunch_qwen14b_pngoptim_full_clean.slurm)",
+      "WebFetch(domain:arxiv.org)",
+      "WebSearch",
+      "WebFetch(domain:sailresearch.github.io)",
+      "WebFetch(domain:dl.acm.org)",
+      "WebFetch(domain:pmc.ncbi.nlm.nih.gov)",
+      "WebFetch(domain:www.cs.cityu.edu.hk)",
+      "WebFetch(domain:discovery.ucl.ac.uk)",
+      "WebFetch(domain:eprints.whiterose.ac.uk)",
+      "Bash(sed 's/_FOLD.*//')",
+      "Bash(sed -E 's/pngOptim_\\([0-9]+\\)_.*/\\\\1/')",
+      "Bash(sed -E 's/val_\\([0-9]+\\)_.*/\\\\1/')",
+      "Bash(bash -n galgo/relaunch_qwen14b_missing_patch.slurm)",
+      "Bash(bash -n galgo/sync_recovered_patches_towards_galgo.sh)",
+      "Read(//mnt/c/Users/Pablo.Bermejo/**)",
+      "Read(//c/Users/Pablo.Bermejo/Dropbox/**)",
+      "Read(///wsl.localhost/Ubuntu-20.04//**)"
     ]
   }
 }

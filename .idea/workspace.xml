@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="llms: model added, prompts are not truncated now, and counter of wrong individuales by llm added.">
+    <list default="true" id="497f7697-53e7-49ed-8d43-f345de88127d" name="Changes" comment="release branch ready with code, results.csv, plots and notebooks for each RQ.">
       <change beforePath="$PROJECT_DIR$/.claude/settings.local.json" beforeDir="false" afterPath="$PROJECT_DIR$/.claude/settings.local.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/paper_rq_summary.pptx" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_UCL/paper_rq_summary.pptx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/~$paper_rq_summary.pptx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/compile.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/pngOptim/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/pngOptim/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/.ipynb_checkpoints/RQ1-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/.ipynb_checkpoints/RQ2-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/experiments/results_UCL/RQ4.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/experiments/results_UCL/RQ4.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,13 +19,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="10975" />
+    <option name="cachedIndexableFilesCount" value="11444" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="paper-ucl" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -83,26 +86,28 @@
     &quot;git-widget-placeholder&quot;: &quot;paper-ucl&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/pngOptim/_magpie&quot;,
+    &quot;last_opened_file_path&quot;: &quot;//wsl.localhost/Ubuntu-20.04/home/pablo/magpie/experiments/results&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;yarn&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;jupyter.settings.vcs&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Console Colors&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\pngOptim\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\sat4j\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\weka\_magpie" />
       <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results_UCL" />
-      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\minisat_hack\_magpie" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\galgo" />
+      <recent name="\\wsl.localhost\Ubuntu-20.04\home\pablo\magpie\experiments\results_UCL\plots" />
       <recent name="E:\Dropbox\INVESTIGACION\GeneticImprovement\magpie\galgo" />
     </key>
   </component>
@@ -557,7 +562,8 @@
       <workItem from="1782901482317" duration="7321000" />
       <workItem from="1782972601853" duration="18468000" />
       <workItem from="1783341312109" duration="395000" />
-      <workItem from="1783923877197" duration="15801000" />
+      <workItem from="1783923877197" duration="63221000" />
+      <workItem from="1784528670725" duration="23014000" />
     </task>
     <task id="LOCAL-00001" summary="wsl setting, Vt and Vc metrics">
       <option name="closed" value="true" />
@@ -695,7 +701,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781262210241</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="summary ppt files removed">
+      <option name="closed" value="true" />
+      <created>1783951930359</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1783951930359</updated>
+    </task>
+    <task id="LOCAL-00019" summary="release branch ready with code, results.csv, plots and notebooks for each RQ.">
+      <option name="closed" value="true" />
+      <created>1783952527707</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1783952527707</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -745,7 +767,9 @@
     <MESSAGE value="error y satf4 compile but not built in jar solved" />
     <MESSAGE value="error in sat4j and weka compiling command but not built in jar solved" />
     <MESSAGE value="llms: model added, prompts are not truncated now, and counter of wrong individuales by llm added." />
-    <option name="LAST_COMMIT_MESSAGE" value="llms: model added, prompts are not truncated now, and counter of wrong individuales by llm added." />
+    <MESSAGE value="summary ppt files removed" />
+    <MESSAGE value="release branch ready with code, results.csv, plots and notebooks for each RQ." />
+    <option name="LAST_COMMIT_MESSAGE" value="release branch ready with code, results.csv, plots and notebooks for each RQ." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
