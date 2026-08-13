@@ -1,0 +1,38 @@
+group,combo
+nollm,pngOptim:5:750:local_search::--algo RandomSearch
+nollm,pngOptim:5:1000:local_search::--algo RandomSearch
+nollm,weka:1:1000:local_search::
+nollm,weka:5:1000:local_search::
+nollm,weka:3:1000:genetic_programming::
+nollm,weka:4:1000:genetic_programming::
+nollm,weka:5:1000:genetic_programming::
+nollm,weka:1:1000:local_search::--algo RandomSearch
+nollm,weka:3:750:local_search::--algo RandomSearch
+nollm,weka:3:1000:local_search::--algo RandomSearch
+llm,weka:1:100:llm:_llama8b_llmpure:
+llm,weka:1:250:llm:_llama8b_llmpure:
+llm,weka:1:500:llm:_llama8b_llmpure:
+llm,weka:1:750:llm:_llama8b_llmpure:
+llm,weka:2:100:llm:_llama8b_llmpure:
+llm,weka:2:500:llm:_llama8b_llmpure:
+llm,weka:2:750:llm:_llama8b_llmpure:
+llm,weka:3:100:llm:_llama8b_llmpure:
+llm,weka:3:500:llm:_llama8b_llmpure:
+llm,weka:4:100:llm:_llama8b_llmpure:
+llm,weka:4:250:llm:_llama8b_llmpure:
+llm,weka:4:500:llm:_llama8b_llmpure:
+llm,weka:5:100:llm:_llama8b_llmpure:
+llm,weka:5:750:llm:_llama8b_llmpure:
+llm,weka:5:1000:llm:_llama8b_llmpure:
+llm,weka:1:1000:llm:_qwen_llmpure:
+llm,weka:2:100:llm:_qwen_llmpure:
+llm,weka:3:100:llm:_qwen_llmpure:
+llm,weka:3:1000:llm:_qwen_llmpure:
+llm,weka:4:100:llm:_qwen_llmpure:
+llm,weka:4:1000:llm:_qwen_llmpure:
+llm,weka:5:100:llm:_qwen_llmpure:
+llm,weka:1:750:eda:_llama8b:
+llm,weka:2:750:eda:_llama8b:
+llm,weka:3:750:eda:_llama8b:
+llm,weka:4:750:eda:_llama8b:
+llm,weka:5:100:eda:_qwen:
