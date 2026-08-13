@@ -1,0 +1,1 @@
+XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 776)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 619)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 229)) | XmlNodeInsertion<stmt,block>(('Solver.java.xml', '_inter_block', 413), ('Solver.java.xml', 'stmt', 378)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 503))

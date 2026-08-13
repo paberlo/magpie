@@ -1,0 +1,1 @@
+XmlNodeDeletion<stmt>(('RandomForest.java.xml', 'stmt', 21)) | XmlNodeDeletion<stmt>(('RandomForest.java.xml', 'stmt', 100)) | XmlNodeInsertion<stmt,block>(('RandomForest.java.xml', '_inter_block', 229), ('RandomForest.java.xml', 'stmt', 130)) | XmlNodeDeletion<stmt>(('RandomForest.java.xml', 'stmt', 126)) | XmlNodeDeletion<stmt>(('RandomForest.java.xml', 'stmt', 121))

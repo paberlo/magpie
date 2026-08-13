@@ -1,0 +1,1 @@
+XmlNodeDeletion<stmt>(('optim.c.xml', 'stmt', 779)) | XmlNodeInsertion<stmt,block>(('optim.c.xml', '_inter_block', 879), ('optipng.c.xml', 'stmt', 136)) | XmlNodeDeletion<stmt>(('optim.c.xml', 'stmt', 473)) | XmlNodeReplacement<stmt>(('optim.c.xml', 'stmt', 732), ('optim.c.xml', 'stmt', 338))

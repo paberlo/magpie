@@ -1,0 +1,1 @@
+XmlNodeReplacement<stmt>(('Solver.java.xml', 'stmt', 790), ('Solver.java.xml', 'stmt', 915)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 891)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 1016)) | XmlNodeReplacement<stmt>(('Solver.java.xml', 'stmt', 623), ('Solver.java.xml', 'stmt', 876)) | XmlNodeDeletion<stmt>(('Solver.java.xml', 'stmt', 226))

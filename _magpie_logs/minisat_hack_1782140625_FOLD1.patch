@@ -1,0 +1,1 @@
+XmlNodeDeletion<stmt>(('sources/core/Solver.cc.xml', 'stmt', 303)) | XmlNodeInsertion<stmt,block>(('sources/core/Solver.cc.xml', '_inter_block', 120), ('sources/core/Solver.cc.xml', 'stmt', 385)) | XmlNodeReplacement<stmt>(('sources/core/Solver.cc.xml', 'stmt', 398), ('sources/core/Solver.cc.xml', 'stmt', 316))

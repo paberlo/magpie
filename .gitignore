@@ -18,3 +18,7 @@
 /sync_galgo.sh
 /errout/
 
+
+# Patch files of the analysed runs, needed to reproduce the diversity analysis
+!_magpie_logs/
+!_magpie_logs/*.patch

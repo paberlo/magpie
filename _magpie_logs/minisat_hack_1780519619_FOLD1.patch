@@ -1,0 +1,1 @@
+XmlNodeInsertion<stmt,block>(('sources/core/Solver.cc.xml', '_inter_block', 640), ('sources/core/Solver.cc.xml', 'stmt', 196)) | XmlNodeInsertion<stmt,block>(('sources/core/Solver.cc.xml', '_inter_block', 296), ('sources/core/Solver.cc.xml', 'stmt', 22))
