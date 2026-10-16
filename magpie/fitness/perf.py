@@ -12,6 +12,8 @@ class PerfTemplatedFitness(TemplatedFitness):
 
     def process_run_exec(self, run_result, exec_result):
         super().process_run_exec(run_result, exec_result)
+        if run_result.status != 'SUCCESS':  # e.g. CODE_ERROR: keep it, do not report PARSE_ERROR
+            return
         # assume perf stat
         stderr = exec_result.stderr.decode(magpie.settings.output_encoding)
         try:
