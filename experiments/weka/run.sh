@@ -8,8 +8,9 @@
 # with perf, and checks each run:
 #   1. Java exits with status 0 and writes nothing to stderr (any exception
 #      fails the run; Weka itself can print an exception and still exit 0);
-#   2. stdout, without the "Time taken" lines, is identical to the output of
-#      the unmodified program (data/expected/<dataset>.out, see
+#   2. stdout, without the lines that describe the run rather than the
+#      classifier (oracle/normalise.sh: elapsed times, a JVM warning), is
+#      identical to the output of the unmodified program (data/expected/<dataset>.out, see
 #      oracle/make_reference.sh): same model summary, same evaluation
 #      statistics, same confusion matrices.
 # The first failing check ends the run with status 1, so MAGPIE rejects the
@@ -75,7 +76,7 @@ while IFS= read -r arff || [ -n "$arff" ]; do
     [ ! -s "$TMP/err" ] || fail "$arff: java wrote to stderr: $(head -c 300 "$TMP/err" | tr '\n' ' ')"
     ref=$EXPECTED/$(basename "$arff" .arff).out
     [ -f "$ref" ] || fail "no reference output $ref"
-    grep -v '^Time taken' "$TMP/out" | diff -q - <(tr -d '\r' < "$ref") > /dev/null \
+    sh oracle/normalise.sh < "$TMP/out" | diff -q - <(tr -d '\r' < "$ref") > /dev/null \
         || fail "$arff: output differs from the unmodified program ($ref)"
 done < "$LIST"
 

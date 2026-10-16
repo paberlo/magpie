@@ -4,8 +4,8 @@
 #
 # Writes data/expected/<dataset>.out for every dataset listed in the fold
 # files (data/train* and data/validate*): the stdout of the UNMODIFIED
-# RandomForest, with the same command line as run.sh and without the
-# "Time taken" lines. run.sh rejects any variant whose output differs.
+# RandomForest, with the same command line as run.sh, filtered by
+# oracle/normalise.sh. run.sh rejects any variant whose output differs.
 # Run from experiments/weka on a pristine build (no RandomForest.java variant
 # compiled into weka-src/build/classes).
 #
@@ -31,7 +31,7 @@ tr -d '\r' < <(cat data/train? data/validate?) | sort -u | while read -r arff; d
         head -3 "$TMP/err" >&2
         exit 1
     fi
-    grep -v '^Time taken' "$TMP/raw" > "$TMP/out/$name.out"
+    sh oracle/normalise.sh < "$TMP/raw" > "$TMP/out/$name.out"
 done
 
 if [ "${1:-}" = "--check" ]; then
