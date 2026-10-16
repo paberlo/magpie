@@ -18,3 +18,6 @@
 /sync_galgo.sh
 /errout/
 
+
+# Claude Code local config
+.claude/
