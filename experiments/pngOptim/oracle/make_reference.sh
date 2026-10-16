@@ -11,6 +11,7 @@
 #          of overwriting it (to confirm another machine gives the same sizes).
 
 set -euo pipefail
+export LC_ALL=C   # byte order for data/*.png, the same on every machine
 
 OPTIPNG=./optipng-7.9.1/src/optipng/optipng
 SIZES=data/expected/o2_sizes.txt
