@@ -25,6 +25,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.config['batch_reset'] = True
         self.config['max_examples'] = 10
         self.config['k_max'] = 2
+        self.config['select'] = 'valid'
         self.examples = []  # list of (fitness, patch_str), sorted ascending — mirrors LLMAlgorithm
 
     def reset(self):
@@ -51,6 +52,9 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.config['k_max'] = int(sec.get('k_max', fallback='2'))
         if self.config['k_max'] < 1:
             raise magpie.core.ScenarioError('[search.eda] k_max should be at least 1')
+        self.config['select'] = sec.get('select', fallback='valid').strip().lower()
+        if self.config['select'] not in ('valid', 'improving'):
+            raise magpie.core.ScenarioError('[search.eda] select should be "valid" or "improving"')
        # self.config['selection_ratio'] = float(sec['selection_ratio'])
         tmp = sec['batch_reset'].lower()
         if tmp in ['true', 't', '1']:
@@ -172,7 +176,12 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     #TODO: currently selects all success patches. The ideal for EDA is to select a percentage of the best patches.
     #although maybe selecting success patches is enough as filter.
     def select(self, pop):
+        # select = valid: every variant that compiles and passes the tests and the run
+        # oracle; select = improving: only those that are also faster than the original
         filtered = {sol for sol in pop if pop[sol].status == 'SUCCESS'}
+        if self.config['select'] == 'improving':
+            ref = self.report['reference_fitness']
+            filtered = {sol for sol in filtered if self.dominates(pop[sol].fitness, ref)}
         return sorted(filtered, key=lambda sol: pop[sol].fitness)
 
     def _next_distribution(self, runs_pop, previous):

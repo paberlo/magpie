@@ -33,6 +33,7 @@ class BasicAlgorithm(AbstractAlgorithm):
         self.stop['steps'] = int(val) if (val := sec['max_steps']) else None
         self.stop['wall'] = int(val) if (val := sec['max_time']) else None
         self.stop['fitness'] = [float(s) for s in val.split('s')] if (val := sec['target_fitness']) else None
+        self.config['max_patch_edits'] = int(val) if (val := sec.get('max_patch_edits', fallback='')) else None
         self.config['cache_maxsize'] = int(val) if (val := sec['cache_maxsize']) else 0
         self.config['cache_keep'] = float(sec['cache_keep'])
 

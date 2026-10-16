@@ -92,10 +92,15 @@ class LocalSearch(magpie.core.BasicAlgorithm):
                 self.report['stop'] = 'trapped'
             else:
                 patch.edits.append(self.create_edit(self.software.noop_variant))
-        elif random.random() < self.config['delete_prob']:
+        elif self._at_edit_limit(n) or random.random() < self.config['delete_prob']:
             del patch.edits[random.randrange(0, n)]
         else:
             patch.edits.append(self.create_edit(self.software.noop_variant))
+
+    def _at_edit_limit(self, n):
+        # max_patch_edits ablation; without it the moves (and random draws) are unchanged
+        limit = self.config.get('max_patch_edits')
+        return limit is not None and n >= limit
 
     def check_if_trapped(self):
         if self.config['max_neighbours'] is None:
