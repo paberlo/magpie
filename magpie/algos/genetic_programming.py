@@ -180,9 +180,11 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
 
     def mutate(self, patch):
         limit = self.config.get('max_patch_edits')
-        at_limit = limit is not None and len(patch.edits) >= limit
-        if patch.edits and (at_limit or random.random() < self.config['delete_prob']):
+        if patch.edits and random.random() < self.config['delete_prob']:
             del patch.edits[random.randrange(0, len(patch.edits))]
+        elif limit is not None and len(patch.edits) >= limit:
+            # max_patch_edits ablation: replace an edit instead of growing past the limit
+            patch.edits[random.randrange(0, len(patch.edits))] = self.create_edit(self.software.noop_variant)
         else:
             patch.edits.append(self.create_edit(self.software.noop_variant))
 

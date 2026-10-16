@@ -69,9 +69,28 @@ check('FI: unchanged behaviour and random stream without the option',
 
 fi2 = build(FirstImprovement, search_extra={'max_patch_edits': '2'})
 random.seed(1)
-patches = [random_patch(fi2, 2) for _ in range(100)]
+patches = [random_patch(fi2, 2) for _ in range(200)]
+originals = [str(p) for p in patches]
 for p in patches: fi2.mutate(p)
-check('FI with max_patch_edits=2: a 2-edit patch always loses an edit', all(len(p.edits) == 1 for p in patches))
+lengths = {len(p.edits) for p in patches}
+check(f'FI with max_patch_edits=2: a 2-edit patch loses or replaces an edit (lengths {sorted(lengths)})',
+      lengths == {1, 2} and all(str(p) != o for p, o in zip(patches, originals) if len(p.edits) == 2))
+
+# the case that looped forever on galgo: both deletions of the current 2-edit patch are tabu
+current = random_patch(fi2, 2)
+for i in range(2):
+    shorter = copy.deepcopy(current)
+    del shorter.edits[i]
+    fi2.local_tabu.add(shorter)
+found = None
+for _ in range(1000):
+    candidate = copy.deepcopy(current)
+    fi2.mutate(candidate)
+    if candidate not in fi2.local_tabu:
+        found = candidate
+        break
+check('FI with max_patch_edits=2: a non-tabu neighbour exists when both deletions are tabu',
+      found is not None and len(found.edits) <= 2)
 p = random_patch(fi2, 0)
 lengths = []
 for _ in range(500):
@@ -95,9 +114,26 @@ for _ in range(100):
     pos = [edits.index(e) for e in kept]
     ok_order &= len(kept) == 2 and pos == sorted(pos)
 check('GP with max_patch_edits=2: long children keep 2 edits in their order', ok_order)
-patches = [random_patch(gp2, 2) for _ in range(100)]
+patches = [random_patch(gp2, 2) for _ in range(200)]
 for p in patches: gp2.mutate(p)
-check('GP with max_patch_edits=2: mutation of a 2-edit patch deletes', all(len(p.edits) == 1 for p in patches))
+check('GP with max_patch_edits=2: mutation of a 2-edit patch deletes or replaces, never grows',
+      {len(p.edits) for p in patches} == {1, 2})
+
+
+def original_gp_mutate(algo, patch):
+    if patch.edits and random.random() < algo.config['delete_prob']:
+        del patch.edits[random.randrange(0, len(patch.edits))]
+    else:
+        patch.edits.append(algo.create_edit(algo.software.noop_variant))
+
+
+random.seed(5)
+start = [random_patch(gp, random.randint(0, 6)) for _ in range(200)]
+random.seed(9); new = [copy.deepcopy(p) for p in start]
+for p in new: gp.mutate(p)
+random.seed(9); old = [copy.deepcopy(p) for p in start]
+for p in old: original_gp_mutate(gp, p)
+check('GP: unchanged mutation and random stream without the option', [str(p) for p in new] == [str(p) for p in old])
 
 # --- UMDA select
 umda = build(UMDAAlgorithm)
