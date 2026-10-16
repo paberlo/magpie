@@ -21,6 +21,9 @@
 
 set -u
 export LC_ALL=C   # same number formats (perf, awk) whatever the caller's locale
+# Memory cap for the program under test: a variant that allocates without bound
+# fails its evaluation instead of getting the whole run killed by SLURM (cgroup OOM).
+ulimit -v "${PROGRAM_MEM_KB:-2097152}"
 
 FOLD=${1:?usage: run.sh FOLD [-v] [--smoke]}
 shift
