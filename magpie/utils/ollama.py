@@ -6,8 +6,9 @@ import requests
 DEFAULT_PORT = 11434
 # seconds to wait before each new attempt after a failed request (about 7.5 minutes in all)
 RETRY_WAITS = (10, 30, 60, 120, 240)
-# (connect, read) timeouts; generating a whole population can take several minutes
-TIMEOUT = (30, 1800)
+# (connect, read) timeouts. The read timeout includes the time a request waits in the
+# server's queue, which with many runs per server can exceed the generation itself.
+TIMEOUT = (30, 3 * 3600)
 
 
 def ollama_url(host):
@@ -32,10 +33,16 @@ def ollama_generate(host, model, prompt, num_ctx=32768, logger=None, waits=RETRY
             if logger:
                 logger.warning(f'Ollama request failed ({last_error}); retry {attempt}/{len(waits)} in {wait} s')
             time.sleep(wait)
+        start = time.perf_counter()
         try:
             response = requests.post(url, json=payload, timeout=TIMEOUT)
             response.raise_for_status()
-            return response.json()['response']
+            text = response.json()['response']
         except (requests.RequestException, KeyError, ValueError) as error:
             last_error = error
+            continue
+        if logger:
+            # wall-clock time of the call (queue + generation), outside any fitness measurement
+            logger.info(f'[llm] Ollama call ({model}): {time.perf_counter() - start:.1f} s')
+        return text
     raise RuntimeError(f'Ollama at {url} unavailable after {len(waits) + 1} attempts: {last_error}')
