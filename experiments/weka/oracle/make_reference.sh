@@ -24,7 +24,8 @@ mkdir -p "$TMP/out"
 tr -d '\r' < <(cat data/train? data/validate?) | sort -u | while read -r arff; do
     [ -n "$arff" ] || continue
     name=$(basename "$arff" .arff)
-    java -cp weka-src/build/classes weka.classifiers.trees.RandomForest -S 1 -s 1 -t "$arff" \
+    java -Duser.language=en -Duser.country=US -cp weka-src/build/classes \
+        weka.classifiers.trees.RandomForest -S 1 -s 1 -t "$arff" \
         > "$TMP/raw" 2> "$TMP/err"
     if [ -s "$TMP/err" ]; then
         echo "ERROR: the unmodified program writes to stderr on $arff:" >&2

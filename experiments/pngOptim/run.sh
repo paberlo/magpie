@@ -20,6 +20,7 @@
 # counter (e.g. WSL), never in the experiments.
 
 set -u
+export LC_ALL=C   # same number formats (perf, awk) whatever the caller's locale
 
 FOLD=${1:?usage: run.sh FOLD [-v] [--smoke]}
 shift

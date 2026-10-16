@@ -23,6 +23,7 @@
 # counter (e.g. WSL), never in the experiments.
 
 set -u
+export LC_ALL=C   # same number formats (perf, awk) whatever the caller's locale
 
 FOLD=${1:?usage: run.sh FOLD [-v] [--smoke]}
 shift
@@ -46,7 +47,10 @@ fail() {
     exit 1
 }
 
-CLASSIFY=(java -cp weka-src/build/classes weka.classifiers.trees.RandomForest -S 1 -s 1 -t)
+# The JVM locale is pinned: with e.g. es_ES, Weka prints the per-class table
+# with decimal commas, so the output would depend on the caller's environment.
+CLASSIFY=(java -Duser.language=en -Duser.country=US -cp weka-src/build/classes
+          weka.classifiers.trees.RandomForest -S 1 -s 1 -t)
 
 [ -f "$LIST" ] || fail "missing $LIST"
 
