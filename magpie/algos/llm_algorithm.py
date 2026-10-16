@@ -5,6 +5,7 @@ import time
 
 import magpie.core
 import magpie.utils
+from magpie.utils.ollama import ollama_generate
 import requests
 
 
@@ -230,16 +231,8 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         return prompt
 
     def _llm_call(self, prompt):
-        url = f'http://{self.llm_ip}:11434/api/generate'
-        payload = {
-            'model': self.llm_model,
-            'prompt': prompt,
-            'stream': False,
-            'options': {'num_ctx': 32768},
-        }
-        response = requests.post(url, json=payload)
-        response.raise_for_status()
-        return response.json()['response']
+        # llm_ip may be "IP" (port 11434) or "IP:PORT"; failed requests are retried
+        return ollama_generate(self.llm_ip, self.llm_model, prompt, logger=self.software.logger)
 
     def _filter_llm_patches_and_explainations(self, response_str):
         matches = re.findall(
