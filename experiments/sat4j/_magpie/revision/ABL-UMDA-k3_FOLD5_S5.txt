@@ -20,7 +20,7 @@ test_cmd = bash test.sh 5
 run_cmd = env LC_ALL=C bash run.sh 5
 retries = 1
 test_timeout = 120
-run_timeout = 240
+run_timeout = 360
 
 [search]
 algorithm = UMDAAlgorithm
