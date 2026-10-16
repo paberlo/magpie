@@ -50,6 +50,7 @@ fail() {
 n=0
 total=0
 while IFS= read -r img || [ -n "$img" ]; do
+    img=${img%$'\r'}
     [ -n "$img" ] || continue
     if [ "$SMOKE" -eq 1 ] && [ "$n" -ge 2 ]; then
         break
@@ -73,7 +74,7 @@ while IFS= read -r img || [ -n "$img" ]; do
 
     [ -s "$out" ] || fail "no output written for $img"
     oracle/pngpixcmp "$img" "$out" || fail "output pixels differ from the input for $img"
-    ref=$(awk -v f="$img" '$1 == f { print $2 }' "$SIZES")
+    ref=$(awk -v f="$img" '{ sub(/\r$/, "") } $1 == f { print $2 }' "$SIZES")
     [ -n "$ref" ] || fail "no reference size for $img in $SIZES"
     size=$(wc -c < "$out")
     [ "$size" -le "$ref" ] || fail "$img: output is $size bytes, the original program writes $ref"
