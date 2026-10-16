@@ -22,3 +22,6 @@
 /errout/
 /logs/
 
+
+# Claude Code local config
+.claude/
