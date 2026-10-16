@@ -1,0 +1,89 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances        1500              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.007 
+Root mean squared error                  0.0288
+Relative absolute error                  2.8432 %
+Root relative squared error              8.2403 %
+Total Number of Instances             1500     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     brickface
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     sky
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     foliage
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     cement
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     window
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     path
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     grass
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   <-- classified as
+ 205   0   0   0   0   0   0 |   a = brickface
+   0 220   0   0   0   0   0 |   b = sky
+   0   0 208   0   0   0   0 |   c = foliage
+   0   0   0 220   0   0   0 |   d = cement
+   0   0   0   0 204   0   0 |   e = window
+   0   0   0   0   0 236   0 |   f = path
+   0   0   0   0   0   0 207 |   g = grass
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        1468               97.8667 %
+Incorrectly Classified Instances        32                2.1333 %
+Kappa statistic                          0.9751
+Mean absolute error                      0.02  
+Root mean squared error                  0.0786
+Relative absolute error                  8.1639 %
+Root relative squared error             22.4623 %
+Total Number of Instances             1500     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.990    0.001    0.995      0.990    0.993      0.992    1.000     1.000     brickface
+                 1.000    0.001    0.995      1.000    0.998      0.997    1.000     1.000     sky
+                 0.966    0.009    0.948      0.966    0.957      0.950    0.998     0.988     foliage
+                 0.968    0.006    0.964      0.968    0.966      0.960    0.998     0.993     cement
+                 0.926    0.008    0.950      0.926    0.938      0.928    0.997     0.983     window
+                 0.996    0.001    0.996      0.996    0.996      0.995    1.000     1.000     path
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     grass
+Weighted Avg.    0.979    0.003    0.979      0.979    0.979      0.975    0.999     0.995     
+
+
+=== Confusion Matrix ===
+
+   a   b   c   d   e   f   g   <-- classified as
+ 203   0   0   0   2   0   0 |   a = brickface
+   0 220   0   0   0   0   0 |   b = sky
+   0   1 201   2   4   0   0 |   c = foliage
+   0   0   2 213   4   1   0 |   d = cement
+   1   0   9   5 189   0   0 |   e = window
+   0   0   0   1   0 235   0 |   f = path
+   0   0   0   0   0   0 207 |   g = grass
+

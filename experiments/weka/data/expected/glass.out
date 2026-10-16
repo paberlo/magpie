@@ -1,0 +1,89 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         214              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.0359
+Root mean squared error                  0.0795
+Relative absolute error                 16.9864 %
+Root relative squared error             24.5138 %
+Total Number of Instances              214     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     build wind float
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     build wind non-float
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     vehic wind float
+                 ?        0.000    ?          ?        ?          ?        ?         ?         vehic wind non-float
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     containers
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     tableware
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     headlamps
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g   <-- classified as
+ 70  0  0  0  0  0  0 |  a = build wind float
+  0 76  0  0  0  0  0 |  b = build wind non-float
+  0  0 17  0  0  0  0 |  c = vehic wind float
+  0  0  0  0  0  0  0 |  d = vehic wind non-float
+  0  0  0  0 13  0  0 |  e = containers
+  0  0  0  0  0  9  0 |  f = tableware
+  0  0  0  0  0  0 29 |  g = headlamps
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         171               79.9065 %
+Incorrectly Classified Instances        43               20.0935 %
+Kappa statistic                          0.7229
+Mean absolute error                      0.1004
+Root mean squared error                  0.2123
+Relative absolute error                 47.4315 %
+Root relative squared error             65.4186 %
+Total Number of Instances              214     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.871    0.118    0.782      0.871    0.824      0.734    0.934     0.861     build wind float
+                 0.816    0.116    0.795      0.816    0.805      0.696    0.926     0.874     build wind non-float
+                 0.353    0.020    0.600      0.353    0.444      0.426    0.931     0.514     vehic wind float
+                 ?        0.000    ?          ?        ?          ?        ?         ?         vehic wind non-float
+                 0.846    0.010    0.846      0.846    0.846      0.836    0.985     0.907     containers
+                 0.778    0.005    0.875      0.778    0.824      0.818    0.998     0.963     tableware
+                 0.828    0.016    0.889      0.828    0.857      0.836    0.969     0.912     headlamps
+Weighted Avg.    0.799    0.084    0.794      0.799    0.793      0.720    0.941     0.852     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g   <-- classified as
+ 61  7  2  0  0  0  0 |  a = build wind float
+  8 62  2  0  2  1  1 |  b = build wind non-float
+  8  3  6  0  0  0  0 |  c = vehic wind float
+  0  0  0  0  0  0  0 |  d = vehic wind non-float
+  0  1  0  0 11  0  1 |  e = containers
+  0  1  0  0  0  7  1 |  f = tableware
+  1  4  0  0  0  0 24 |  g = headlamps
+

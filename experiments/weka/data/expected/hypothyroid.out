@@ -1,0 +1,77 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances        3772              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.0055
+Root mean squared error                  0.0249
+Relative absolute error                  7.568  %
+Root relative squared error             13.0704 %
+Total Number of Instances             3772     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     negative
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     compensated_hypothyroid
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     primary_hypothyroid
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     secondary_hypothyroid
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 3481    0    0    0 |    a = negative
+    0  194    0    0 |    b = compensated_hypothyroid
+    0    0   95    0 |    c = primary_hypothyroid
+    0    0    0    2 |    d = secondary_hypothyroid
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances        3746               99.3107 %
+Incorrectly Classified Instances        26                0.6893 %
+Kappa statistic                          0.9523
+Mean absolute error                      0.015 
+Root mean squared error                  0.0642
+Relative absolute error                 20.5593 %
+Root relative squared error             33.6933 %
+Total Number of Instances             3772     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.997    0.041    0.997      0.997    0.997      0.959    0.999     1.000     negative
+                 0.979    0.003    0.950      0.979    0.964      0.963    1.000     0.991     compensated_hypothyroid
+                 0.895    0.001    0.955      0.895    0.924      0.923    1.000     0.984     primary_hypothyroid
+                 0.000    0.000    ?          0.000    ?          ?        0.654     0.001     secondary_hypothyroid
+Weighted Avg.    0.993    0.038    ?          0.993    ?          ?        0.999     0.999     
+
+
+=== Confusion Matrix ===
+
+    a    b    c    d   <-- classified as
+ 3471    6    4    0 |    a = negative
+    4  190    0    0 |    b = compensated_hypothyroid
+    6    4   85    0 |    c = primary_hypothyroid
+    2    0    0    0 |    d = secondary_hypothyroid
+

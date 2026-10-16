@@ -1,0 +1,35 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correlation coefficient                  0.9955
+Mean absolute error                      5.889 
+Root mean squared error                 19.2746
+Relative absolute error                  6.7393 %
+Root relative squared error             12.4847 %
+Total Number of Instances              209     
+
+
+
+=== Cross-validation ===
+
+Correlation coefficient                  0.9715
+Mean absolute error                     13.6933
+Root mean squared error                 44.4793
+Relative absolute error                 15.6212 %
+Root relative squared error             28.7401 %
+Total Number of Instances              209     
+

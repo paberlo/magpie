@@ -1,0 +1,69 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         432               99.3103 %
+Incorrectly Classified Instances         3                0.6897 %
+Kappa statistic                          0.9854
+Mean absolute error                      0.033 
+Root mean squared error                  0.0863
+Relative absolute error                  6.9673 %
+Root relative squared error             17.733  %
+Total Number of Instances              435     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.996    0.012    0.993      0.996    0.994      0.985    1.000     1.000     democrat
+                 0.988    0.004    0.994      0.988    0.991      0.985    1.000     1.000     republican
+Weighted Avg.    0.993    0.009    0.993      0.993    0.993      0.985    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 266   1 |   a = democrat
+   2 166 |   b = republican
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         418               96.092  %
+Incorrectly Classified Instances        17                3.908  %
+Kappa statistic                          0.9175
+Mean absolute error                      0.0714
+Root mean squared error                  0.1742
+Relative absolute error                 15.0587 %
+Root relative squared error             35.7776 %
+Total Number of Instances              435     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.970    0.054    0.966      0.970    0.968      0.917    0.993     0.996     democrat
+                 0.946    0.030    0.952      0.946    0.949      0.917    0.993     0.988     republican
+Weighted Avg.    0.961    0.044    0.961      0.961    0.961      0.917    0.993     0.993     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 259   8 |   a = democrat
+   9 159 |   b = republican
+

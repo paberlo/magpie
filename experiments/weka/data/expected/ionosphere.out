@@ -1,0 +1,69 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         351              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.0446
+Root mean squared error                  0.084 
+Relative absolute error                  9.6895 %
+Root relative squared error             17.5143 %
+Total Number of Instances              351     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     b
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     g
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 126   0 |   a = b
+   0 225 |   b = g
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         326               92.8775 %
+Incorrectly Classified Instances        25                7.1225 %
+Kappa statistic                          0.8428
+Mean absolute error                      0.1287
+Root mean squared error                  0.2255
+Relative absolute error                 27.951  %
+Root relative squared error             47.0057 %
+Total Number of Instances              351     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.865    0.036    0.932      0.865    0.897      0.844    0.979     0.973     b
+                 0.964    0.135    0.927      0.964    0.946      0.844    0.979     0.981     g
+Weighted Avg.    0.929    0.099    0.929      0.929    0.928      0.844    0.979     0.978     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 109  17 |   a = b
+   8 217 |   b = g
+

@@ -1,0 +1,137 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         682               99.8536 %
+Incorrectly Classified Instances         1                0.1464 %
+Kappa statistic                          0.9984
+Mean absolute error                      0.0098
+Root mean squared error                  0.036 
+Relative absolute error                 10.2158 %
+Root relative squared error             16.445  %
+Total Number of Instances              683     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     diaporthe-stem-canker
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     charcoal-rot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     rhizoctonia-root-rot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     phytophthora-rot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     brown-stem-rot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     powdery-mildew
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     downy-mildew
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     brown-spot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     bacterial-blight
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     bacterial-pustule
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     purple-seed-stain
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     anthracnose
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     phyllosticta-leaf-spot
+                 1.000    0.002    0.989      1.000    0.995      0.994    1.000     1.000     alternarialeaf-spot
+                 0.989    0.000    1.000      0.989    0.994      0.994    1.000     1.000     frog-eye-leaf-spot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     diaporthe-pod-&-stem-blight
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     cyst-nematode
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     2-4-d-injury
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     herbicide-injury
+Weighted Avg.    0.999    0.000    0.999      0.999    0.999      0.998    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s   <-- classified as
+ 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  a = diaporthe-stem-canker
+  0 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  b = charcoal-rot
+  0  0 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  c = rhizoctonia-root-rot
+  0  0  0 88  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  d = phytophthora-rot
+  0  0  0  0 44  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  e = brown-stem-rot
+  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0  0  0  0  0 |  f = powdery-mildew
+  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0  0  0  0 |  g = downy-mildew
+  0  0  0  0  0  0  0 92  0  0  0  0  0  0  0  0  0  0  0 |  h = brown-spot
+  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0  0 |  i = bacterial-blight
+  0  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0 |  j = bacterial-pustule
+  0  0  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0 |  k = purple-seed-stain
+  0  0  0  0  0  0  0  0  0  0  0 44  0  0  0  0  0  0  0 |  l = anthracnose
+  0  0  0  0  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0 |  m = phyllosticta-leaf-spot
+  0  0  0  0  0  0  0  0  0  0  0  0  0 91  0  0  0  0  0 |  n = alternarialeaf-spot
+  0  0  0  0  0  0  0  0  0  0  0  0  0  1 90  0  0  0  0 |  o = frog-eye-leaf-spot
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 15  0  0  0 |  p = diaporthe-pod-&-stem-blight
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 14  0  0 |  q = cyst-nematode
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 16  0 |  r = 2-4-d-injury
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  8 |  s = herbicide-injury
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         635               92.9722 %
+Incorrectly Classified Instances        48                7.0278 %
+Kappa statistic                          0.9229
+Mean absolute error                      0.0238
+Root mean squared error                  0.086 
+Relative absolute error                 24.7305 %
+Root relative squared error             39.2626 %
+Total Number of Instances              683     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     diaporthe-stem-canker
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     charcoal-rot
+                 0.950    0.000    1.000      0.950    0.974      0.974    1.000     1.000     rhizoctonia-root-rot
+                 1.000    0.002    0.989      1.000    0.994      0.994    1.000     1.000     phytophthora-rot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     brown-stem-rot
+                 0.950    0.000    1.000      0.950    0.974      0.974    1.000     1.000     powdery-mildew
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     downy-mildew
+                 0.924    0.012    0.924      0.924    0.924      0.912    0.998     0.984     brown-spot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     0.998     bacterial-blight
+                 0.950    0.000    1.000      0.950    0.974      0.974    1.000     1.000     bacterial-pustule
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     purple-seed-stain
+                 0.955    0.000    1.000      0.955    0.977      0.975    1.000     1.000     anthracnose
+                 0.800    0.008    0.762      0.800    0.780      0.774    0.995     0.893     phyllosticta-leaf-spot
+                 0.912    0.037    0.790      0.912    0.847      0.824    0.991     0.939     alternarialeaf-spot
+                 0.758    0.014    0.896      0.758    0.821      0.800    0.986     0.929     frog-eye-leaf-spot
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     diaporthe-pod-&-stem-blight
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     cyst-nematode
+                 1.000    0.007    0.762      1.000    0.865      0.870    1.000     0.996     2-4-d-injury
+                 0.750    0.000    1.000      0.750    0.857      0.865    1.000     1.000     herbicide-injury
+Weighted Avg.    0.930    0.009    0.934      0.930    0.930      0.922    0.997     0.977     
+
+
+=== Confusion Matrix ===
+
+  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s   <-- classified as
+ 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  a = diaporthe-stem-canker
+  0 20  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  b = charcoal-rot
+  0  0 19  0  0  0  0  0  0  0  0  0  0  0  0  0  0  1  0 |  c = rhizoctonia-root-rot
+  0  0  0 88  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  d = phytophthora-rot
+  0  0  0  0 44  0  0  0  0  0  0  0  0  0  0  0  0  0  0 |  e = brown-stem-rot
+  0  0  0  0  0 19  0  0  0  0  0  0  0  0  0  0  0  1  0 |  f = powdery-mildew
+  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0  0  0  0 |  g = downy-mildew
+  0  0  0  0  0  0  0 85  0  0  0  0  4  2  1  0  0  0  0 |  h = brown-spot
+  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0  0  0 |  i = bacterial-blight
+  0  0  0  0  0  0  0  0  0 19  0  0  1  0  0  0  0  0  0 |  j = bacterial-pustule
+  0  0  0  0  0  0  0  0  0  0 20  0  0  0  0  0  0  0  0 |  k = purple-seed-stain
+  0  0  0  1  0  0  0  0  0  0  0 42  0  0  0  0  0  1  0 |  l = anthracnose
+  0  0  0  0  0  0  0  4  0  0  0  0 16  0  0  0  0  0  0 |  m = phyllosticta-leaf-spot
+  0  0  0  0  0  0  0  1  0  0  0  0  0 83  7  0  0  0  0 |  n = alternarialeaf-spot
+  0  0  0  0  0  0  0  2  0  0  0  0  0 20 69  0  0  0  0 |  o = frog-eye-leaf-spot
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 15  0  0  0 |  p = diaporthe-pod-&-stem-blight
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 14  0  0 |  q = cyst-nematode
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0 16  0 |  r = 2-4-d-injury
+  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  2  6 |  s = herbicide-injury
+

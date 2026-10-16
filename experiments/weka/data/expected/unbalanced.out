@@ -1,0 +1,69 @@
+
+WARNING: core mtj jar files are not available as resources to this classloader (jdk.internal.loader.ClassLoaders$AppClassLoader@55054057)
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         856              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.0101
+Root mean squared error                  0.0438
+Relative absolute error                 34.9914 %
+Root relative squared error             37.2343 %
+Total Number of Instances              856     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Active
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Inactive
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+  12   0 |   a = Active
+   0 844 |   b = Inactive
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         843               98.4813 %
+Incorrectly Classified Instances        13                1.5187 %
+Kappa statistic                         -0.0022
+Mean absolute error                      0.0276
+Root mean squared error                  0.1187
+Relative absolute error                 95.6561 %
+Root relative squared error            100.9633 %
+Total Number of Instances              856     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.000    0.001    0.000      0.000    0.000      -0.004   0.718     0.075     Active
+                 0.999    1.000    0.986      0.999    0.992      -0.004   0.718     0.993     Inactive
+Weighted Avg.    0.985    0.986    0.972      0.985    0.978      -0.004   0.718     0.980     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+   0  12 |   a = Active
+   1 843 |   b = Inactive
+
