@@ -24,6 +24,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         #self.config['selection_ratio'] = 0.5
         self.config['batch_reset'] = True
         self.config['max_examples'] = 10
+        self.config['k_max'] = 2
         self.examples = []  # list of (fitness, patch_str), sorted ascending — mirrors LLMAlgorithm
 
     def reset(self):
@@ -34,6 +35,10 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['llm_patches_requested'] = 0
         self.stats['llm_missing_patches'] = 0
         self.stats['llm_malformed_patches'] = 0
+        self.stats['sample_extra_edits'] = 0
+        self.stats['sample_random_fallback'] = 0
+        self.stats['sample_duplicates_kept'] = 0
+        self.stats['gens_without_valid'] = 0
         self.examples = []
 
     def setup(self, config):
@@ -43,6 +48,9 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.llm_ip = sec['llm_ip']
         self.config['pop_size'] = int(sec['pop_size'])
         self.config['max_examples'] = int(sec.get('max_examples', fallback='10'))
+        self.config['k_max'] = int(sec.get('k_max', fallback='2'))
+        if self.config['k_max'] < 1:
+            raise magpie.core.ScenarioError('[search.eda] k_max should be at least 1')
        # self.config['selection_ratio'] = float(sec['selection_ratio'])
         tmp = sec['batch_reset'].lower()
         if tmp in ['true', 't', '1']:
@@ -79,12 +87,12 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                 self.stats['steps'] += 1 #steps son validaciones, max_steps en secenario indica numero maximo de evaluciones.
 
             self._update_examples(runs_pop)
-            selected_patches = self.select(runs_pop)  # see todo note in self.select()
-            distribution = self.estimate_distribution(selected_patches)
+            distribution = self._next_distribution(runs_pop, None)
 
             #run search loop
             while not self.stopping_condition(): #default based on #steps (that is, #evaluations) and time
                 self.hook_main_loop()
+                self.stats['gen'] += 1
                 patches_population = self.sample_population(distribution, elitism=True)
 
                 # eval each patch in the new population
@@ -105,8 +113,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                     self.stats['steps'] += 1
 
                 self._update_examples(runs_pop)
-                selected_patches = self.select(runs_pop)  # see todo note in self.select()
-                distribution = self.estimate_distribution(selected_patches)
+                distribution = self._next_distribution(runs_pop, distribution)
 
             self.hook_search_time(start)
         except KeyboardInterrupt:
@@ -114,6 +121,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         finally:
             self.hook_vt_vc()
             self.hook_final_distribution(distribution)
+            self.hook_sampling_stats()
             self.hook_llm_format_stats()
             self._hook_explanation_best_patch()
             self.hook_end()
@@ -165,14 +173,18 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     #although maybe selecting success patches is enough as filter.
     def select(self, pop):
         filtered = {sol for sol in pop if pop[sol].status == 'SUCCESS'}
-        selected = sorted(filtered, key=lambda sol: pop[sol].fitness)
+        return sorted(filtered, key=lambda sol: pop[sol].fitness)
 
-        if not selected:
-            raise ValueError(
-                "Ninguna solución fue exitosa. Se inicializará una nueva población aleatoria.")
-            return select(self.initialize_population)
-
-        return selected
+    def _next_distribution(self, runs_pop, previous):
+        # Learns the distribution from the valid variants of the generation. When there is
+        # none, the previous distribution is kept (empty before the first valid variant,
+        # which makes sample_population draw random 1-edit patches).
+        distribution = self.estimate_distribution(self.select(runs_pop))
+        if distribution:
+            return distribution
+        self.stats['gens_without_valid'] += 1
+        self.software.logger.info('[search.umda] No valid variant in this generation: keeping the previous distribution')
+        return previous or {}
 
     """
     Creates a pool of all edits (splits patches) that have been successful in the selected solutions.
@@ -200,65 +212,83 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
 
 
 
-    """
-    Samples a population of patches based on the received univariate distribution of single edits, coming from successful patches.
-    When a sampled solution (of 1 edit) already exists, it is merged with another randomly sampled edit (+1 edit).
-    Thus, repeated patches are avoided, but frequent successful edits are sampled and merged with new edits (via mutate method)
-    
-    @param edits_prob: The distribution received contains the marginal probabilities of each edit 
-    which belonged to a SUCCESSFUL solution (patch). Note an edit is not only a type of edit, but also
-    the target and ingredient of the edit. 
-    
-    @param elitism: If True, make sure that the best patch found in all past generations is included in the new population.
-     
-    """
-
-
     def sample_population(self, edits_prob, elitism=False):
+        """
+        Samples a population of pop_size distinct patches (elite included) from the learnt
+        marginal distribution of single edits (Algorithm 1 in the paper):
+          1. a patch starts with one edit e ~ edits_prob;
+          2. while it duplicates a patch already in the new population and has fewer than
+             k_max edits, another edit e' ~ edits_prob, different from its current edits,
+             is appended;
+          3. if it still duplicates one, it is replaced by a random 1-edit patch that is not
+             in the new population (_random_unique_patch).
+        With an LLM, the LLM proposes the patches instead of steps 1-2, without the k_max
+        limit; a malformed or duplicated one is replaced as in step 3. An empty distribution
+        (no valid variant seen yet) yields random 1-edit patches.
 
+        @param edits_prob: marginal probability of each edit (operation, target and
+        ingredient) observed in the valid patches of the last generation.
+        @param elitism: if True, the best patch found so far is kept in the new population.
+        """
         population = []
-
-        # if elitism is True, keep the best patch found so far
-        i=0
         if elitism and self.report.get('best_patch'):
-            best_patch = copy.deepcopy(self.report['best_patch'])
-            population.append(best_patch)
-            i=1
+            population.append(copy.deepcopy(self.report['best_patch']))
+        pop_size = int(self.config['pop_size'])
 
-        if self.llm_model == 'None': #sample from distribution
-            for _ in range(i, int(self.config['pop_size'])):
-                # create solution (patch) with 1 randomly sampled edit
-                edit_str = random.choices(list(edits_prob.keys()), weights=list(edits_prob.values()))[0]
-                edit = self._edit_from_str(edit_str)
-                sol = magpie.core.Patch()
-                sol.edits.append(edit)
-                # if solution exists in new pop, add random edit (now solution has 2 edits)
-                if self.isIn(sol, population):
-                    self.mutate(sol)
-                population.append(sol)
-
-        else: #use llm to sample patches
-            patches_list, explanations_list = self.llm_sample_population(edits_prob, int(self.config['pop_size']) - i)
-            for patch_str, explain_str in zip(patches_list, explanations_list):
-                # patch may contain one or several edits separated by |
+        if self.llm_model == 'None':  # sample from the distribution
+            while len(population) < pop_size:
+                population.append(self._sample_patch(edits_prob, population))
+        else:  # use the LLM to propose the patches
+            patches_list, _ = self.llm_sample_population(edits_prob, pop_size - len(population))
+            for patch_str in patches_list:
+                # a patch may contain one or several edits separated by |
                 edit_str_list = [e.strip() for e in patch_str.split('|') if e.strip()]
                 sol = magpie.core.Patch()
                 try:
                     for edit_str in edit_str_list:
-                        edit = self._edit_from_str(edit_str)
-                        sol.edits.append(edit)
-                    #if variant cannot be created, some patch in sol in wrong and thus ValueError is thrown
+                        sol.edits.append(self._edit_from_str(edit_str))
+                    # building the variant fails if some edit of the patch is invalid
                     magpie.core.Variant(self.software, sol)
                 except (RuntimeError, ValueError, AssertionError, Exception):
-                    self.software.logger.error(f"Error parsing edit from llm. Random 1-edit individual created.")
+                    self.software.logger.error('Error parsing edit from llm. Random 1-edit individual created.')
                     self.stats['llm_malformed_patches'] += 1
-                    sol = magpie.core.Patch()
-                    self.mutate(sol)
-                    explain_str = "invalid creation by LLM, random 1-edit individual created"
-                if self.isIn(sol, population):
-                    self.mutate(sol)
+                    sol = None
+                if sol is None or not sol.edits or self.isIn(sol, population):
+                    sol = self._random_unique_patch(population)
                 population.append(sol)
         return population
+
+    def _sample_patch(self, edits_prob, population):
+        # Steps 1-3 of sample_population for one patch.
+        if not edits_prob:
+            return self._random_unique_patch(population)
+        sol = magpie.core.Patch()
+        used = []
+        while True:
+            candidates = [e for e in edits_prob if e not in used]
+            if not candidates:
+                break
+            edit_str = random.choices(candidates, weights=[edits_prob[e] for e in candidates])[0]
+            used.append(edit_str)
+            sol.edits.append(self._edit_from_str(edit_str))
+            if not self.isIn(sol, population) or len(sol.edits) >= self.config['k_max']:
+                break
+            self.stats['sample_extra_edits'] += 1
+        if self.isIn(sol, population):
+            sol = self._random_unique_patch(population)
+        return sol
+
+    def _random_unique_patch(self, population):
+        # Random 1-edit patch not yet in the population; after edit_retries failed attempts
+        # the last one is kept, and counted, so that the population still reaches pop_size.
+        self.stats['sample_random_fallback'] += 1
+        for _ in range(magpie.settings.edit_retries):
+            sol = magpie.core.Patch()
+            self.mutate(sol)
+            if not self.isIn(sol, population):
+                return sol
+        self.stats['sample_duplicates_kept'] += 1
+        return sol
 
     def llm_sample_population(self, edits_prob, pop_size):
         prompt = self._craft_population_prompt(edits_prob, pop_size)
@@ -472,10 +502,18 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
     def hook_final_distribution(self, distribution):
         # This hook can be used to log or process the final distribution of edits
         msg= f'[search.umda] Final distribution: \n'
-        for edit, prob in distribution.items():
+        for edit, prob in (distribution or {}).items():
             msg += f'  {edit}: {prob:.4f}\n'
-        msg += f'[search.umda] Total edits from successful patches: {len(distribution)}'
+        msg += f'[search.umda] Total edits from successful patches: {len(distribution or {})}'
         self.software.logger.info(msg)
+
+    def hook_sampling_stats(self):
+        self.software.logger.info(
+            f"[search.umda] Sampling: extra edits from the distribution: {self.stats['sample_extra_edits']}, "
+            f"random 1-edit replacements: {self.stats['sample_random_fallback']}, "
+            f"duplicates kept after retries: {self.stats['sample_duplicates_kept']}, "
+            f"generations without valid variants: {self.stats['gens_without_valid']}"
+        )
 
     def hook_llm_format_stats(self):
         if self.llm_model in (None, 'None'):
