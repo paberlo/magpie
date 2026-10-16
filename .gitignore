@@ -25,3 +25,6 @@
 
 # Claude Code local config
 .claude/
+
+# OptimPNG output oracle (built by compile.sh)
+experiments/pngOptim/oracle/pngpixcmp
