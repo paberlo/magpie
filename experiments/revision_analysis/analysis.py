@@ -230,27 +230,35 @@ def run(results, out_dir, val_fail):
     out = pathlib.Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     df = load(results, val_fail)
+    written, empty = [], []
+
+    def save(table, name):
+        # an empty table (e.g. no budget 1000 yet, or no LLM runs) is reported, not written
+        if len(table) and len(table.columns):
+            table.to_csv(out / name, index=False)
+            written.append(name)
+        else:
+            (out / name).unlink(missing_ok=True)
+            empty.append(name)
+
     cells = cell_summary(df)
-    cells.to_csv(out / 'cells.csv', index=False)
-    written = ['cells.csv']
+    save(cells, 'cells.csv')
     for name, groups in [('rq1_improvement_ranking', BASE), ('rq4_improvement_ranking', RQ4)]:
-        ranking(cells, groups, 'improvement_median').to_csv(out / f'{name}.csv', index=False)
-        written.append(f'{name}.csv')
+        save(ranking(cells, groups, 'improvement_median'), f'{name}.csv')
     for name, groups in [('rq2_gap_ranking', BASE), ('rq4_gap_ranking', RQ4)]:
-        ranking(cells, groups, 'gap_median').to_csv(out / f'{name}.csv', index=False)
-        written.append(f'{name}.csv')
+        save(ranking(cells, groups, 'gap_median'), f'{name}.csv')
     for name, groups in [('rq1_rq2', BASE), ('rq4', RQ4)]:
         fr, pw = tests(df, groups, ['improvement', 'gap'], BUDGETS)
-        fr.to_csv(out / f'{name}_friedman.csv', index=False)
-        pw.to_csv(out / f'{name}_pairwise.csv', index=False)
-        written += [f'{name}_friedman.csv', f'{name}_pairwise.csv']
-    correlations(df).to_csv(out / 'rq3_correlations.csv', index=False)
-    llm_fallback(df).to_csv(out / 'rq4_llm_fallback.csv', index=False)
-    diversity(df, BASE + LLM).to_csv(out / 'diversity.csv', index=False)
-    ablation_table(df).to_csv(out / 'ablations.csv', index=False)
-    written += ['rq3_correlations.csv', 'rq4_llm_fallback.csv', 'diversity.csv', 'ablations.csv']
+        save(fr, f'{name}_friedman.csv')
+        save(pw, f'{name}_pairwise.csv')
+    save(correlations(df), 'rq3_correlations.csv')
+    save(llm_fallback(df), 'rq4_llm_fallback.csv')
+    save(diversity(df, BASE + LLM), 'diversity.csv')
+    save(ablation_table(df), 'ablations.csv')
     print(f'{len(df)} complete rows, {df["id"].nunique()} runs; val-fail policy: {val_fail}')
     print('written to', out, ':', ', '.join(written))
+    if empty:
+        print('empty (not enough data yet):', ', '.join(empty))
     return df
 
 
