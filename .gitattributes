@@ -6,3 +6,4 @@
 # Oracle sources and reference data read by the run scripts
 *.c     text eol=lf
 experiments/*/data/expected/** text eol=lf
+*.awk   text eol=lf
