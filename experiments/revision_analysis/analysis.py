@@ -19,7 +19,10 @@ Definitions (the same in every research question, Reviewer 1, comment 5):
 
 --val-fail: a patch that fails the correctness oracle on the validation inputs is counted as
   "zero": 0% improvement (the patch is discarded and the original program is kept), or
-  "exclude": left out of improvement and gap. Its rate is reported separately either way.
+  "exclude": left out of improvement and gap. Its rate is reported separately either way
+  (val_fail_rate in cells.csv, val_fail_rates.csv per software and group). The default is
+  "zero". A checkpoint with no validation status (the validation itself did not run) is
+  left out with a warning: it has to be repeated.
 
 Statistics (Reviewer 1, comment 6): runs with the same fold and seed form matched blocks.
 Per software and budget: Friedman test over the compared groups, then pairwise Wilcoxon
@@ -54,6 +57,11 @@ def load(path, val_fail):
     df['checkpoint'] = df['checkpoint'].astype(int)
     df['validate_status'] = df['validate_status'].fillna('')
     df['val_failed'] = ~df['validate_status'].isin(['SUCCESS', 'NO_PATCH', ''])
+    # no status = the validation did not run (infrastructure): it must be repeated, not counted
+    missing = df['validate_status'] == ''
+    if missing.any():
+        print(f'WARNING: {missing.sum()} checkpoints without validation (left out): '
+              + ', '.join(f"{r.software} {r.group} id {r.id} @{r.checkpoint}" for r in df[missing].itertuples()))
     if val_fail == 'zero':
         df.loc[df['val_failed'], 'change_perc_validate'] = 0.0
     df['improvement'] = df['change_perc_validate']
@@ -115,6 +123,20 @@ def cell_summary(df):
                      'patch_length_mean': d['patch_length'].mean(),
                      'cached_share_mean': d['cached_share'].mean(),
                      'search_minutes_median': d['search_minutes'].median()})
+    return pd.DataFrame(rows)
+
+
+def val_fail_rates(df):
+    """Patches that fail the correctness oracle on the validation inputs, per software and
+    group: share of checkpoints over every budget, share at budget 1000 and runs affected."""
+    rows = []
+    for (sw, g), d in df.groupby(['software', 'group']):
+        last = d[d['checkpoint'] == 1000]
+        rows.append({'software': sw, 'group': g, 'runs': d['id'].nunique(),
+                     'checkpoints': len(d), 'failed_checkpoints': int(d['val_failed'].sum()),
+                     'fail_rate': d['val_failed'].mean(),
+                     'fail_rate_1000': last['val_failed'].mean() if len(last) else np.nan,
+                     'runs_with_failure': d.loc[d['val_failed'], 'id'].nunique()})
     return pd.DataFrame(rows)
 
 
@@ -243,6 +265,7 @@ def run(results, out_dir, val_fail):
 
     cells = cell_summary(df)
     save(cells, 'cells.csv')
+    save(val_fail_rates(df), 'val_fail_rates.csv')
     for name, groups in [('rq1_improvement_ranking', BASE), ('rq4_improvement_ranking', RQ4)]:
         save(ranking(cells, groups, 'improvement_median'), f'{name}.csv')
     for name, groups in [('rq2_gap_ranking', BASE), ('rq4_gap_ranking', RQ4)]:
