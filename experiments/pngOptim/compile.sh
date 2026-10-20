@@ -11,7 +11,20 @@ done
 
 cd optipng-7.9.1
 
-make CFLAGS="-O -Wall -Werror=uninitialized" > /dev/null 2>&1 || exit 1       # Silenciar la salida de make
+# -falign-functions=64: every function starts on a 64-byte boundary, so an edit
+# that changes the size of one function no longer shifts the code linked after it
+# (optim.o, libpng, zlib). Without it, deleting a statement that never runs moved
+# zlib's hot loops by a few bytes and changed the cycle count by up to 10%
+# (code-layout bias): the search optimised the alignment, not the program.
+# The whole tree (libpng and zlib included) must be built with the same flags:
+# .gi_cflags records them and any change forces a clean rebuild.
+GI_CFLAGS="-O -falign-functions=64 -Wall -Werror=uninitialized"
+if [ "$(cat .gi_cflags 2>/dev/null)" != "$GI_CFLAGS" ]; then
+    make clean > /dev/null 2>&1
+    echo "$GI_CFLAGS" > .gi_cflags
+fi
+
+make CFLAGS="$GI_CFLAGS" > /dev/null 2>&1 || exit 1       # Silenciar la salida de make
 # -Werror=uninitialized: rechaza en compilacion cualquier patch que deje una
 # variable usada sin inicializar (p.ej. borrar la unica asignacion previa a su
 # uso), como el exploit encontrado en qwen2.5:14b/OptimPNG (delete de la linea
