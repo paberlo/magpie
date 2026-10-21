@@ -27,7 +27,8 @@ Definitions (the same in every research question, Reviewer 1, comment 5):
 Statistics (Reviewer 1, comment 6): runs with the same fold and seed form matched blocks.
 Per software and budget: Friedman test over the compared groups, then pairwise Wilcoxon
 signed-rank tests with Holm correction and the Vargha-Delaney A12 effect size; bootstrap
-95% CI of each cell median. RQ3 correlations (Spearman) use every run, with Holm and
+95% CI of each cell median. Reviewer 2: UMDA4GI against the two-edit FI and GP (comment 2)
+and the share of variance due to the fold, with a permutation test (comment 4). RQ3 correlations (Spearman) use every run, with Holm and
 Benjamini-Hochberg adjustments, and are reported as exploratory.
 """
 import argparse
@@ -247,6 +248,46 @@ def ablation_table(df):
     return out
 
 
+def length_controlled(df):
+    """Reviewer 2, comment 2: UMDA4GI against FI and GP limited to two edits (budget 1000)."""
+    rows = []
+    for g, sw, m in itertools.product(['ABL-FI-2', 'ABL-GP-2'], SOFTWARE, ['improvement', 'gap']):
+        r = paired(df, sw, 1000, 'UMDA', g, m)
+        if r:
+            rows.append(r)
+    out = pd.DataFrame(rows)
+    if len(out):
+        out['p_holm'] = holm(out['p'])
+    return out
+
+
+def eta2_fold(d, metric):
+    """Share of the variance of a cell explained by the fold (between-fold sum of squares)."""
+    d = d[['fold', metric]].dropna()
+    total = ((d[metric] - d[metric].mean()) ** 2).sum()
+    if total == 0 or d['fold'].nunique() < 2:
+        return np.nan
+    m = d.groupby('fold')[metric].agg(['mean', 'size'])
+    return (m['size'] * (m['mean'] - d[metric].mean()) ** 2).sum() / total
+
+
+def fold_variance(df, groups, n_perm=1000):
+    """Reviewer 2, comment 4: how much of the variation within a cell (5 folds x 3 seeds)
+    comes from the data split. eta2 of the fold, and a permutation test that shuffles the
+    fold labels within the cell (with 5 folds of 3 runs, eta2 is 4/14 = 0.29 on average by
+    chance alone)."""
+    rows = []
+    for (sw, g, b), d in df[df['group'].isin(groups)].groupby(['software', 'group', 'checkpoint']):
+        for m in ['improvement', 'gap']:
+            e = eta2_fold(d, m)
+            if np.isnan(e):
+                continue
+            null = [eta2_fold(d.assign(fold=RNG.permutation(d['fold'].values)), m) for _ in range(n_perm)]
+            rows.append({'software': sw, 'group': g, 'budget': b, 'metric': m, 'runs': len(d),
+                         'eta2_fold': e, 'p_perm': np.mean(np.asarray(null) >= e)})
+    return pd.DataFrame(rows)
+
+
 # ----------------------------------------------------------------------------- main
 def run(results, out_dir, val_fail):
     out = pathlib.Path(out_dir)
@@ -278,6 +319,8 @@ def run(results, out_dir, val_fail):
     save(llm_fallback(df), 'rq4_llm_fallback.csv')
     save(diversity(df, BASE + LLM), 'diversity.csv')
     save(ablation_table(df), 'ablations.csv')
+    save(length_controlled(df), 'length_controlled.csv')
+    save(fold_variance(df, BASE), 'fold_variance.csv')
     print(f'{len(df)} complete rows, {df["id"].nunique()} runs; val-fail policy: {val_fail}')
     print('written to', out, ':', ', '.join(written))
     if empty:
