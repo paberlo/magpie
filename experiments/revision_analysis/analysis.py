@@ -49,6 +49,8 @@ ABLATIONS = [('UMDA', 'ABL-UMDA-imp'), ('UMDA', 'ABL-UMDA-k1'), ('UMDA', 'ABL-UM
 SOFTWARE = ['minisat_hack', 'pngOptim', 'sat4j', 'weka']
 BUDGETS = [100, 250, 500, 750, 1000]
 RNG = np.random.default_rng(20261016)
+# separate stream for the CI of the gap, added later, so the other draws stay as they were
+GAP_RNG = np.random.default_rng(20261022)
 
 
 # ----------------------------------------------------------------------------- data
@@ -71,12 +73,12 @@ def load(path, val_fail):
     return df
 
 
-def boot_ci(values, n=2000):
+def boot_ci(values, n=2000, rng=RNG):
     values = np.asarray(values, dtype=float)
     values = values[~np.isnan(values)]
     if len(values) < 2:
         return np.nan, np.nan
-    meds = np.median(RNG.choice(values, size=(n, len(values)), replace=True), axis=1)
+    meds = np.median(rng.choice(values, size=(n, len(values)), replace=True), axis=1)
     return np.percentile(meds, 2.5), np.percentile(meds, 97.5)
 
 
@@ -116,10 +118,12 @@ def cell_summary(df):
     rows = []
     for (sw, g, b), d in df.groupby(['software', 'group', 'checkpoint']):
         lo, hi = boot_ci(d['improvement'])
+        gap_lo, gap_hi = boot_ci(d['gap'], rng=GAP_RNG)
         rows.append({'software': sw, 'group': g, 'budget': b, 'runs': len(d),
                      'improvement_median': d['improvement'].median(), 'improvement_ci_low': lo,
                      'improvement_ci_high': hi, 'train_median': d['change_perc_train'].median(),
-                     'gap_median': d['gap'].median(), 'val_fail_rate': d['val_failed'].mean(),
+                     'gap_median': d['gap'].median(), 'gap_ci_low': gap_lo, 'gap_ci_high': gap_hi,
+                     'val_fail_rate': d['val_failed'].mean(),
                      'no_patch_rate': (d['validate_status'] == 'NO_PATCH').mean(),
                      'patch_length_mean': d['patch_length'].mean(),
                      'cached_share_mean': d['cached_share'].mean(),
