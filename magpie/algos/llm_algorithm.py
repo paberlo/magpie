@@ -8,6 +8,9 @@ import magpie.utils
 from magpie.utils.ollama import ollama_generate
 import requests
 
+# explanation given to the random patches that fill in when the LLM returns too few
+RANDOM_FALLBACK = 'LLM returned too few patches, random fallback'
+
 
 class LLMAlgorithm(magpie.core.BasicAlgorithm):
     def __init__(self):
@@ -26,6 +29,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['llm_patches_requested'] = 0
         self.stats['llm_missing_patches'] = 0
         self.stats['llm_malformed_patches'] = 0
+        self.stats['llm_duplicate_patches'] = 0
         self.examples = []
 
     def setup(self, config):
@@ -171,7 +175,12 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
                 self.stats['llm_malformed_patches'] += 1
                 sol = magpie.core.Patch()
                 self.mutate(sol)
+                explain_str = RANDOM_FALLBACK
             if self.isIn(sol, population):
+                # a well-formed patch from the LLM itself that is duplicated gets a random
+                # edit appended, and is counted apart
+                if explain_str != RANDOM_FALLBACK:
+                    self.stats['llm_duplicate_patches'] += 1
                 self.mutate(sol)
             population.append(sol)
         return population
@@ -186,7 +195,7 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
             sol = magpie.core.Patch()
             self.mutate(sol)
             patches.append(str(sol))
-            explanations.append('LLM returned too few patches, random fallback')
+            explanations.append(RANDOM_FALLBACK)
             self.stats['llm_missing_patches'] += 1
         return patches, explanations
 
@@ -306,11 +315,14 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         requested = self.stats.get('llm_patches_requested', 0)
         missing = self.stats.get('llm_missing_patches', 0)
         malformed = self.stats.get('llm_malformed_patches', 0)
+        duplicate = self.stats.get('llm_duplicate_patches', 0)
         ratio_missing = (missing / requested) if requested else 0.0
         ratio_malformed = (malformed / requested) if requested else 0.0
+        ratio_duplicate = (duplicate / requested) if requested else 0.0
         self.software.logger.info(
             f'[search.llm] LLM malformed patches: {malformed}/{requested} ({ratio_malformed:.3f}), '
-            f'missing patches: {missing}/{requested} ({ratio_missing:.3f})'
+            f'missing patches: {missing}/{requested} ({ratio_missing:.3f}), '
+            f'duplicate patches: {duplicate}/{requested} ({ratio_duplicate:.3f})'
         )
 
 

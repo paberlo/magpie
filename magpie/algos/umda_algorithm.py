@@ -13,6 +13,9 @@ import time
 
 from magpie.core import variant
 
+# explanation given to the random patches that fill in when the LLM returns too few
+RANDOM_FALLBACK = 'LLM returned too few patches, random fallback'
+
 
 
 
@@ -37,6 +40,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['llm_patches_requested'] = 0
         self.stats['llm_missing_patches'] = 0
         self.stats['llm_malformed_patches'] = 0
+        self.stats['llm_duplicate_patches'] = 0
         self.stats['sample_extra_edits'] = 0
         self.stats['sample_random_fallback'] = 0
         self.stats['sample_duplicates_kept'] = 0
@@ -249,8 +253,8 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             while len(population) < pop_size:
                 population.append(self._sample_patch(edits_prob, population))
         else:  # use the LLM to propose the patches
-            patches_list, _ = self.llm_sample_population(edits_prob, pop_size - len(population))
-            for patch_str in patches_list:
+            patches_list, explanations = self.llm_sample_population(edits_prob, pop_size - len(population))
+            for patch_str, explanation in zip(patches_list, explanations):
                 # a patch may contain one or several edits separated by |
                 edit_str_list = [e.strip() for e in patch_str.split('|') if e.strip()]
                 sol = magpie.core.Patch()
@@ -264,6 +268,10 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
                     self.stats['llm_malformed_patches'] += 1
                     sol = None
                 if sol is None or not sol.edits or self.isIn(sol, population):
+                    # a well-formed patch from the LLM itself (not a missing one) that is
+                    # empty or duplicated is also discarded, and counted apart
+                    if sol is not None and explanation != RANDOM_FALLBACK:
+                        self.stats['llm_duplicate_patches'] += 1
                     sol = self._random_unique_patch(population)
                 population.append(sol)
         return population
@@ -310,7 +318,7 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
             sol = magpie.core.Patch()
             self.mutate(sol)
             patches.append(str(sol))
-            explanations.append('LLM returned too few patches, random fallback')
+            explanations.append(RANDOM_FALLBACK)
             self.stats['llm_missing_patches'] += 1
         return patches, explanations
 
@@ -523,11 +531,14 @@ class UMDAAlgorithm(magpie.core.BasicAlgorithm):
         requested = self.stats.get('llm_patches_requested', 0)
         missing = self.stats.get('llm_missing_patches', 0)
         malformed = self.stats.get('llm_malformed_patches', 0)
+        duplicate = self.stats.get('llm_duplicate_patches', 0)
         ratio_missing = (missing / requested) if requested else 0.0
         ratio_malformed = (malformed / requested) if requested else 0.0
+        ratio_duplicate = (duplicate / requested) if requested else 0.0
         self.software.logger.info(
             f'[search.eda] LLM malformed patches: {malformed}/{requested} ({ratio_malformed:.3f}), '
-            f'missing patches: {missing}/{requested} ({ratio_missing:.3f})'
+            f'missing patches: {missing}/{requested} ({ratio_missing:.3f}), '
+            f'duplicate patches: {duplicate}/{requested} ({ratio_duplicate:.3f})'
         )
 
 

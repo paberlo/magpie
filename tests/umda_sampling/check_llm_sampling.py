@@ -6,6 +6,7 @@ import sys
 sys.path.insert(0, '.')
 import magpie
 from magpie.algos import UMDAAlgorithm
+from magpie.algos.umda_algorithm import RANDOM_FALLBACK
 
 random.seed(3)
 config = configparser.ConfigParser()
@@ -33,13 +34,14 @@ pop_size = algo.config['pop_size']
 
 def fake_llm(edits_prob, n):
     algo.stats['llm_patches_requested'] += n
-    patches = list(answer)
+    patches, explanations = list(answer), [''] * len(answer)
     while len(patches) < n:        # same padding as llm_sample_population
         sol = magpie.core.Patch()
         algo.mutate(sol)
         patches.append(str(sol))
+        explanations.append(RANDOM_FALLBACK)
         algo.stats['llm_missing_patches'] += 1
-    return patches, [''] * len(patches)
+    return patches, explanations
 
 
 algo.llm_sample_population = fake_llm
@@ -54,8 +56,9 @@ for name, cond in [
     ('malformed replaced by a random 1-edit patch', len(pop[3].edits) == 1),
     ('malformed counted', algo.stats['llm_malformed_patches'] == 1),
     ('missing counted', algo.stats['llm_missing_patches'] == pop_size - 4),
+    ('duplicate counted, malformed and missing not', algo.stats['llm_duplicate_patches'] == 1),
 ]:
     print(('ok   ' if cond else 'FAIL ') + name)
     ok &= cond
-print(f"      stats: llm_malformed={algo.stats['llm_malformed_patches']} llm_missing={algo.stats['llm_missing_patches']} random_replacements={algo.stats['sample_random_fallback']}")
+print(f"      stats: llm_malformed={algo.stats['llm_malformed_patches']} llm_missing={algo.stats['llm_missing_patches']} llm_duplicate={algo.stats['llm_duplicate_patches']} random_replacements={algo.stats['sample_random_fallback']}")
 print('ALL OK' if ok else 'FAILURES')

@@ -27,8 +27,8 @@ Definitions (the same in every research question, Reviewer 1, comment 5):
 Statistics (Reviewer 1, comment 6): runs with the same fold and seed form matched blocks.
 Per software and budget: Friedman test over the compared groups, then pairwise Wilcoxon
 signed-rank tests with Holm correction and the Vargha-Delaney A12 effect size; bootstrap
-95% CI of each cell median. Reviewer 2: UMDA4GI against the two-edit FI and GP (comment 2)
-and the share of variance due to the fold, with a permutation test (comment 4). RQ3 correlations (Spearman) use every run, with Holm and
+95% CI of each cell median. Reviewer 2: UMDA4GI against the two-edit FI and GP (comment 2),
+how often the patches asked to the LLM were not used as given (comment 3) and the share of variance due to the fold, with a permutation test (comment 4). RQ3 correlations (Spearman) use every run, with Holm and
 Benjamini-Hochberg adjustments, and are reported as exploratory.
 """
 import argparse
@@ -209,9 +209,26 @@ def correlations(df):
 
 
 def llm_fallback(df):
-    d = df[df['group'].isin(LLM) & (df['checkpoint'] == df['checkpoint'].max())]
-    g = d.groupby(['group', 'software'])[['llm_requested', 'llm_malformed', 'llm_missing']].sum()
+    """Reviewer 2, comment 3: share of the patches asked to the LLM that were not used as the
+    LLM gave them. malformed (could not be parsed or applied) and missing (the LLM returned
+    too few) are replaced by random 1-edit patches; duplicate (well-formed but already in the
+    population, or empty) is replaced by a random 1-edit patch in UMDA4GI and gets a random
+    edit appended in the LLM-only algorithm. Counts are per run, so only the last checkpoint
+    is used. Logs before the revision did not count duplicates (llm_duplicate empty)."""
+    d = df[df['group'].isin(LLM) & (df['checkpoint'] == df['checkpoint'].max())].copy()
+    if 'llm_duplicate' not in d:
+        d['llm_duplicate'] = np.nan
+    cols = ['llm_requested', 'llm_malformed', 'llm_missing', 'llm_duplicate', 'llm_calls', 'llm_minutes']
+    for c in cols:
+        if c not in d:
+            d[c] = np.nan
+    g = d.groupby(['group', 'software'])[cols].sum(min_count=1)
+    g.insert(0, 'runs', d.groupby(['group', 'software']).size())
+    for c in ['malformed', 'missing', 'duplicate']:
+        g[f'{c}_rate'] = g[f'llm_{c}'] / g['llm_requested']
     g['fallback_rate'] = (g['llm_malformed'] + g['llm_missing']) / g['llm_requested']
+    g['not_used_rate'] = g['fallback_rate'] + g['duplicate_rate']
+    g['seconds_per_call'] = g['llm_minutes'] * 60 / g['llm_calls']
     return g.reset_index()
 
 
@@ -353,7 +370,10 @@ def synthetic(path):
                          'cached_share': rng.uniform(0, 0.4), 'search_minutes': b * rng.uniform(0.1, 0.5),
                          'llm_requested': 1000 if g in LLM else np.nan,
                          'llm_malformed': rng.integers(0, 300) if g in LLM else np.nan,
-                         'llm_missing': rng.integers(0, 100) if g in LLM else np.nan})
+                         'llm_missing': rng.integers(0, 100) if g in LLM else np.nan,
+                         'llm_duplicate': rng.integers(0, 200) if g in LLM else np.nan,
+                         'llm_calls': 19 if g in LLM else 0,
+                         'llm_minutes': rng.uniform(5, 40) if g in LLM else 0.0})
     pd.DataFrame(rows).to_csv(path, index=False)
 
 
