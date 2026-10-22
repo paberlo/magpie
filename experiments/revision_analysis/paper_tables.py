@@ -27,6 +27,9 @@ SW_NAMES = {'minisat_hack': 'MiniSAT-hack', 'sat4j': 'Sat4J', 'weka': 'Weka', 'p
 BUDGETS = [100, 250, 500, 750, 1000]
 # OptimPNG changes are a fraction of a percentage point: one more decimal
 DIGITS = {'pngOptim': 2}
+# the wide tables must fit the text width of the journal template (sn-jnl)
+SMALL = r'\footnotesize\setlength{\tabcolsep}{4pt}'
+SHORT_METRIC = {'improvement': 'Improvement', 'gap': 'Gap'}
 METRIC_NAMES = {'improvement': 'validation improvement', 'gap': 'generalisation gap'}
 # validated categorical palette (dataviz skill, slots 1-4); marker and line style also
 # identify each algorithm, for print and colour-vision deficiencies
@@ -50,7 +53,7 @@ def pval(p):
 def raw_table(cells, friedman, metric, label, caption):
     """Median per software, algorithm and budget, with its bootstrap 95% CI below and the
     p-value of the Friedman test of each budget."""
-    lines = [r'\begin{table}[h]', r'\centering', r'\small',
+    lines = [r'\begin{table}[h]', r'\centering', SMALL,
              rf'\caption{{{caption}}}\label{{{label}}}',
              r'\begin{tabular}{llrrrrr}', r'\toprule',
              r'Software & Algorithm & ' + ' & '.join(map(str, BUDGETS)) + r' \\', r'\midrule']
@@ -125,7 +128,7 @@ def pairwise_table(pairwise):
     s = pairwise[pairwise.p_holm < 0.05].sort_values(['metric', 'software', 'budget'],
                                                       key=lambda col: col.map({sw: i for i, sw in enumerate(SOFTWARE)})
                                                       if col.name == 'software' else col)
-    lines = [r'\begin{table}[h]', r'\centering', r'\small',
+    lines = [r'\begin{table}[h]', r'\centering', SMALL,
              r'\caption{Pairwise comparisons that are significant after Holm' "'" r's correction within each '
              r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). '
              r'$\hat{A}_{12}$ is the probability that a run of the first algorithm gives a lower (better) value '
@@ -135,7 +138,7 @@ def pairwise_table(pairwise):
              r'Metric & Software & Budget & \multicolumn{2}{c}{Comparison} & Medians & $\hat{A}_{12}$ & $p_{Holm}$ \\',
              r'\midrule']
     for row in s.itertuples():
-        lines.append(f'{METRIC_NAMES[row.metric].capitalize()} & {SW_NAMES[row.software]} & {row.budget} & '
+        lines.append(f'{SHORT_METRIC[row.metric]} & {SW_NAMES[row.software]} & {row.budget} & '
                      f'{NAMES[row.group_a]} & vs {NAMES[row.group_b]} & '
                      f'{num(row.median_a, DIGITS.get(row.software, 1))} vs {num(row.median_b, DIGITS.get(row.software, 1))} & {row.a12_a_better:.2f} & {pval(row.p_holm)} \\\\')
     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
@@ -184,7 +187,7 @@ def ablation_table(tests, cells, pairs, label, caption):
     """At 1000 evaluations: mean patch length, median improvement and gap of each variant
     against its reference, with the Holm-corrected p-value of the paired Wilcoxon test."""
     c = cells[cells.budget == 1000].set_index(['software', 'group'])
-    lines = [r'\begin{table}[h]', r'\centering', r'\small', rf'\caption{{{caption}}}\label{{{label}}}',
+    lines = [r'\begin{table}[h]', r'\centering', SMALL, rf'\caption{{{caption}}}\label{{{label}}}',
              r'\begin{tabular}{llrrrrrr}', r'\toprule',
              r' & & \multicolumn{2}{c}{Patch length} & \multicolumn{2}{c}{Improvement} & \multicolumn{2}{c}{Gap} \\',
              r'\cmidrule(lr){3-4}\cmidrule(lr){5-6}\cmidrule(lr){7-8}',
