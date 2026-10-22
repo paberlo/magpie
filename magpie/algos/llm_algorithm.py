@@ -30,6 +30,8 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
         self.stats['llm_missing_patches'] = 0
         self.stats['llm_malformed_patches'] = 0
         self.stats['llm_duplicate_patches'] = 0
+        self.stats['sample_random_fallback'] = 0
+        self.stats['sample_duplicates_kept'] = 0
         self.examples = []
 
     def setup(self, config):
@@ -173,17 +175,27 @@ class LLMAlgorithm(magpie.core.BasicAlgorithm):
             except (RuntimeError, ValueError, AssertionError, Exception):
                 self.software.logger.error('Error parsing edit from LLM. Random 1-edit individual created.')
                 self.stats['llm_malformed_patches'] += 1
-                sol = magpie.core.Patch()
-                self.mutate(sol)
-                explain_str = RANDOM_FALLBACK
-            if self.isIn(sol, population):
-                # a well-formed patch from the LLM itself that is duplicated gets a random
-                # edit appended, and is counted apart
-                if explain_str != RANDOM_FALLBACK:
+                sol = None
+            if sol is None or not sol.edits or self.isIn(sol, population):
+                # as in UMDA4GI with an LLM: a well-formed patch from the LLM itself (not a
+                # missing one) that is empty or duplicated is also discarded, and counted apart
+                if sol is not None and explain_str != RANDOM_FALLBACK:
                     self.stats['llm_duplicate_patches'] += 1
-                self.mutate(sol)
+                sol = self._random_unique_patch(population)
             population.append(sol)
         return population
+
+    def _random_unique_patch(self, population):
+        # Random 1-edit patch not yet in the population; after edit_retries failed attempts
+        # the last one is kept, and counted, so that the population still reaches pop_size.
+        self.stats['sample_random_fallback'] += 1
+        for _ in range(magpie.settings.edit_retries):
+            sol = magpie.core.Patch()
+            self.mutate(sol)
+            if not self.isIn(sol, population):
+                return sol
+        self.stats['sample_duplicates_kept'] += 1
+        return sol
 
     def llm_sample_population(self, pop_size):
         prompt = self._craft_population_prompt(pop_size)

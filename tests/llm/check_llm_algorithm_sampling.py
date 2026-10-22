@@ -29,6 +29,7 @@ answer = [
     e[0],                       # duplicate of the first
     'XmlNodeDeletion<stmt>((garbage',  # malformed
     e[1],                       # valid
+    '',                         # empty
 ]
 pop_size = algo.config['pop_size']
 
@@ -52,11 +53,13 @@ ok = True
 for name, cond in [
     (f'population size is pop_size ({len(pop)})', len(pop) == pop_size),
     ('valid LLM patches kept as given', strs[0] == e[0] and strs[3] == e[1]),
-    ('duplicate gets a random edit appended', len(pop[1].edits) == 2 and strs[1].startswith(e[0])),
-    ('malformed replaced by a random 1-edit patch', len(pop[2].edits) in (1, 2)),
+    ('duplicate replaced by a random 1-edit patch', len(pop[1].edits) == 1 and strs[1] != e[0]),
+    ('malformed replaced by a random 1-edit patch', len(pop[2].edits) == 1),
+    ('empty replaced by a random 1-edit patch', len(pop[4].edits) == 1),
+    ('all patches distinct', len(set(strs)) == pop_size),
     ('malformed counted', algo.stats['llm_malformed_patches'] == 1),
-    ('missing counted', algo.stats['llm_missing_patches'] == pop_size - 4),
-    ('duplicate counted, malformed and missing not', algo.stats['llm_duplicate_patches'] == 1),
+    ('missing counted', algo.stats['llm_missing_patches'] == pop_size - 5),
+    ('duplicate and empty counted, malformed and missing not', algo.stats['llm_duplicate_patches'] == 2),
 ]:
     print(('ok   ' if cond else 'FAIL ') + name)
     ok &= cond
