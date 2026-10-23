@@ -127,6 +127,8 @@ def cell_summary(df):
                      'no_patch_rate': (d['validate_status'] == 'NO_PATCH').mean(),
                      'patch_length_mean': d['patch_length'].mean(),
                      'cached_share_mean': d['cached_share'].mean(),
+                     # older results.csv files have no repeated_share
+                     'repeated_share_mean': d['repeated_share'].mean() if 'repeated_share' in d else np.nan,
                      'search_minutes_median': d['search_minutes'].median()})
     return pd.DataFrame(rows)
 
