@@ -127,7 +127,7 @@ print('smallest p after Holm over all', len(pw), 'comparisons:', A.holm(pw.p).mi
 last = df[df.checkpoint == 1000]
 print('runs with no improving patch at 1000 evaluations:', (last.validate_status == 'NO_PATCH').sum(), 'of', len(last))
 display(last[last.validate_status == 'NO_PATCH'][['software', 'group', 'fold', 'seed']])'''),
-        md('## OptiPNG: the one edit that improves it\n\nThe median validation improvement on OptiPNG is within 0.2 '
+        md('## OptiPNG: the one edit that improves it\n\nThe median validation improvement on OptiPNG is within 0.12 '
            'percentage points of zero for every algorithm, except in the runs whose patch deletes statement 424 of '
            '`optim.c`, the call `png_set_compression_window_bits(..., 9)` that sets a 512-byte compression window '
            'for two of OptiPNG\'s strategies.'),
