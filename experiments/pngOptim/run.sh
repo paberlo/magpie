@@ -21,6 +21,11 @@
 
 set -u
 export LC_ALL=C   # same number formats (perf, awk) whatever the caller's locale
+# Output cap for the program under test: a variant that prints without end fails
+# its evaluation instead of filling the node's /tmp, where its output goes (the
+# largest legitimate output, an optimised image, is 15 MB); and no core file of
+# the killed program.
+ulimit -f "${PROGRAM_FILE_KB:-65536}" -c 0
 # Memory cap for the program under test: a variant that allocates without bound
 # fails its evaluation instead of getting the whole run killed by SLURM (cgroup OOM).
 ulimit -v "${PROGRAM_MEM_KB:-2097152}"
