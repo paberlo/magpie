@@ -281,10 +281,9 @@ def fallback_table(fallback):
              r'(\% of the patches asked in the 15 runs). \emph{Malformed}: could not be parsed or applied; '
              r'\emph{missing}: the LLM returned fewer than asked; both are replaced by a random one-edit patch '
              r'(\emph{random fallback}). \emph{Duplicate}: well-formed but already in the population, or empty, '
-             r'and also replaced by a random patch. \emph{Not used} adds up the three. Last column: mean '
-             r'seconds per LLM call.}\label{tab:rq4fallback}',
-             r'\begin{tabular}{llrrrrrr}', r'\toprule',
-             r'Configuration & Software & Malformed & Missing & Random fallback & Duplicate & Not used & s/call \\',
+             r'and also replaced by a random patch. \emph{Not used} adds up the three.}\label{tab:rq4fallback}',
+             r'\begin{tabular}{llrrrrr}', r'\toprule',
+             r'Configuration & Software & Malformed & Missing & Random fallback & Duplicate & Not used \\',
              r'\midrule']
     order = ['UMDA-llama8b', 'UMDA-qwen7b', 'LLM-llama8b', 'LLM-qwen7b']
     for i, g in enumerate(order):
@@ -294,8 +293,7 @@ def fallback_table(fallback):
             r = fallback[(fallback.group == g) & (fallback.software == sw)].iloc[0]
             first = rf'\multirow{{{len(SOFTWARE)}}}{{*}}{{{NAMES[g]}}}' if j == 0 else ''
             lines.append(f'{first} & {SW_NAMES[sw]} & {pct(r.malformed_rate)} & {pct(r.missing_rate)} & '
-                         f'{pct(r.fallback_rate)} & {pct(r.duplicate_rate)} & {pct(r.not_used_rate)} & '
-                         f'{r.seconds_per_call:.0f} \\\\')
+                         f'{pct(r.fallback_rate)} & {pct(r.duplicate_rate)} & {pct(r.not_used_rate)} \\\\')
     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
     return '\n'.join(lines)
 
