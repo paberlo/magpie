@@ -23,6 +23,10 @@ Data and analysis of the experiments run for the revision. The submitted version
   - `Variance_and_cost.ipynb`: share of the variance due to the fold, repeated evaluations,
     patches that fail validation.
   - `Paper_tables.ipynb`: LaTeX tables and figures of the paper, into `paper/`.
+- `minisat_fold4/`: cycles of each of the 20 MiniSAT-hack instances for the original solver, an
+  unedited and a no-op variant, and the deletion of the call to `varBumpActivity`
+  (`ms_check.sh`, the SLURM job, and its output `ms_check.out`). `python summary.py` prints the
+  figures on fold 4 quoted in the paper (Threats to validity).
 
 ## Running
 

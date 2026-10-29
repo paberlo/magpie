@@ -1,0 +1,11 @@
+--- Solver_dump.cc
++++ Solver_del432.cc
+@@ -1103,7 +1103,7 @@
+ {
+     // Handle case when solver is in contradictory state:
+     if (!ok){
+-        fprintf(f, "p cnf 1 2\n1 0\n-1 0\n");
++        
+         return; }
+ 
+     vec<Var> map; Var max = 0;
