@@ -122,7 +122,8 @@ def ranking_table(rank_csv, label, caption, groups=BASE):
     r = ranked(r, cols)
     lines = [r'\begin{table}[h]', r'\centering', rf'\caption{{{caption}}}\label{{{label}}}',
              r'\begin{tabular}{lcccc|c}', r'\toprule',
-             'Algorithm & ' + ' & '.join(SW_NAMES[sw] for sw in RANK_SOFTWARE) + r' & Sum \\', r'\midrule']
+             f'{"Algorithm" if groups == BASE else "Group"} & '
+             + ' & '.join(SW_NAMES[sw] for sw in RANK_SOFTWARE) + r' & Sum \\', r'\midrule']
     for row in r.itertuples():
         lines.append(f'{NAMES[row.group]} & '
                      + ' & '.join(f'{int(getattr(row, c))}' for c in cols) + f' & {int(row.rank_sum)} \\\\')
