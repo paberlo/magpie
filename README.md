@@ -1,5 +1,6 @@
 ### Please note this is not the original magpie repository. It was forked from https://github.com/bloa/magpie, and enhanced with scenarios and software corpuses from https://github.com/jimbou/magpie. 
 ### In this repo, magpie is extended with UMDA, an univariate estimation of distribution search algorithm. 
+### The experiments of the paper are in `experiments/`: the major revision in `experiments/results_revision/` (see its README), the submitted version in `experiments/results_UCL/`. 
 
 
 # Magpie (Machine Automated General Performance Improvement via Evolution of software)

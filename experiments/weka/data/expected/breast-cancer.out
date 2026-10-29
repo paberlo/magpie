@@ -1,0 +1,68 @@
+
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         280               97.9021 %
+Incorrectly Classified Instances         6                2.0979 %
+Kappa statistic                          0.9498
+Mean absolute error                      0.1407
+Root mean squared error                  0.1869
+Relative absolute error                 33.6442 %
+Root relative squared error             40.8903 %
+Total Number of Instances              286     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.985    0.035    0.985      0.985    0.985      0.950    0.998     0.999     no-recurrence-events
+                 0.965    0.015    0.965      0.965    0.965      0.950    0.998     0.995     recurrence-events
+Weighted Avg.    0.979    0.029    0.979      0.979    0.979      0.950    0.998     0.998     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 198   3 |   a = no-recurrence-events
+   3  82 |   b = recurrence-events
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         199               69.5804 %
+Incorrectly Classified Instances        87               30.4196 %
+Kappa statistic                          0.1736
+Mean absolute error                      0.3727
+Root mean squared error                  0.4613
+Relative absolute error                 89.0857 %
+Root relative squared error            100.9171 %
+Total Number of Instances              286     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 0.871    0.718    0.742      0.871    0.801      0.184    0.634     0.798     no-recurrence-events
+                 0.282    0.129    0.480      0.282    0.356      0.184    0.634     0.409     recurrence-events
+Weighted Avg.    0.696    0.543    0.664      0.696    0.669      0.184    0.634     0.682     
+
+
+=== Confusion Matrix ===
+
+   a   b   <-- classified as
+ 175  26 |   a = no-recurrence-events
+  61  24 |   b = recurrence-events
+

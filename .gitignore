@@ -22,3 +22,10 @@
 # Patch files of the analysed runs, needed to reproduce the diversity analysis
 !_magpie_logs/
 !_magpie_logs/*.patch
+
+/.venv/
+/.venv_rq5/
+/logs/
+.claude/
+# OptimPNG output oracle (built by compile.sh)
+experiments/pngOptim/oracle/pngpixcmp

@@ -94,8 +94,18 @@ class LocalSearch(magpie.core.BasicAlgorithm):
                 patch.edits.append(self.create_edit(self.software.noop_variant))
         elif random.random() < self.config['delete_prob']:
             del patch.edits[random.randrange(0, n)]
+        elif self._at_edit_limit(n):
+            # max_patch_edits ablation: instead of growing past the limit, replace an edit.
+            # Only deleting at the limit left First-Improvement with no non-tabu neighbour
+            # once both deletions of a 2-edit patch had been rejected (endless loop).
+            patch.edits[random.randrange(0, n)] = self.create_edit(self.software.noop_variant)
         else:
             patch.edits.append(self.create_edit(self.software.noop_variant))
+
+    def _at_edit_limit(self, n):
+        # max_patch_edits ablation; without it the moves (and random draws) are unchanged
+        limit = self.config.get('max_patch_edits')
+        return limit is not None and n >= limit
 
     def check_if_trapped(self):
         if self.config['max_neighbours'] is None:

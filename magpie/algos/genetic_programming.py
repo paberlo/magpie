@@ -124,7 +124,7 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
                         sol = self.crossover(parent, sol)
                     else:
                         sol = self.crossover(sol, parent)
-                    offsprings.append(sol)
+                    offsprings.append(self.limit_length(sol))
                 # mutation
                 copy_parents = copy.deepcopy(parents)
                 k = int(self.config['pop_size']*self.config['offspring_mutation'])
@@ -179,10 +179,23 @@ class GeneticProgramming(magpie.core.BasicAlgorithm):
 
 
     def mutate(self, patch):
+        limit = self.config.get('max_patch_edits')
         if patch.edits and random.random() < self.config['delete_prob']:
             del patch.edits[random.randrange(0, len(patch.edits))]
+        elif limit is not None and len(patch.edits) >= limit:
+            # max_patch_edits ablation: replace an edit instead of growing past the limit
+            patch.edits[random.randrange(0, len(patch.edits))] = self.create_edit(self.software.noop_variant)
         else:
             patch.edits.append(self.create_edit(self.software.noop_variant))
+
+    def limit_length(self, patch):
+        # max_patch_edits ablation: a child longer than the limit keeps a random subset of
+        # its edits, in their original order; without the option nothing changes
+        limit = self.config.get('max_patch_edits')
+        if limit is not None and len(patch.edits) > limit:
+            keep = sorted(random.sample(range(len(patch.edits)), limit))
+            patch.edits = [patch.edits[i] for i in keep]
+        return patch
 
     def crossover(self, sol1, sol2):
         c = copy.deepcopy(sol1)

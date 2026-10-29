@@ -1,0 +1,11 @@
+--- Solver_dump.cc
++++ Solver_del130.cc
+@@ -388,7 +388,7 @@
+                     CRef r = reason(var(q));
+                     if (r != CRef_Undef && ca[r].mark() == 3)/*auto*/{
+                         
+-                        varBumpActivity(var(q));
++                        
+                     }/*auto*/
+                 }else/*auto*/{
+                     

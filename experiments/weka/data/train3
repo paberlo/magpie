@@ -4,7 +4,6 @@ data/breast-cancer.arff
 data/diabetes.arff
 data/cpu.arff
 data/segment-test.arff
-data/airline.arff
 data/ionosphere.arff
 data/weather.nominal.arff
 data/weather.numeric.arff

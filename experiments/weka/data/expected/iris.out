@@ -1,0 +1,72 @@
+
+
+Options: -S 1 
+
+=== Classifier model (full training set) ===
+
+RandomForest
+
+Bagging with 100 iterations and base learner
+
+weka.classifiers.trees.RandomTree -K 0 -M 1.0 -V 0.001 -S 1 -do-not-check-capabilities
+
+
+
+=== Error on training data ===
+
+Correctly Classified Instances         150              100      %
+Incorrectly Classified Instances         0                0      %
+Kappa statistic                          1     
+Mean absolute error                      0.0156
+Root mean squared error                  0.0628
+Relative absolute error                  3.52   %
+Root relative squared error             13.3147 %
+Total Number of Instances              150     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Iris-setosa
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Iris-versicolor
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Iris-virginica
+Weighted Avg.    1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 50  0  0 |  a = Iris-setosa
+  0 50  0 |  b = Iris-versicolor
+  0  0 50 |  c = Iris-virginica
+
+
+
+=== Stratified cross-validation ===
+
+Correctly Classified Instances         143               95.3333 %
+Incorrectly Classified Instances         7                4.6667 %
+Kappa statistic                          0.93  
+Mean absolute error                      0.0408
+Root mean squared error                  0.1621
+Relative absolute error                  9.19   %
+Root relative squared error             34.3846 %
+Total Number of Instances              150     
+
+
+=== Detailed Accuracy By Class ===
+
+                 TP Rate  FP Rate  Precision  Recall   F-Measure  MCC      ROC Area  PRC Area  Class
+                 1.000    0.000    1.000      1.000    1.000      1.000    1.000     1.000     Iris-setosa
+                 0.940    0.040    0.922      0.940    0.931      0.896    0.991     0.984     Iris-versicolor
+                 0.920    0.030    0.939      0.920    0.929      0.895    0.991     0.982     Iris-virginica
+Weighted Avg.    0.953    0.023    0.953      0.953    0.953      0.930    0.994     0.989     
+
+
+=== Confusion Matrix ===
+
+  a  b  c   <-- classified as
+ 50  0  0 |  a = Iris-setosa
+  0 47  3 |  b = Iris-versicolor
+  0  4 46 |  c = Iris-virginica
+

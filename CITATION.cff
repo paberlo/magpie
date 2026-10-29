@@ -1,7 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software or the accompanying dataset, please cite the paper below."
-title: "UMDA4GI: Estimation of Distribution and LLM-Guided Search for Genetic Improvement of Software"
+title: "UMDA4GI: Estimation of Distribution and LLM-Guided Search for Genetic Improvement, and Their Generalisation"
 type: software
+version: "2.0"
 authors:
   - family-names: "Bermejo López"
     given-names: "Pablo"
@@ -11,8 +12,8 @@ authors:
     affiliation: "University College London"
 repository-code: "https://github.com/paberlo/magpie/tree/release-ase-gi26"
 license: MIT
-doi: 10.5281/zenodo.PLACEHOLDER
+doi: 10.5281/zenodo.21460547
 identifiers:
   - type: doi
-    value: 10.5281/zenodo.PLACEHOLDER
-    description: "Zenodo archive of the release-ase-gi26 branch (code, results.csv, notebooks and plots for RQ1-RQ4)"
+    value: 10.5281/zenodo.21460547
+    description: "Zenodo concept DOI of the release-ase-gi26 branch, which resolves to its latest version (code, scenarios, results, notebooks and analysis scripts)"

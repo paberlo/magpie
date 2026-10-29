@@ -142,6 +142,13 @@ class AbstractSoftware(abc.ABC):
             return
         contents_original = os.listdir(original)
         for entry in contents_target:
+            if entry.startswith('.nfs'):
+                # On NFS, a file deleted while a process still holds it open
+                # (e.g., the binary of an evaluation killed after a
+                # RUN_TIMEOUT that has not finished dying) is renamed to
+                # .nfsXXXX until it is closed. NFS removes it by itself, and
+                # deleting it earlier fails with OSError EBUSY (errno 16).
+                continue
             target_entry = target / entry
             if target_entry.is_dir():
                 if entry not in contents_original:

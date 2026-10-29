@@ -34,7 +34,7 @@ fi
 
 dir=${DIRS[$dir_index]}
 
-cd /home/pbermejo/GeneticImprovement/magpie
+cd "${MAGPIE_DIR:-$SLURM_SUBMIT_DIR}"   # root of this repository
 
 SCENARIO="experiments/${dir}/_magpie/scenario_runtime_xml_FOLD${fold}.txt"
 echo "Ejecutando: ${SCENARIO}"

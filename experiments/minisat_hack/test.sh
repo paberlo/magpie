@@ -1,44 +1,10 @@
-#!/bin/bash
+#!/bin/sh
+#
+# Usage: test.sh FOLD
+#
+# Quick functional filter MAGPIE runs before run.sh: the same oracle as run.sh
+# (expected answer, valid model) on the first two training instances of the
+# fold, without measuring anything. Validation instances are never used
+# during the search.
 
-# Registrar una trampa para asegurarse de manejar señales y liberar recursos
-#trap clean_up EXIT SIGINT  # test_timeout error does not unlock executable file
-
-clean_up() {
-    pkill -P $$ -f "minisat_HACK_999ED_CSSC_static" 2>/dev/null
-    true
-}
-
-
-
-ARGV=$@
-
-my_test() {
-    FILENAME=$1
-    EXPECTED=$2
-    ./minisat_HACK_999ED_CSSC_static $FILENAME $ARGV > /dev/null
-    RETURN=$?
-    echo $RETURN
-    if [ $RETURN -ne $((EXPECTED)) ]; then
-        echo "FAILED ON FILE:" $FILENAME
-        echo "GOT:" $RETURN
-        echo "EXPECTED:" $EXPECTED
-        exit -1
-    fi
-}
-
-my_test data/uf50-01.cnf 10
-my_test data/uf50-02.cnf 10
-my_test data/uf100-01.cnf 10
-my_test data/uf100-02.cnf 10
-my_test data/uf150-01.cnf 10
-my_test data/uf150-02.cnf 10
-
-my_test data/uuf50-01.cnf 20
-my_test data/uuf50-02.cnf 20
-my_test data/uuf100-01.cnf 20
-my_test data/uuf100-02.cnf 20
-my_test data/uuf150-01.cnf 20
-my_test data/uuf150-02.cnf 20
-
-
-
+exec bash run.sh "${1:?usage: test.sh FOLD}" --smoke

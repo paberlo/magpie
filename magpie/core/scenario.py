@@ -94,6 +94,7 @@ number: literal_number""",
         'max_steps': '',
         'max_time': '',
         'target_fitness': '',
+        'max_patch_edits': '', # longest patch FI/GP may build (empty: no limit)
         'cache_maxsize': 100,
         'cache_keep': 0.2,
         'batch_instances': '', # separated by "|" see also "file:"

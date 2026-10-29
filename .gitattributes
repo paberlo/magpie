@@ -1,0 +1,9 @@
+# Scripts here run on Linux (galgo HPC / WSL); force LF regardless of
+# core.autocrlf on Windows checkouts, to avoid "$'\r': command not found".
+*.sh    text eol=lf
+*.slurm text eol=lf
+*.py    text eol=lf
+# Oracle sources and reference data read by the run scripts
+*.c     text eol=lf
+experiments/*/data/expected/** text eol=lf
+*.awk   text eol=lf
