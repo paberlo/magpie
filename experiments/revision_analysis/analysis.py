@@ -30,6 +30,10 @@ signed-rank tests with Holm correction and the Vargha-Delaney A12 effect size; b
 95% CI of each cell median. Reviewer 2: UMDA4GI against the two-edit FI and GP (comment 2),
 how often the patches asked to the LLM were not used as given (comment 3) and the share of variance due to the fold, with a permutation test (comment 4). RQ3 correlations (Spearman) use every run, with Holm and
 Benjamini-Hochberg adjustments, and are reported as exploratory.
+
+RQ4 also compares the training change (metric "train", change_perc_train) with the same tests:
+the LLM groups improved more than UMDA4GI on the training inputs but not on validation. This
+comparison was added after seeing the results and is reported as exploratory.
 """
 import argparse
 import itertools
@@ -51,6 +55,10 @@ BUDGETS = [100, 250, 500, 750, 1000]
 RNG = np.random.default_rng(20261016)
 # separate stream for the CI of the gap, added later, so the other draws stay as they were
 GAP_RNG = np.random.default_rng(20261022)
+# and for the CIs of the LLM groups, which arrived last: their cells come between GP and RS in
+# the loop, so drawing them from RNG and GAP_RNG would change the CIs of the other algorithms
+LLM_RNG = np.random.default_rng(20261029)
+LLM_GAP_RNG = np.random.default_rng(20261030)
 
 
 # ----------------------------------------------------------------------------- data
@@ -69,6 +77,7 @@ def load(path, val_fail):
         df.loc[df['val_failed'], 'change_perc_validate'] = 0.0
     df['improvement'] = df['change_perc_validate']
     df['gap'] = df['improvement'] - df['change_perc_train']
+    df['train'] = df['change_perc_train']
     df['block'] = df['fold'].astype(str) + '-' + df['seed'].astype(str)
     return df
 
@@ -117,8 +126,9 @@ def bh(pvalues):
 def cell_summary(df):
     rows = []
     for (sw, g, b), d in df.groupby(['software', 'group', 'checkpoint']):
-        lo, hi = boot_ci(d['improvement'])
-        gap_lo, gap_hi = boot_ci(d['gap'], rng=GAP_RNG)
+        llm = g in LLM
+        lo, hi = boot_ci(d['improvement'], rng=LLM_RNG if llm else RNG)
+        gap_lo, gap_hi = boot_ci(d['gap'], rng=LLM_GAP_RNG if llm else GAP_RNG)
         rows.append({'software': sw, 'group': g, 'budget': b, 'runs': len(d),
                      'improvement_median': d['improvement'].median(), 'improvement_ci_low': lo,
                      'improvement_ci_high': hi, 'train_median': d['change_perc_train'].median(),
@@ -218,8 +228,8 @@ def llm_fallback(df):
     """Reviewer 2, comment 3: share of the patches asked to the LLM that were not used as the
     LLM gave them. malformed (could not be parsed or applied) and missing (the LLM returned
     too few) are replaced by random 1-edit patches; duplicate (well-formed but already in the
-    population, or empty) is replaced by a random 1-edit patch in UMDA4GI and gets a random
-    edit appended in the LLM-only algorithm. Counts are per run, so only the last checkpoint
+    population, or empty) is also replaced by a random 1-edit patch, in UMDA4GI and in the
+    LLM-only algorithm (since commit 8b66dcd). Counts are per run, so only the last checkpoint
     is used. Logs before the revision did not count duplicates (llm_duplicate empty)."""
     d = df[df['group'].isin(LLM) & (df['checkpoint'] == df['checkpoint'].max())].copy()
     if 'llm_duplicate' not in d:
@@ -334,8 +344,9 @@ def run(results, out_dir, val_fail):
         save(ranking(cells, groups, 'improvement_median'), f'{name}.csv')
     for name, groups in [('rq2_gap_ranking', BASE), ('rq4_gap_ranking', RQ4)]:
         save(ranking(cells, groups, 'gap_median'), f'{name}.csv')
-    for name, groups in [('rq1_rq2', BASE), ('rq4', RQ4)]:
-        fr, pw = tests(df, groups, ['improvement', 'gap'], BUDGETS)
+    for name, groups, metrics in [('rq1_rq2', BASE, ['improvement', 'gap']),
+                                  ('rq4', RQ4, ['improvement', 'gap', 'train'])]:
+        fr, pw = tests(df, groups, metrics, BUDGETS)
         save(fr, f'{name}_friedman.csv')
         save(pw, f'{name}_pairwise.csv')
     save(correlations(df), 'rq3_correlations.csv')

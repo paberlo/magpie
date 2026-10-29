@@ -240,12 +240,15 @@ display(fv.groupby(['metric', 'software']).agg(median_eta2=('eta2_fold', 'median
                                                cells_p_below_005=('p_perm', lambda p: (p < 0.05).sum()),
                                                cells=('p_perm', 'size')))
 print(fv.groupby('metric').eta2_fold.median().round(2).to_dict())'''),
-        md('## Candidates evaluated more than once\n\nShare of the evaluations of a run that were answered from the '
-           'cache because the patch had already been evaluated; every algorithm counts them against its budget.'),
+        md('## Candidates evaluated more than once\n\n`repeated_share`: share of the evaluations of a run whose '
+           'patch had already been evaluated earlier in the same run; every algorithm counts them against its '
+           'budget. MAGPIE keeps a cache of recently evaluated variants, so only part of them is answered from it '
+           '(`cached_share`); the rest is run again.'),
         code('''\
 c = cells[cells.group.isin(A.BASE)]
-display(c[c.budget == 1000].pivot(index='software', columns='group', values='cached_share_mean'))
-display(c[c.budget == 1000].groupby('group').cached_share_mean.mean())'''),
+for col in ['repeated_share_mean', 'cached_share_mean']:
+    display(c[c.budget == 1000].pivot(index='software', columns='group', values=col).rename_axis(columns=col))
+    display(c[c.budget == 1000].groupby('group')[col].mean())'''),
         md('## Patches that fail the correctness oracle on the validation inputs'),
         code("display(pd.read_csv(OUT / 'val_fail_rates.csv'))"),
     ]
@@ -255,42 +258,108 @@ def rq4():
     return [
         md('# RQ4: does the distribution of UMDA4GI help LLM-guided search?\n\n' + DEFINITIONS +
            '\n\nGroups: UMDA4GI without LLM, UMDA4GI whose population is proposed by an LLM (`UMDA-qwen7b`, '
-           '`UMDA-llama8b`) and the LLM-only algorithm (`LLM-qwen7b`, `LLM-llama8b`).'),
+           '`UMDA-llama8b`) and the LLM-only algorithm (`LLM-qwen7b`, `LLM-llama8b`). The LLMs are '
+           'qwen2.5-coder:7b and llama3.1:8b, served locally with Ollama.'),
         code(SETUP + '''
-HAS_LLM = df.group.isin(A.LLM).any()
+G = A.RQ4
 print('LLM runs:', df[df.group.isin(A.LLM)].id.nunique())'''),
+        md('## Median improvement and gap per software, group and budget\n\nMedian of the 15 runs with its '
+           'bootstrap 95% confidence interval.'),
+        code('''\
+c = cells[cells.group.isin(G)].copy()
+for m in ['improvement', 'gap']:
+    c['value'] = c.apply(lambda r: f"{r[m + '_median']:.2f} [{r[m + '_ci_low']:.2f}, {r[m + '_ci_high']:.2f}]", axis=1)
+    print(m)
+    display(c.pivot_table(index=['software', 'group'], columns='budget', values='value', aggfunc='first'))'''),
         md('## Rankings'),
         code('''\
-if HAS_LLM:
-    display(pd.read_csv(OUT / 'rq4_improvement_ranking.csv'))
-    display(pd.read_csv(OUT / 'rq4_gap_ranking.csv'))'''),
-        md('## Friedman and pairwise tests'),
+display(pd.read_csv(OUT / 'rq4_improvement_ranking.csv'))
+display(pd.read_csv(OUT / 'rq4_gap_ranking.csv'))'''),
+        md('## Friedman and pairwise tests\n\nFriedman over the five groups, with the 15 (fold, seed) pairs as '
+           'blocks; then Wilcoxon signed-rank tests with Holm\'s correction within each (software, budget, metric), '
+           'i.e. over its 10 pairs.'),
         code('''\
-if HAS_LLM:
-    fr = pd.read_csv(OUT / 'rq4_friedman.csv')
-    display(fr.pivot_table(index=['metric', 'software'], columns='budget', values='p'))
-    pw = pd.read_csv(OUT / 'rq4_pairwise.csv')
-    display(pw[pw.p_holm < 0.05])'''),
+fr = pd.read_csv(OUT / 'rq4_friedman.csv')
+display(fr.pivot_table(index=['metric', 'software'], columns='budget', values='p'))
+print('Friedman p < 0.05:', fr[fr.p < 0.05].groupby('metric').size().to_dict(), 'of 20 cells per metric')
+pw = pd.read_csv(OUT / 'rq4_pairwise.csv')
+s = pw[(pw.p_holm < 0.05) & pw.metric.isin(['improvement', 'gap'])]
+display(s)
+u = s[(s.group_a == 'UMDA') | (s.group_b == 'UMDA')]
+umda_better = ((u.group_a == 'UMDA') & (u.median_a < u.median_b)) | ((u.group_b == 'UMDA') & (u.median_b < u.median_a))
+print(f'significant comparisons with UMDA4GI: {len(u)}, in favour of UMDA4GI: {umda_better.sum()}')'''),
+        md('## Training against validation\n\nThe LLM groups improve the training inputs more than UMDA4GI, but '
+           'not the validation inputs, so their gap is larger. The tests on the training change (`metric = '
+           'train`) were added after seeing the results and are exploratory. Medians at 1000 evaluations:'),
+        code('''\
+last = cells[cells.group.isin(G) & (cells.budget == 1000)]
+display(last.pivot(index='software', columns='group', values='train_median')[G].rename_axis(columns='training'))
+display(last.pivot(index='software', columns='group', values='improvement_median')[G].rename_axis(columns='validation'))
+display(last.pivot(index='software', columns='group', values='gap_median')[G].rename_axis(columns='gap'))'''),
+        md('Each LLM group against UMDA4GI, per metric: in how many of the 20 cells (software × budget) it is '
+           'significantly better or worse (Holm within the cell).'),
+        code('''\
+rows = []
+for g in A.LLM:
+    for m in ['train', 'improvement', 'gap']:
+        t = pw[(pw.metric == m) & pw.group_a.isin([g, 'UMDA']) & pw.group_b.isin([g, 'UMDA'])]
+        sig = t[t.p_holm < 0.05]
+        g_med = np.where(sig.group_a == g, sig.median_a, sig.median_b)
+        u_med = np.where(sig.group_a == g, sig.median_b, sig.median_a)
+        rows.append({'group': g, 'metric': m, 'cells': len(t),
+                     'LLM group better': int((g_med < u_med).sum()), 'UMDA4GI better': int((g_med > u_med).sum())})
+display(pd.DataFrame(rows).pivot(index='group', columns='metric', values=['LLM group better', 'UMDA4GI better']))'''),
+        md('## Does the hybrid overfit less than the LLM alone?\n\nEach UMDA4GI+LLM group against the LLM-only '
+           'algorithm with the same model.'),
+        code('''\
+for hybrid, alone in [('UMDA-llama8b', 'LLM-llama8b'), ('UMDA-qwen7b', 'LLM-qwen7b')]:
+    for m in ['gap', 'train', 'improvement']:
+        t = pw[(pw.metric == m) & pw.group_a.isin([hybrid, alone]) & pw.group_b.isin([hybrid, alone])]
+        h_med = np.where(t.group_a == hybrid, t.median_a, t.median_b)
+        a_med = np.where(t.group_a == hybrid, t.median_b, t.median_a)
+        sig = t.p_holm < 0.05
+        print(f'{hybrid} vs {alone}, {m}: lower median in {(h_med < a_med).sum()}/20 cells; '
+              f'significant: {int((sig & (h_med < a_med)).sum())} for the hybrid, {int((sig & (h_med > a_med)).sum())} for the LLM alone')'''),
+        md('## Patch length does not explain it\n\nThe ablations show that the small gap of UMDA4GI goes with its '
+           'short patches. The LLM-only patches are as short or shorter, and still generalise worse: mean number of '
+           'edits at 1000 evaluations.'),
+        code('''\
+display(last.pivot(index='software', columns='group', values='patch_length_mean')[G])'''),
+        md('## Per fold\n\nMedian gap of the 3 seeds of each fold at 1000 evaluations. On MiniSAT the large gaps '
+           'of the LLM groups come mostly from fold 1; on Weka the pattern holds in every fold.'),
+        code('''\
+d = df[df.group.isin(G) & (df.checkpoint == 1000) & df.software.isin(['minisat_hack', 'sat4j', 'weka'])]
+display(d.pivot_table(index=['software', 'group'], columns='fold', values='gap', aggfunc='median').round(1))'''),
+        md('## Patches that fail the correctness oracle on the validation inputs\n\nThey count as 0% improvement. '
+           'All are on MiniSAT fold 5: the patch cuts about 78% of the training cycles and the program fails on '
+           'the validation inputs.'),
+        code('''\
+f = df[df.val_failed & df.group.isin(G)]
+display(f[['software', 'group', 'id', 'fold', 'seed', 'checkpoint', 'change_perc_train', 'validate_status']])'''),
         md('## How much of the LLM output was used (Reviewer 2, comment 3)\n\nPer group and software, share of '
            'the patches asked to the LLM that were malformed, missing (the LLM returned too few) or duplicated '
-           '(well-formed but already in the population, or empty). Malformed and missing ones are replaced by '
-           'random 1-edit patches; a duplicated one is replaced by a random patch in UMDA4GI and gets a random edit '
-           'appended in the LLM-only algorithm. Also the time per LLM call.'),
+           '(well-formed but already in the population, or empty). All three are replaced by random one-edit '
+           'patches, in UMDA4GI+LLM and in the LLM-only algorithm. `fallback_rate` = malformed + missing; '
+           '`not_used_rate` adds the duplicates. Also the time per LLM call.'),
         code('''\
-if HAS_LLM:
-    display(pd.read_csv(OUT / 'rq4_llm_fallback.csv'))'''),
+fb = pd.read_csv(OUT / 'rq4_llm_fallback.csv')
+display(fb)
+display(fb.groupby('group')[['fallback_rate', 'not_used_rate']].agg(['min', 'max']))'''),
         md('## Diversity of the returned patches\n\nDistinct edited locations over total edits of the patches '
-           'returned at 1000 evaluations.'),
+           'returned at 1000 evaluations, per software and pooled over the four systems.'),
         code('''\
-if HAS_LLM:
-    display(pd.read_csv(OUT / 'diversity.csv'))'''),
+dv = pd.read_csv(OUT / 'diversity.csv')
+dv = dv[dv.group.isin(G)]
+display(dv)
+t = dv.groupby('group')[['distinct_locations', 'edits']].sum()
+display((t.distinct_locations / t.edits).rename('pooled diversity').sort_values(ascending=False))'''),
     ]
 
 
 def tables():
     return [
-        md('# Tables and figures of the paper\n\nWrites the LaTeX tables of RQ1-RQ3 and the two figures with '
-           '`paper_tables.py` into `paper/`.'),
+        md('# Tables and figures of the paper\n\nWrites the LaTeX tables of RQ1-RQ3 and RQ4 and the three '
+           'figures with `paper_tables.py` into `paper/`.'),
         code(SETUP + '''
 import subprocess
 subprocess.run([sys.executable, str(pathlib.Path('..', 'revision_analysis', 'paper_tables.py')), str(OUT), 'paper'],

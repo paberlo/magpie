@@ -7,6 +7,11 @@ ANALYSIS_DIR is experiments/results/revision/analysis. Writes OUT_DIR/tables_rq1
 (one table per \\begin{table}, then the two figure environments; same labels as the submitted
 version where the table or figure already existed) and the figures RQ1_convergence and RQ2_generalisation as PDF and EPS. Needs the
 LaTeX packages booktabs and multirow.
+
+When the analysis has the LLM runs, it also writes OUT_DIR/tables_rq4.tex (the RQ4 tables, with
+the labels of the submitted version for the tables that already existed, the training change
+against validation, and the LLM fallback of Reviewer 2, comment 3) and the figure
+RQ4_generalisation.
 """
 import argparse
 import pathlib
@@ -19,7 +24,11 @@ import pandas as pd
 BASE = ['FI', 'GP', 'RS', 'UMDA']
 NAMES = {'FI': 'FI', 'GP': 'GP', 'RS': 'RandomS', 'UMDA': 'UMDA4GI',
          'ABL-UMDA-imp': 'UMDA4GI-imp', 'ABL-UMDA-k1': 'UMDA4GI $k_{max}{=}1$',
-         'ABL-UMDA-k3': 'UMDA4GI $k_{max}{=}3$', 'ABL-FI-2': 'FI-2', 'ABL-GP-2': 'GP-2'}
+         'ABL-UMDA-k3': 'UMDA4GI $k_{max}{=}3$', 'ABL-FI-2': 'FI-2', 'ABL-GP-2': 'GP-2',
+         'UMDA-llama8b': 'UMDA+llama', 'UMDA-qwen7b': 'UMDA+qwen', 'LLM-llama8b': 'LLM-llama',
+         'LLM-qwen7b': 'LLM-qwen'}
+# row order of the submitted RQ4 tables
+RQ4 = ['UMDA', 'UMDA-llama8b', 'UMDA-qwen7b', 'LLM-llama8b', 'LLM-qwen7b']
 # row order of the submitted tables, and column order of its ranking tables
 SOFTWARE = ['minisat_hack', 'sat4j', 'weka', 'pngOptim']
 RANK_SOFTWARE = ['minisat_hack', 'pngOptim', 'sat4j', 'weka']
@@ -29,12 +38,17 @@ BUDGETS = [100, 250, 500, 750, 1000]
 DIGITS = {'pngOptim': 2}
 # the wide tables must fit the text width of the journal template (sn-jnl)
 SMALL = r'\footnotesize\setlength{\tabcolsep}{4pt}'
-SHORT_METRIC = {'improvement': 'Improvement', 'gap': 'Gap'}
+SHORT_METRIC = {'improvement': 'Improvement', 'gap': 'Gap', 'train': 'Training'}
 METRIC_NAMES = {'improvement': 'validation improvement', 'gap': 'generalisation gap'}
 # validated categorical palette (dataviz skill, slots 1-4); marker and line style also
 # identify each algorithm, for print and colour-vision deficiencies
 STYLE = {'FI': ('#2a78d6', 'o', '-'), 'GP': ('#eb6834', 's', '--'),
          'RS': ('#1baf7a', '^', ':'), 'UMDA': ('#eda100', 'D', '-.')}
+# RQ4: UMDA4GI keeps its colour; the LLM groups take slots 1, 2, 3 and 5 (palette validated with
+# the skill's script: CVD and normal-vision separation pass; the contrast warning is covered by
+# markers, line styles and the tables with the same values)
+RQ4_STYLE = {'UMDA': STYLE['UMDA'], 'UMDA-llama8b': ('#2a78d6', 'o', '-'), 'UMDA-qwen7b': ('#eb6834', 's', '--'),
+             'LLM-llama8b': ('#1baf7a', '^', ':'), 'LLM-qwen7b': ('#e87ba4', 'v', (0, (5, 1, 1, 1)))}
 
 
 def num(x, digits=1):
@@ -50,7 +64,17 @@ def pval(p):
     return '$<$0.001' if p < 0.001 else f'{p:.3f}'
 
 
-def raw_table(cells, friedman, metric, label, caption):
+def holm(pvalues):
+    """Holm-adjusted p-values (as in analysis.py)."""
+    order = sorted(range(len(pvalues)), key=lambda i: pvalues[i])
+    out, running = [0.0] * len(pvalues), 0.0
+    for k, i in enumerate(order):
+        running = max(running, min(1.0, (len(pvalues) - k) * pvalues[i]))
+        out[i] = running
+    return out
+
+
+def raw_table(cells, friedman, metric, label, caption, groups=BASE):
     """Median per software, algorithm and budget, with its bootstrap 95% CI below and the
     p-value of the Friedman test of each budget."""
     lines = [r'\begin{table}[h]', r'\centering', SMALL,
@@ -60,9 +84,9 @@ def raw_table(cells, friedman, metric, label, caption):
     for i, sw in enumerate(SOFTWARE):
         if i:
             lines.append(r'\midrule')
-        for j, g in enumerate(BASE):
+        for j, g in enumerate(groups):
             c = cells[(cells.software == sw) & (cells.group == g)].set_index('budget')
-            first = rf'\multirow{{{2 * len(BASE)}}}{{*}}{{{SW_NAMES[sw]}}}' if j == 0 else ''
+            first = rf'\multirow{{{2 * len(groups)}}}{{*}}{{{SW_NAMES[sw]}}}' if j == 0 else ''
             d = DIGITS.get(sw, 1)
             lines.append(f' {first} & {NAMES[g]} & '
                          + ' & '.join(num(c.loc[b, f'{metric}_median'], d) for b in BUDGETS) + r' \\')
@@ -86,8 +110,8 @@ def ranked(table, cols, ascending=True):
     return t.sort_values(['rank_sum', 'worst', 'top2'], ascending=[True, True, False])
 
 
-def ranking_table(rank_csv, label, caption):
-    r = rank_csv[rank_csv.group.isin(BASE)]
+def ranking_table(rank_csv, label, caption, groups=BASE):
+    r = rank_csv[rank_csv.group.isin(groups)]
     cols = [f'{sw}_rank' for sw in RANK_SOFTWARE]
     r = ranked(r, cols)
     lines = [r'\begin{table}[h]', r'\centering', rf'\caption{{{caption}}}\label{{{label}}}',
@@ -122,18 +146,20 @@ def search_time_tables(cells):
     return '\n'.join(lines), rank_lines
 
 
-def pairwise_table(pairwise):
+def pairwise_table(pairwise, label='tab:pairwise', what='algorithm'):
     """Pairwise comparisons significant after Holm's correction within each (software,
     budget, metric)."""
     s = pairwise[pairwise.p_holm < 0.05].sort_values(['metric', 'software', 'budget'],
                                                       key=lambda col: col.map({sw: i for i, sw in enumerate(SOFTWARE)})
                                                       if col.name == 'software' else col)
+    overall = sum(p < 0.05 for p in holm(list(pairwise.p)))
+    remain = 'none remains' if overall == 0 else f'{overall} remain{"s" if overall == 1 else ""}'
     lines = [r'\begin{table}[h]', r'\centering', SMALL,
              r'\caption{Pairwise comparisons that are significant after Holm' "'" r's correction within each '
              r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). '
-             r'$\hat{A}_{12}$ is the probability that a run of the first algorithm gives a lower (better) value '
-             rf'than a run of the second. Out of {len(pairwise)} comparisons, none remains significant with '
-             r'Holm' "'" r's correction over all of them.}\label{tab:pairwise}',
+             rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
+             rf'than a run of the second. Out of {len(pairwise)} comparisons, {remain} significant with '
+             r'Holm' "'" rf's correction over all of them.}}\label{{{label}}}',
              r'\begin{tabular}{llrllrrr}', r'\toprule',
              r'Metric & Software & Budget & \multicolumn{2}{c}{Comparison} & Medians & $\hat{A}_{12}$ & $p_{Holm}$ \\',
              r'\midrule']
@@ -214,16 +240,77 @@ def ablation_table(tests, cells, pairs, label, caption):
     return '\n'.join(lines)
 
 
-def figure(cells, metric, ylabel, path):
+def trainval_table(cells, pairwise):
+    """RQ4 at 1000 evaluations: median training change, validation improvement and gap of each
+    group, marking the values significantly different from UMDA4GI's."""
+    c = cells[cells.budget == 1000].set_index(['software', 'group'])
+    p = pairwise[pairwise.budget == 1000]
+
+    def differs(sw, g, metric):
+        t = p[(p.software == sw) & (p.metric == metric) & p.group_a.isin(['UMDA', g]) & p.group_b.isin(['UMDA', g])]
+        return g != 'UMDA' and len(t) and t.iloc[0].p_holm < 0.05
+
+    lines = [r'\begin{table}[h]', r'\centering', SMALL,
+             r'\caption{Training and validation at 1000 evaluations: median change in CPU cycles on the training '
+             r'inputs and on the validation inputs (\%, negative = improvement) and median generalisation gap '
+             r'(percentage points) of the 15 runs. $^\dagger$: significantly different from UMDA4GI (Wilcoxon '
+             r'signed-rank test paired by fold and seed, Holm' "'" r's correction over the 10 pairs of the five '
+             r'groups). The comparison of the training change was added after seeing the results and is '
+             r'exploratory.}\label{tab:rq4trainval}',
+             r'\begin{tabular}{llrrr}', r'\toprule',
+             r'Software & Group & Training & Validation & Gap \\', r'\midrule']
+    for i, sw in enumerate(SOFTWARE):
+        if i:
+            lines.append(r'\midrule')
+        d = DIGITS.get(sw, 1)
+        for j, g in enumerate(RQ4):
+            first = rf'\multirow{{{len(RQ4)}}}{{*}}{{{SW_NAMES[sw]}}}' if j == 0 else ''
+            vals = [num(c.loc[(sw, g), col], d) + ('$^\\dagger$' if differs(sw, g, metric) else '')
+                    for col, metric in [('train_median', 'train'), ('improvement_median', 'improvement'),
+                                        ('gap_median', 'gap')]]
+            lines.append(f'{first} & {NAMES[g]} & ' + ' & '.join(vals) + r' \\')
+    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    return '\n'.join(lines)
+
+
+def fallback_table(fallback):
+    """Reviewer 2, comment 3: what happened to the patches asked to the LLM, per group and software."""
+    pct = lambda x: f'{100 * x:.1f}'
+    lines = [r'\begin{table}[h]', r'\centering', SMALL,
+             r'\caption{Patches asked to the LLM that could not be used as given, per configuration and software '
+             r'(\% of the patches asked in the 15 runs). \emph{Malformed}: could not be parsed or applied; '
+             r'\emph{missing}: the LLM returned fewer than asked; both are replaced by a random one-edit patch '
+             r'(\emph{random fallback}). \emph{Duplicate}: well-formed but already in the population, or empty, '
+             r'and also replaced by a random patch. \emph{Not used} adds up the three. Last column: mean '
+             r'seconds per LLM call.}\label{tab:rq4fallback}',
+             r'\begin{tabular}{llrrrrrr}', r'\toprule',
+             r'Configuration & Software & Malformed & Missing & Random fallback & Duplicate & Not used & s/call \\',
+             r'\midrule']
+    order = ['UMDA-llama8b', 'UMDA-qwen7b', 'LLM-llama8b', 'LLM-qwen7b']
+    for i, g in enumerate(order):
+        if i:
+            lines.append(r'\midrule')
+        for j, sw in enumerate(SOFTWARE):
+            r = fallback[(fallback.group == g) & (fallback.software == sw)].iloc[0]
+            first = rf'\multirow{{{len(SOFTWARE)}}}{{*}}{{{NAMES[g]}}}' if j == 0 else ''
+            lines.append(f'{first} & {SW_NAMES[sw]} & {pct(r.malformed_rate)} & {pct(r.missing_rate)} & '
+                         f'{pct(r.fallback_rate)} & {pct(r.duplicate_rate)} & {pct(r.not_used_rate)} & '
+                         f'{r.seconds_per_call:.0f} \\\\')
+    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    return '\n'.join(lines)
+
+
+def figure(cells, metric, ylabel, path, groups=BASE, style=STYLE):
     """One panel per software: median of each algorithm per budget, with its bootstrap 95% CI.
     The y-axis is not inverted: lower = more improvement (or smaller gap)."""
     fig, axes = plt.subplots(2, 2, figsize=(7.2, 5.4))
-    offsets = dict(zip(BASE, [-24, -8, 8, 24]))  # keeps the error bars apart
+    # keeps the error bars apart
+    offsets = dict(zip(groups, [-24, -8, 8, 24] if len(groups) == 4 else [-28, -14, 0, 14, 28]))
     for ax, sw in zip(axes.flat, SOFTWARE):
         ax.axhline(0, color='#b0afa8', linewidth=0.8, zorder=0)
-        for g in BASE:
+        for g in groups:
             c = cells[(cells.software == sw) & (cells.group == g)].sort_values('budget')
-            colour, marker, ls = STYLE[g]
+            colour, marker, ls = style[g]
             x = c.budget + offsets[g]
             med = c[f'{metric}_median']
             ax.errorbar(x, med, yerr=[med - c[f'{metric}_ci_low'], c[f'{metric}_ci_high'] - med],
@@ -240,7 +327,7 @@ def figure(cells, metric, ylabel, path):
     for ax in axes[:, 0]:
         ax.set_ylabel(ylabel, fontsize=9)
     handles, labels = axes[0, 0].get_legend_handles_labels()
-    fig.legend(handles, labels, loc='lower center', ncol=4, frameon=False, fontsize=9)
+    fig.legend(handles, labels, loc='lower center', ncol=len(groups), frameon=False, fontsize=9)
     fig.tight_layout(rect=(0, 0.05, 1, 1))
     for ext in ('pdf', 'eps'):
         fig.savefig(path.with_suffix('.' + ext))
@@ -313,7 +400,45 @@ def main():
     (out / 'tables_rq1_rq3.tex').write_text(header + '\n\n'.join(tables) + '\n')
     figure(cells, 'improvement', 'Validation improvement (%)', out / 'RQ1_convergence')
     figure(cells, 'gap', 'Generalisation gap (pp)', out / 'RQ2_generalisation')
+    if (a / 'rq4_llm_fallback.csv').exists():
+        rq4_tables(a, cells, out, header)
     print('written to', out)
+
+
+def rq4_tables(a, cells, out, header):
+    friedman = pd.read_csv(a / 'rq4_friedman.csv')
+    pairwise = pd.read_csv(a / 'rq4_pairwise.csv')
+    ties = 'Ties broken by worst individual rank, then by number of software systems where the group ranks in the top 2.'
+    tables = [
+        raw_table(cells, friedman, 'improvement', 'tab:rq4validate',
+                  r'Median validation improvement (\% change in CPU cycles, negative = improvement) of the 15 runs '
+                  r'per software, group and evaluation budget, with its bootstrap 95\% confidence interval below. '
+                  r'The last row of each software gives the $p$-value of the Friedman test over the five groups at '
+                  r'that budget (bold: $p<0.05$).', groups=RQ4),
+        ranking_table(pd.read_csv(a / 'rq4_improvement_ranking.csv'), 'tab:rq4validateranking',
+                      r'Global ranking of groups by validation improvement (1 = best per software): medians of '
+                      r'Table~\ref{tab:rq4validate} averaged across the 5 budgets. ' + ties, groups=RQ4),
+        raw_table(cells, friedman, 'gap', 'tab:rq4gap',
+                  r'Median generalisation gap (validation $-$ training change of each run, percentage points; '
+                  r'negative = generalises better than it trains) of the 15 runs per software, group and evaluation '
+                  r'budget, with its bootstrap 95\% confidence interval below. The last row of each software gives '
+                  r'the $p$-value of the Friedman test over the five groups at that budget (bold: $p<0.05$).',
+                  groups=RQ4),
+        ranking_table(pd.read_csv(a / 'rq4_gap_ranking.csv'), 'tab:rq4gapranking',
+                      r'Global ranking of groups by generalisation gap (1 = generalises best per software): medians '
+                      r'of Table~\ref{tab:rq4gap} averaged across the 5 budgets. ' + ties, groups=RQ4),
+        pairwise_table(pairwise[pairwise.metric.isin(['improvement', 'gap'])], 'tab:rq4pairwise', 'group'),
+        trainval_table(cells, pairwise),
+        fallback_table(pd.read_csv(a / 'rq4_llm_fallback.csv')),
+        r'\begin{figure}[h]' '\n' r'\centering' '\n'
+        r'\includegraphics[width=\textwidth]{figures/RQ4_generalisation.pdf}' '\n'
+        r'\caption{Median generalisation gap (validation $-$ training change of each run, percentage points) vs.\ '
+        r'evaluation budget of UMDA4GI and the four LLM groups, per software, with bootstrap 95\% confidence '
+        r'intervals (Table~\ref{tab:rq4gap}). The lower the point, the better the patches generalise.}'
+        r'\label{fig:rq4generalisation}' '\n' r'\end{figure}',
+    ]
+    (out / 'tables_rq4.tex').write_text(header + '\n\n'.join(tables) + '\n')
+    figure(cells, 'gap', 'Generalisation gap (pp)', out / 'RQ4_generalisation', groups=RQ4, style=RQ4_STYLE)
 
 
 if __name__ == '__main__':
