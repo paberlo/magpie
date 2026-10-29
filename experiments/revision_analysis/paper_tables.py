@@ -29,6 +29,9 @@ NAMES = {'FI': 'FI', 'GP': 'GP', 'RS': 'RandomS', 'UMDA': 'UMDA4GI',
          'LLM-qwen7b': 'LLM-qwen'}
 # row order of the submitted RQ4 tables
 RQ4 = ['UMDA', 'UMDA-llama8b', 'UMDA-qwen7b', 'LLM-llama8b', 'LLM-qwen7b']
+# five groups with longer names: less space between columns, so that they fit the text width
+RQ4_SMALL = r'\footnotesize\setlength{\tabcolsep}{3pt}'
+RQ4_PAIRS = r'\footnotesize\setlength{\tabcolsep}{3pt}'
 # row order of the submitted tables, and column order of its ranking tables
 SOFTWARE = ['minisat_hack', 'sat4j', 'weka', 'pngOptim']
 RANK_SOFTWARE = ['minisat_hack', 'pngOptim', 'sat4j', 'weka']
@@ -74,13 +77,14 @@ def holm(pvalues):
     return out
 
 
-def raw_table(cells, friedman, metric, label, caption, groups=BASE):
+def raw_table(cells, friedman, metric, label, caption, groups=BASE, size=SMALL):
     """Median per software, algorithm and budget, with its bootstrap 95% CI below and the
     p-value of the Friedman test of each budget."""
-    lines = [r'\begin{table}[h]', r'\centering', SMALL,
+    lines = [r'\begin{table}[h]', r'\centering', size,
              rf'\caption{{{caption}}}\label{{{label}}}',
              r'\begin{tabular}{llrrrrr}', r'\toprule',
-             r'Software & Algorithm & ' + ' & '.join(map(str, BUDGETS)) + r' \\', r'\midrule']
+             f'Software & {"Algorithm" if groups == BASE else "Group"} & ' + ' & '.join(map(str, BUDGETS)) + r' \\',
+             r'\midrule']
     for i, sw in enumerate(SOFTWARE):
         if i:
             lines.append(r'\midrule')
@@ -90,8 +94,10 @@ def raw_table(cells, friedman, metric, label, caption, groups=BASE):
             d = DIGITS.get(sw, 1)
             lines.append(f' {first} & {NAMES[g]} & '
                          + ' & '.join(num(c.loc[b, f'{metric}_median'], d) for b in BUDGETS) + r' \\')
+            # the CI in the font of the table: in the journal class (sn-jnl) \scriptsize is 9pt, larger
+            # than \footnotesize (7pt), so it made the CIs larger than the medians and the table too wide
             lines.append(r' & & ' + ' & '.join(
-                rf'\scriptsize[{num(c.loc[b, f"{metric}_ci_low"], d)}, {num(c.loc[b, f"{metric}_ci_high"], d)}]'
+                rf'[{num(c.loc[b, f"{metric}_ci_low"], d)}, {num(c.loc[b, f"{metric}_ci_high"], d)}]'
                 for b in BUDGETS) + r' \\')
         f = friedman[(friedman.software == sw) & (friedman.metric == metric)].set_index('budget')
         lines.append(r' & \textit{Friedman $p$} & ' + ' & '.join(
@@ -146,7 +152,7 @@ def search_time_tables(cells):
     return '\n'.join(lines), rank_lines
 
 
-def pairwise_table(pairwise, label='tab:pairwise', what='algorithm'):
+def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL):
     """Pairwise comparisons significant after Holm's correction within each (software,
     budget, metric)."""
     s = pairwise[pairwise.p_holm < 0.05].sort_values(['metric', 'software', 'budget'],
@@ -154,7 +160,7 @@ def pairwise_table(pairwise, label='tab:pairwise', what='algorithm'):
                                                       if col.name == 'software' else col)
     overall = sum(p < 0.05 for p in holm(list(pairwise.p)))
     remain = 'none remains' if overall == 0 else f'{overall} remain{"s" if overall == 1 else ""}'
-    lines = [r'\begin{table}[h]', r'\centering', SMALL,
+    lines = [r'\begin{table}[h]', r'\centering', size,
              r'\caption{Pairwise comparisons that are significant after Holm' "'" r's correction within each '
              r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). '
              rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
@@ -412,7 +418,7 @@ def rq4_tables(a, cells, out, header):
                   r'Median validation improvement (\% change in CPU cycles, negative = improvement) of the 15 runs '
                   r'per software, group and evaluation budget, with its bootstrap 95\% confidence interval below. '
                   r'The last row of each software gives the $p$-value of the Friedman test over the five groups at '
-                  r'that budget (bold: $p<0.05$).', groups=RQ4),
+                  r'that budget (bold: $p<0.05$).', groups=RQ4, size=RQ4_SMALL),
         ranking_table(pd.read_csv(a / 'rq4_improvement_ranking.csv'), 'tab:rq4validateranking',
                       r'Global ranking of groups by validation improvement (1 = best per software): medians of '
                       r'Table~\ref{tab:rq4validate} averaged across the 5 budgets. ' + ties, groups=RQ4),
@@ -421,11 +427,11 @@ def rq4_tables(a, cells, out, header):
                   r'negative = generalises better than it trains) of the 15 runs per software, group and evaluation '
                   r'budget, with its bootstrap 95\% confidence interval below. The last row of each software gives '
                   r'the $p$-value of the Friedman test over the five groups at that budget (bold: $p<0.05$).',
-                  groups=RQ4),
+                  groups=RQ4, size=RQ4_SMALL),
         ranking_table(pd.read_csv(a / 'rq4_gap_ranking.csv'), 'tab:rq4gapranking',
                       r'Global ranking of groups by generalisation gap (1 = generalises best per software): medians '
                       r'of Table~\ref{tab:rq4gap} averaged across the 5 budgets. ' + ties, groups=RQ4),
-        pairwise_table(pairwise[pairwise.metric.isin(['improvement', 'gap'])], 'tab:rq4pairwise', 'group'),
+        pairwise_table(pairwise[pairwise.metric.isin(['improvement', 'gap'])], 'tab:rq4pairwise', 'group', size=RQ4_PAIRS),
         trainval_table(cells, pairwise),
         fallback_table(pd.read_csv(a / 'rq4_llm_fallback.csv')),
         r'\begin{figure}[h]' '\n' r'\centering' '\n'
