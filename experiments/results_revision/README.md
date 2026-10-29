@@ -7,8 +7,8 @@ Data and analysis of the experiments run for the revision. The submitted version
 
 - `results.csv`: one row per run and budget. Each run has 1000 evaluations; the budgets 100,
   250, 500 and 750 are checkpoints of the same run. 15 runs (5 folds × 3 seeds, seed =
-  100 × repetition + fold) per software and group. Written by `galgo/revision_results.py`
-  from the MAGPIE logs of training and validation.
+  100 × repetition + fold) per software and group. Built from the MAGPIE logs of training and
+  validation.
 - `analysis/`: every table, written by `../revision_analysis/analysis.py` (see its docstring
   for the definitions and the statistics).
 - One notebook per research question, plus the analyses requested by the reviewers. They do
@@ -23,10 +23,10 @@ Data and analysis of the experiments run for the revision. The submitted version
   - `Variance_and_cost.ipynb`: share of the variance due to the fold, repeated evaluations,
     patches that fail validation.
   - `Paper_tables.ipynb`: LaTeX tables and figures of the paper, into `paper/`.
-- `minisat_fold4/`: cycles of each of the 20 MiniSAT-hack instances for the original solver, an
-  unedited and a no-op variant, and the deletion of the call to `varBumpActivity`
-  (`ms_check.sh`, the SLURM job, and its output `ms_check.out`). `python summary.py` prints the
-  figures on fold 4 quoted in the paper (Threats to validity).
+- `minisat_fold4/`: cycles of each of the 20 MiniSAT-hack instances (3 repetitions on one
+  compute node, in `ms_check.out`) for the original solver, an unedited and a no-op variant,
+  and the deletion of the call to `varBumpActivity` (the two edits as diffs). `python
+  summary.py` prints the figures on fold 4 quoted in the paper (Threats to validity).
 
 ## Running
 
