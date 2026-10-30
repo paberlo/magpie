@@ -193,13 +193,19 @@ def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL,
         intro = (r'Pairwise comparisons that are significant after Holm' "'" r's correction within each '
                  r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). ')
         of_all = ''
+    # a gap of exactly zero is that of a run that returned the original program (no improving patch)
+    zeros = s[(s.median_a == 0) | (s.median_b == 0)]
+    zero_note = ''
+    if single and found[0] == 'gap' and len(zeros):
+        zero_note = (f' A median of {num(0.0, DIGITS.get(zeros.iloc[0].software, 1))} is that of a run that '
+                     'found no improving patch, whose gap is 0 by definition.')
     metric_col = '' if single else 'Metric & '
     env = WIDE_CAPTION if wide else 'table'
     lines = [rf'\begin{{{env}}}[htbp]', r'\centering', size,
              r'\caption{' + intro
              + rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
              rf'than a run of the second. Out of {len(pairwise)} comparisons{of_all}, {remain} significant with '
-             r'Holm' "'" rf's correction over all of them.}}\label{{{label}}}',
+             r'Holm' "'" rf's correction over all of them.{zero_note}}}\label{{{label}}}',
              r'\begin{tabular}{' + ('' if single else 'l') + r'lrllrrr}', r'\toprule',
              metric_col + r'Software & Budget & \multicolumn{2}{c}{Comparison} & Medians & $\hat{A}_{12}$ & $p_{Holm}$ \\',
              r'\midrule']
