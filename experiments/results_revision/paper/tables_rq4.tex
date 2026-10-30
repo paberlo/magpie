@@ -206,8 +206,7 @@ Software & Group & Training & Validation & Gap \\
 \end{tabular}
 \end{widecaptiontable}
 
-\begin{table}[htbp]
-\centering
+\begin{widecaptiontable}[htbp]
 \footnotesize\setlength{\tabcolsep}{4pt}
 \caption{Patches requested from the LLM that were replaced by a random one-edit patch, per configuration and software (\% of the patches requested in the 15 runs). \emph{Malformed}: could not be parsed or applied; \emph{missing}: the LLM returned fewer than requested; \emph{unusable}: malformed or missing; \emph{duplicate}: well-formed but already in the population, or empty; \emph{replaced}: unusable or duplicate.}\label{tab:rq4fallback}
 \begin{tabular}{llrrrrr}
@@ -235,7 +234,7 @@ Configuration & Software & Malformed & Missing & Unusable & Duplicate & Replaced
  & OptimPNG & 53.4 & 6.1 & 59.5 & 13.9 & 73.4 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{widecaptiontable}
 
 \begin{figure}[htbp]
 \centering

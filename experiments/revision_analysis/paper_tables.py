@@ -323,7 +323,7 @@ def trainval_table(cells, pairwise):
 def fallback_table(fallback):
     """Reviewer 2, comment 3: what happened to the patches asked to the LLM, per group and software."""
     pct = lambda x: f'{100 * x:.1f}'
-    lines = [r'\begin{table}[htbp]', r'\centering', SMALL,
+    lines = [rf'\begin{{{WIDE_CAPTION}}}[htbp]', SMALL,
              r'\caption{Patches requested from the LLM that were replaced by a random one-edit patch, per '
              r'configuration and software (\% of the patches requested in the 15 runs). \emph{Malformed}: could '
              r'not be parsed or applied; \emph{missing}: the LLM returned fewer than requested; \emph{unusable}: '
@@ -341,7 +341,7 @@ def fallback_table(fallback):
             first = rf'\multirow{{{len(SOFTWARE)}}}{{*}}{{{NAMES[g]}}}' if j == 0 else ''
             lines.append(f'{first} & {SW_NAMES[sw]} & {pct(r.malformed_rate)} & {pct(r.missing_rate)} & '
                          f'{pct(r.fallback_rate)} & {pct(r.duplicate_rate)} & {pct(r.not_used_rate)} \\\\')
-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    lines += [r'\bottomrule', r'\end{tabular}', rf'\end{{{WIDE_CAPTION}}}']
     return '\n'.join(lines)
 
 
