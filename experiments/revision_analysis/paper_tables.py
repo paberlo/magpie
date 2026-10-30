@@ -167,25 +167,44 @@ def search_time_tables(cells):
     return '\n'.join(lines), rank_lines
 
 
+LONG_METRIC = {'improvement': 'validation improvement', 'gap': 'generalisation gap', 'train': 'training change'}
+
+
 def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL):
     """Pairwise comparisons significant after Holm's correction within each (software,
-    budget, metric)."""
+    budget, metric). When they all concern one metric, it is named in the caption instead of
+    filling a column."""
     s = pairwise[pairwise.p_holm < 0.05].sort_values(['metric', 'software', 'budget'],
                                                       key=lambda col: col.map({sw: i for i, sw in enumerate(SOFTWARE)})
                                                       if col.name == 'software' else col)
     overall = sum(p < 0.05 for p in holm(list(pairwise.p)))
     remain = 'none remains' if overall == 0 else f'{overall} remain{"s" if overall == 1 else ""}'
+    tested = list(dict.fromkeys(pairwise.metric))
+    found = list(dict.fromkeys(s.metric))
+    single = len(found) == 1
+    if single:
+        rest = [m for m in tested if m != found[0]]
+        intro = (f'Pairwise comparisons of {LONG_METRIC[found[0]]} that are significant after Holm' "'"
+                 r's correction within each software, budget and metric (Wilcoxon signed-rank test, 15 runs '
+                 r'paired by fold and seed)'
+                 + (f'; no comparison of {" or ".join(LONG_METRIC[m] for m in rest)} is significant. ' if rest else '. '))
+        of_all = ' of both metrics' if len(tested) == 2 else ''
+    else:
+        intro = (r'Pairwise comparisons that are significant after Holm' "'" r's correction within each '
+                 r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). ')
+        of_all = ''
+    metric_col = '' if single else 'Metric & '
     lines = [r'\begin{table}[htbp]', r'\centering', size,
-             r'\caption{Pairwise comparisons that are significant after Holm' "'" r's correction within each '
-             r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). '
-             rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
-             rf'than a run of the second. Out of {len(pairwise)} comparisons, {remain} significant with '
+             r'\caption{' + intro
+             + rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
+             rf'than a run of the second. Out of {len(pairwise)} comparisons{of_all}, {remain} significant with '
              r'Holm' "'" rf's correction over all of them.}}\label{{{label}}}',
-             r'\begin{tabular}{llrllrrr}', r'\toprule',
-             r'Metric & Software & Budget & \multicolumn{2}{c}{Comparison} & Medians & $\hat{A}_{12}$ & $p_{Holm}$ \\',
+             r'\begin{tabular}{' + ('' if single else 'l') + r'lrllrrr}', r'\toprule',
+             metric_col + r'Software & Budget & \multicolumn{2}{c}{Comparison} & Medians & $\hat{A}_{12}$ & $p_{Holm}$ \\',
              r'\midrule']
     for row in s.itertuples():
-        lines.append(f'{SHORT_METRIC[row.metric]} & {SW_NAMES[row.software]} & {row.budget} & '
+        lines.append(('' if single else f'{SHORT_METRIC[row.metric]} & ')
+                     + f'{SW_NAMES[row.software]} & {row.budget} & '
                      f'{NAMES[row.group_a]} & vs {NAMES[row.group_b]} & '
                      f'{num(row.median_a, DIGITS.get(row.software, 1))} vs {num(row.median_b, DIGITS.get(row.software, 1))} & {row.a12_a_better:.2f} & {pval(row.p_holm)} \\\\')
     lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
