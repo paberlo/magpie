@@ -170,10 +170,10 @@ def search_time_tables(cells):
 LONG_METRIC = {'improvement': 'validation improvement', 'gap': 'generalisation gap', 'train': 'training change'}
 
 
-def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL):
+def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL, wide=False):
     """Pairwise comparisons significant after Holm's correction within each (software,
     budget, metric). When they all concern one metric, it is named in the caption instead of
-    filling a column."""
+    filling a column. wide: caption as wide as the text (widecaptiontable, only in the paper)."""
     s = pairwise[pairwise.p_holm < 0.05].sort_values(['metric', 'software', 'budget'],
                                                       key=lambda col: col.map({sw: i for i, sw in enumerate(SOFTWARE)})
                                                       if col.name == 'software' else col)
@@ -194,7 +194,8 @@ def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL)
                  r'software, budget and metric (Wilcoxon signed-rank test, 15 runs paired by fold and seed). ')
         of_all = ''
     metric_col = '' if single else 'Metric & '
-    lines = [r'\begin{table}[htbp]', r'\centering', size,
+    env = WIDE_CAPTION if wide else 'table'
+    lines = [rf'\begin{{{env}}}[htbp]', r'\centering', size,
              r'\caption{' + intro
              + rf'$\hat{{A}}_{{12}}$ is the probability that a run of the first {what} gives a lower (better) value '
              rf'than a run of the second. Out of {len(pairwise)} comparisons{of_all}, {remain} significant with '
@@ -207,7 +208,7 @@ def pairwise_table(pairwise, label='tab:pairwise', what='algorithm', size=SMALL)
                      + f'{SW_NAMES[row.software]} & {row.budget} & '
                      f'{NAMES[row.group_a]} & vs {NAMES[row.group_b]} & '
                      f'{num(row.median_a, DIGITS.get(row.software, 1))} vs {num(row.median_b, DIGITS.get(row.software, 1))} & {row.a12_a_better:.2f} & {pval(row.p_holm)} \\\\')
-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    lines += [r'\bottomrule', r'\end{tabular}', rf'\end{{{env}}}']
     return '\n'.join(lines)
 
 
@@ -405,7 +406,7 @@ def main():
                       r'Global ranking of algorithms by generalisation gap (1 = generalises best per software): '
                       r'medians of Table~S2 of Online Resource~1 averaged across the 5 budgets. Ties broken by worst '
                       r'individual rank, then by number of software systems where the algorithm ranks in the top 2.'),
-        pairwise_table(pairwise),
+        pairwise_table(pairwise, wide=True),
         *rq3_tables(pd.read_csv(a / 'rq3_correlations.csv')),
         ablation_table(pd.read_csv(a / 'ablations.csv'), cells,
                        [('UMDA', 'ABL-UMDA-imp'), ('UMDA', 'ABL-UMDA-k1'), ('UMDA', 'ABL-UMDA-k3'),
