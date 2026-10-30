@@ -324,13 +324,13 @@ def fallback_table(fallback):
     """Reviewer 2, comment 3: what happened to the patches asked to the LLM, per group and software."""
     pct = lambda x: f'{100 * x:.1f}'
     lines = [r'\begin{table}[htbp]', r'\centering', SMALL,
-             r'\caption{Patches asked to the LLM that could not be used as given, per configuration and software '
-             r'(\% of the patches asked in the 15 runs). \emph{Malformed}: could not be parsed or applied; '
-             r'\emph{missing}: the LLM returned fewer than asked; both are replaced by a random one-edit patch '
-             r'(\emph{random fallback}). \emph{Duplicate}: well-formed but already in the population, or empty, '
-             r'and also replaced by a random patch. \emph{Not used} adds up the three.}\label{tab:rq4fallback}',
+             r'\caption{Patches requested from the LLM that were replaced by a random one-edit patch, per '
+             r'configuration and software (\% of the patches requested in the 15 runs). \emph{Malformed}: could '
+             r'not be parsed or applied; \emph{missing}: the LLM returned fewer than requested; \emph{unusable}: '
+             r'malformed or missing; \emph{duplicate}: well-formed but already in the population, or empty; '
+             r'\emph{replaced}: unusable or duplicate.}\label{tab:rq4fallback}',
              r'\begin{tabular}{llrrrrr}', r'\toprule',
-             r'Configuration & Software & Malformed & Missing & Random fallback & Duplicate & Not used \\',
+             r'Configuration & Software & Malformed & Missing & Unusable & Duplicate & Replaced \\',
              r'\midrule']
     order = ['UMDA-llama8b', 'UMDA-qwen7b', 'LLM-llama8b', 'LLM-qwen7b']
     for i, g in enumerate(order):

@@ -209,10 +209,10 @@ Software & Group & Training & Validation & Gap \\
 \begin{table}[htbp]
 \centering
 \footnotesize\setlength{\tabcolsep}{4pt}
-\caption{Patches asked to the LLM that could not be used as given, per configuration and software (\% of the patches asked in the 15 runs). \emph{Malformed}: could not be parsed or applied; \emph{missing}: the LLM returned fewer than asked; both are replaced by a random one-edit patch (\emph{random fallback}). \emph{Duplicate}: well-formed but already in the population, or empty, and also replaced by a random patch. \emph{Not used} adds up the three.}\label{tab:rq4fallback}
+\caption{Patches requested from the LLM that were replaced by a random one-edit patch, per configuration and software (\% of the patches requested in the 15 runs). \emph{Malformed}: could not be parsed or applied; \emph{missing}: the LLM returned fewer than requested; \emph{unusable}: malformed or missing; \emph{duplicate}: well-formed but already in the population, or empty; \emph{replaced}: unusable or duplicate.}\label{tab:rq4fallback}
 \begin{tabular}{llrrrrr}
 \toprule
-Configuration & Software & Malformed & Missing & Random fallback & Duplicate & Not used \\
+Configuration & Software & Malformed & Missing & Unusable & Duplicate & Replaced \\
 \midrule
 \multirow{4}{*}{UMDA+llama} & MiniSAT-hack & 4.5 & 0.0 & 4.5 & 46.4 & 50.9 \\
  & Sat4J & 0.9 & 0.0 & 0.9 & 50.4 & 51.3 \\
