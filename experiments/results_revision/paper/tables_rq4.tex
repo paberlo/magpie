@@ -172,8 +172,7 @@ Improvement & OptimPNG & 500 & UMDA+llama & vs LLM-llama & 0.00 vs -0.06 & 0.33 
 \end{tabular}
 \end{table}
 
-\begin{table}[htbp]
-\centering
+\begin{widecaptiontable}[htbp]
 \footnotesize\setlength{\tabcolsep}{4pt}
 \caption{Training and validation at 1000 evaluations: median change in CPU cycles on the training inputs and on the validation inputs (\%, negative = improvement) and median generalisation gap (percentage points) of the 15 runs. $^\dagger$: significantly different from UMDA4GI (Wilcoxon signed-rank test paired by fold and seed, Holm's correction over the 10 pairs of the five groups). The comparison of the training change was added after seeing the results and is exploratory.}\label{tab:rq4trainval}
 \begin{tabular}{llrrr}
@@ -205,7 +204,7 @@ Software & Group & Training & Validation & Gap \\
  & LLM-qwen & -0.14 & -0.02 & 0.19 \\
 \bottomrule
 \end{tabular}
-\end{table}
+\end{widecaptiontable}
 
 \begin{table}[htbp]
 \centering

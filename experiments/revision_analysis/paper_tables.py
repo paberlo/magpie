@@ -297,7 +297,7 @@ def trainval_table(cells, pairwise):
         t = p[(p.software == sw) & (p.metric == metric) & p.group_a.isin(['UMDA', g]) & p.group_b.isin(['UMDA', g])]
         return g != 'UMDA' and len(t) and t.iloc[0].p_holm < 0.05
 
-    lines = [r'\begin{table}[htbp]', r'\centering', SMALL,
+    lines = [rf'\begin{{{WIDE_CAPTION}}}[htbp]', SMALL,
              r'\caption{Training and validation at 1000 evaluations: median change in CPU cycles on the training '
              r'inputs and on the validation inputs (\%, negative = improvement) and median generalisation gap '
              r'(percentage points) of the 15 runs. $^\dagger$: significantly different from UMDA4GI (Wilcoxon '
@@ -316,7 +316,7 @@ def trainval_table(cells, pairwise):
                     for col, metric in [('train_median', 'train'), ('improvement_median', 'improvement'),
                                         ('gap_median', 'gap')]]
             lines.append(f'{first} & {NAMES[g]} & ' + ' & '.join(vals) + r' \\')
-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    lines += [r'\bottomrule', r'\end{tabular}', rf'\end{{{WIDE_CAPTION}}}']
     return '\n'.join(lines)
 
 
