@@ -462,7 +462,7 @@ def rq4_tables(a, cells, out, header):
                   r'that budget (bold: $p<0.05$).', groups=RQ4, size=RQ4_SMALL),
         ranking_table(pd.read_csv(a / 'rq4_improvement_ranking.csv'), 'tab:rq4validateranking',
                       r'Global ranking of groups by validation improvement (1 = best per software): medians of '
-                      r'Table~S4 of Online Resource~1 averaged across the 5 budgets. ' + ties, groups=RQ4),
+                      r'Table~S5 of Online Resource~1 averaged across the 5 budgets. ' + ties, groups=RQ4),
         raw_table(cells, friedman, 'gap', 'tab:rq4gap',
                   r'Median generalisation gap (validation $-$ training change of each run, percentage points; '
                   r'negative = generalises better than it trains) of the 15 runs per software, group and evaluation '
@@ -471,7 +471,7 @@ def rq4_tables(a, cells, out, header):
                   groups=RQ4, size=RQ4_SMALL),
         ranking_table(pd.read_csv(a / 'rq4_gap_ranking.csv'), 'tab:rq4gapranking',
                       r'Global ranking of groups by generalisation gap (1 = generalises best per software): medians '
-                      r'of Table~S5 of Online Resource~1 averaged across the 5 budgets. ' + ties, groups=RQ4),
+                      r'of Table~S6 of Online Resource~1 averaged across the 5 budgets. ' + ties, groups=RQ4),
         pairwise_table(pairwise[pairwise.metric.isin(['improvement', 'gap'])], 'tab:rq4pairwise', 'group', size=RQ4_PAIRS),
         trainval_table(cells, pairwise),
         fallback_table(pd.read_csv(a / 'rq4_llm_fallback.csv')),
@@ -479,7 +479,7 @@ def rq4_tables(a, cells, out, header):
         r'\includegraphics[width=\textwidth]{figures/RQ4_generalisation.pdf}' '\n'
         r'\caption{Median generalisation gap (validation $-$ training change of each run, percentage points) vs.\ '
         r'evaluation budget of UMDA4GI and the four LLM groups, per software, with bootstrap 95\% confidence '
-        r'intervals (Table~S5 of Online Resource~1). The lower the point, the better the patches generalise.}'
+        r'intervals (Table~S6 of Online Resource~1). The lower the point, the better the patches generalise.}'
         r'\label{fig:rq4generalisation}' '\n' r'\end{figure}',
     ]
     (out / 'tables_rq4.tex').write_text(header + '\n\n'.join(tables) + '\n')
