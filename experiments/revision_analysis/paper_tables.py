@@ -125,18 +125,23 @@ def ranked(table, cols, ascending=True):
     return t.sort_values(['rank_sum', 'worst', 'top2'], ascending=[True, True, False])
 
 
+# Narrow tables (rankings, search time) use widecaptiontable, an environment defined in the
+# preamble of the paper that sets the caption to the width of the text instead of the table.
+WIDE_CAPTION = 'widecaptiontable'
+
+
 def ranking_table(rank_csv, label, caption, groups=BASE):
     r = rank_csv[rank_csv.group.isin(groups)]
     cols = [f'{sw}_rank' for sw in RANK_SOFTWARE]
     r = ranked(r, cols)
-    lines = [r'\begin{table}[htbp]', r'\centering', rf'\caption{{{caption}}}\label{{{label}}}',
+    lines = [rf'\begin{{{WIDE_CAPTION}}}[htbp]', rf'\caption{{{caption}}}\label{{{label}}}',
              r'\begin{tabular}{lcccc|c}', r'\toprule',
              f'{"Algorithm" if groups == BASE else "Group"} & '
              + ' & '.join(SW_NAMES[sw] for sw in RANK_SOFTWARE) + r' & Sum \\', r'\midrule']
     for row in r.itertuples():
         lines.append(f'{NAMES[row.group]} & '
                      + ' & '.join(f'{int(getattr(row, c))}' for c in cols) + f' & {int(row.rank_sum)} \\\\')
-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    lines += [r'\bottomrule', r'\end{tabular}', rf'\end{{{WIDE_CAPTION}}}']
     return '\n'.join(lines)
 
 
@@ -146,14 +151,14 @@ def search_time_tables(cells):
     c = cells[cells.group.isin(BASE)]
     t = c.groupby(['group', 'software'])['search_minutes_median'].mean().unstack('software')
     ranks = t.rank(axis=0, method='min')
-    lines = [r'\begin{table}[htbp]', r'\centering',
+    lines = [rf'\begin{{{WIDE_CAPTION}}}[htbp]',
              r'\caption{Search time (minutes) per algorithm and software: median of the 15 runs at each '
              r'evaluation budget, averaged across the 5 budgets.}\label{tab:rq1searchtime}',
              r'\begin{tabular}{lrrrr}', r'\toprule',
              'Algorithm & ' + ' & '.join(SW_NAMES[sw] for sw in RANK_SOFTWARE) + r' \\', r'\midrule']
     for g in BASE:
         lines.append(f'{NAMES[g]} & ' + ' & '.join(num(t.loc[g, sw], 1) for sw in RANK_SOFTWARE) + r' \\')
-    lines += [r'\bottomrule', r'\end{tabular}', r'\end{table}']
+    lines += [r'\bottomrule', r'\end{tabular}', rf'\end{{{WIDE_CAPTION}}}']
     r = ranks[RANK_SOFTWARE].add_suffix('_rank')
     r['rank_sum'] = r.sum(axis=1)
     r = r.reset_index()
